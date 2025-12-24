@@ -1,0 +1,23 @@
+/* Color palette — WCAG-friendly, dark-blue based */
+:root {
+  /* Primary */
+  --color-primary-900: #0b1f3a; /* deep navy */
+  --color-primary-700: #123653;
+  --color-primary-500: #1b4d74; /* sporty blue */
+  --color-primary-300: #4a7aa6;
+
+  /* Secondary / accents */
+  --color-accent-500: #ff5a5f; /* energetic coral */
+  --color-accent-300: #ff9b98;
+
+  /* Neutrals */
+  --color-neutral-900: #0f1720;
+  --color-neutral-700: #2b3440;
+  --color-neutral-500: #6b7682;
+  --color-neutral-100: #f6f7f9;
+
+  /* Semantic */
+  --color-success: #1fa57a;
+  --color-warning: #f2a83b;
+  --color-danger: #d9534f;
+}

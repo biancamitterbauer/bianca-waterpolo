@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global design system imports */
+@import './styles/_variables.scss';
+@import './styles/_typography.scss';
+@import './styles/_tokens.scss';
+@import './styles/_layout.scss';
+
+/* Small helpers */
+* { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
+
