@@ -2,8 +2,15 @@ import { Injectable, PLATFORM_ID, computed, inject, signal } from '@angular/core
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import deDictionary from '../../../assets/i18n/de.json';
+import enDictionary from '../../../assets/i18n/en.json';
 
 export type SupportedLang = 'de' | 'en';
+
+const STATIC_DICTIONARIES: Record<SupportedLang, Record<string, string>> = {
+  de: deDictionary as Record<string, string>,
+  en: enDictionary as Record<string, string>,
+};
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
@@ -54,6 +61,12 @@ export class I18nService {
 
   private async loadDictionary(lang: SupportedLang): Promise<void> {
     if (this.loadedLang === lang) {
+      return;
+    }
+
+    if (!this.isBrowser()) {
+      this.translations.set(STATIC_DICTIONARIES[lang]);
+      this.loadedLang = lang;
       return;
     }
 

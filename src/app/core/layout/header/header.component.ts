@@ -9,7 +9,7 @@ import { I18nService, SupportedLang } from '../../i18n/i18n.service';
 type NavItem = {
   labelKey: string;
   path: string;
-  exact?: boolean;
+  exact: boolean;
 };
 
 type LanguageOption = {
@@ -32,15 +32,15 @@ export class HeaderComponent {
   readonly currentLang = this.i18n.currentLang;
   readonly navItems: NavItem[] = [
     { labelKey: 'nav.home', path: '/', exact: true },
-    { labelKey: 'nav.achievements', path: '/achievements' },
-    { labelKey: 'nav.news', path: '/news' },
-    { labelKey: 'nav.training', path: '/training' },
-    { labelKey: 'nav.tournaments', path: '/tournaments' },
-    { labelKey: 'nav.media', path: '/media' },
-    { labelKey: 'nav.sponsors', path: '/sponsors' },
-    { labelKey: 'nav.press', path: '/press' },
-    { labelKey: 'nav.contact', path: '/contact' },
-    { labelKey: 'nav.legal', path: '/legal' },
+    { labelKey: 'nav.achievements', path: '/achievements', exact: false },
+    { labelKey: 'nav.news', path: '/news', exact: false },
+    { labelKey: 'nav.training', path: '/training', exact: false },
+    { labelKey: 'nav.tournaments', path: '/tournaments', exact: false },
+    { labelKey: 'nav.media', path: '/media', exact: false },
+    { labelKey: 'nav.sponsors', path: '/sponsors', exact: false },
+    { labelKey: 'nav.press', path: '/press', exact: false },
+    { labelKey: 'nav.contact', path: '/contact', exact: false },
+    { labelKey: 'nav.legal', path: '/legal', exact: false },
   ];
 
   readonly languageOptions: LanguageOption[] = [
