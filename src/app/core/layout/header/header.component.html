@@ -1,0 +1,79 @@
+<header class="global-header" [class.menu-open]="menuOpen()">
+  <div class="header-bar">
+    <div class="header-container">
+      <a class="logo" routerLink="/" aria-label="{{ 'nav.home' | t }}">
+        <img src="assets/images/logos/Spandau_04_light.svg" alt="Spandau 04" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Hauptnavigation">
+        <a
+          *ngFor="let item of navItems"
+          class="nav-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="item.exact ? rlaExact : rlaNonExact"
+        >
+          {{ item.labelKey | t }}
+        </a>
+      </nav>
+
+      <div class="actions">
+        <div class="language-switch" role="group" aria-label="Sprachauswahl">
+          <button
+            *ngFor="let lang of languageOptions"
+            type="button"
+            class="lang-btn"
+            [class.active]="currentLang() === lang.code"
+            [attr.aria-pressed]="currentLang() === lang.code"
+            (click)="setLang(lang.code)"
+          >
+            {{ lang.labelKey | t }}
+          </button>
+        </div>
+
+        <button
+          class="hamburger"
+          type="button"
+          aria-label="Navigation umschalten"
+          aria-controls="mobile-menu"
+          [attr.aria-expanded]="menuOpen()"
+          (click)="toggleMenu()"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-panel" *ngIf="menuOpen()" id="mobile-menu">
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a
+        *ngFor="let item of navItems"
+        class="mobile-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="item.exact ? rlaExact : rlaNonExact"
+        (click)="closeMenu()"
+      >
+        {{ item.labelKey | t }}
+      </a>
+    </nav>
+
+    <div class="mobile-language" aria-label="Sprachauswahl mobil">
+      <div class="language-switch" role="group">
+        <button
+          *ngFor="let lang of languageOptions"
+          type="button"
+          class="lang-btn"
+          [class.active]="currentLang() === lang.code"
+          [attr.aria-pressed]="currentLang() === lang.code"
+          (click)="setLang(lang.code)"
+        >
+          {{ lang.labelKey | t }}
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
