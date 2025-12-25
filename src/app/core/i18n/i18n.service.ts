@@ -64,8 +64,9 @@ export class I18nService {
       return;
     }
 
+    this.translations.set(STATIC_DICTIONARIES[lang]);
+
     if (!this.isBrowser()) {
-      this.translations.set(STATIC_DICTIONARIES[lang]);
       this.loadedLang = lang;
       return;
     }
@@ -75,7 +76,6 @@ export class I18nService {
         this.http.get<Record<string, string>>(`assets/i18n/${lang}.json`)
       );
       this.translations.set(dict);
-      this.loadedLang = lang;
     } catch (error) {
       console.error('[I18nService] Failed to load dictionary for', lang, error);
       if (lang !== 'de') {
@@ -83,6 +83,8 @@ export class I18nService {
         this.persist('de');
         void this.loadDictionary('de');
       }
+    } finally {
+      this.loadedLang = lang;
     }
   }
 
