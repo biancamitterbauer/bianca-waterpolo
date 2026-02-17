@@ -209,6 +209,106 @@
   }
 }
 
+/* =======================================================
+MOBILE HEADER (<= 900px)
+======================================================= */
+
+@media (max-width: 900px) {
+
+  .global-header,
+  .header-bar {
+    background: #000 !important;
+  }
+
+  .header-bar {
+    height: 64px !important;
+  }
+
+  .header-container {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 0 14px !important;
+    gap: 12px !important;
+  }
+
+  /* LOGO — fully left */
+  .logo {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 0 auto !important;
+  }
+
+  .logo img {
+    height: 28px !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* Hide desktop nav */
+  .primary-nav {
+    display: none !important;
+  }
+
+  /* Right side container */
+  .actions {
+    margin-left: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  /* Language switch */
+  .language-switch {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .lang-btn {
+    background: transparent !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,.25) !important;
+    border-radius: 999px !important;
+    padding: 5px 9px !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    opacity: .9;
+  }
+
+  .lang-btn.active {
+    border-color: rgba(255,255,255,.6) !important;
+    opacity: 1;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 26px !important;
+    height: 18px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    height: 2px !important;
+    width: 100% !important;
+    background: #fff !important;
+    border-radius: 2px !important;
+    display: block !important;
+  }
+
+}
+
+
 /* Mobile (compact) header adjustments - keep desktop unchanged */
 @media (max-width: 900px) {
   .global-header {
