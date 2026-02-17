@@ -16,6 +16,14 @@
         <div class="hero-cta">
           <a class="btn primary" routerLink="/achievements">Erfolge ansehen</a>
           <a class="btn secondary" routerLink="/sponsor-pitch" [queryParams]="{ slide: 0 }">Sponsor werden</a>
+          <button
+            *ngIf="!isStandalone && (canPrompt || isIosPlatform)"
+            class="btn install"
+            (click)="install()"
+            aria-label="App installieren"
+          >
+            App installieren
+          </button>
         </div>
       </div>
 
@@ -28,6 +36,9 @@
     />
   </div>
 </section>
+
+<!-- install modal (iOS) -->
+<app-install-modal *ngIf="installService.showModal$ | async"></app-install-modal>
 
 <section class="trust" aria-labelledby="trust-title">
   <div class="trust-container">

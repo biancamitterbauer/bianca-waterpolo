@@ -1,0 +1,39 @@
+<div class="pwa-install-overlay" role="dialog" aria-modal="true">
+  <div class="pwa-install-panel">
+    <button class="pwa-close" (click)="install.closeModal()" aria-label="Schließen">✕</button>
+
+    <div class="pwa-head">
+      <div class="pwa-icon" aria-hidden="true">
+        <!-- simple share SVG -->
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 8a3 3 0 1 0-2.83-4" stroke="#d11f26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 12v7a1 1 0 0 0 1 1h10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 8l-8 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>App installieren</h3>
+      <p class="lead">So fügst du die App zum Home-Bildschirm hinzu:</p>
+    </div>
+
+    <ol class="pwa-steps">
+      <li>
+        <strong>1)</strong>
+        <span>Tippe auf das Teilen-Symbol</span>
+      </li>
+      <li>
+        <strong>2)</strong>
+        <span>Wähle „Zum Home‑Bildschirm“</span>
+      </li>
+      <li>
+        <strong>3)</strong>
+        <span>Tippe auf „Hinzufügen“</span>
+      </li>
+    </ol>
+
+    <div class="pwa-note">Hinweis: Diese Anleitung gilt für Safari auf iPhone/iPad. Auf Android wird dir bei Verfügbarkeit eine Installationsaufforderung angezeigt.</div>
+
+    <div class="pwa-actions">
+      <button class="btn primary" (click)="install.closeModal()">Verstanden</button>
+    </div>
+  </div>
+</div>
