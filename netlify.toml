@@ -1,50 +1,19 @@
-# Netlify Configuration for Bianca Waterpolo
-# Enables Angular SSR via Netlify Edge Functions
-
 [build]
-  # Build command: install dependencies and compile Angular with SSR
   command = "npm ci && npx ng build"
-  # Publish directory: static browser assets (Edge Functions handle SSR)
   publish = "dist/bianca-waterpolo/browser"
-  # Functions directory: Edge Functions for SSR
-  functions = "dist/bianca-waterpolo/server"
 
-[functions]
-  # Node.js runtime for server-side rendering
-  nodejs_version = "20"
+[build.environment]
+  NODE_VERSION = "20"
 
-# Edge Function for server-side rendering
+# Route all requests through the Angular SSR edge function
 [[edge_functions]]
-  # Path: catch all routes not matched by static files
   path = "/*"
-  # Function: Angular SSR handler from src/server.ts
   function = "server"
-
-# Rewrite all non-matching requests to index.html for client-side routing fallback
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  # Only apply if file doesn't exist (SPA fallback)
-  force = false
-  conditions = { Negate = true }
-
-# Cache headers for static assets
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Security headers
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "SAMEORIGIN"
+    X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
