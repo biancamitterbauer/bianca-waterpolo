@@ -216,7 +216,8 @@ MOBILE HEADER (<= 900px)
 @media (max-width: 900px) {
 
   :root {
-    --header-height-mobile: 64px;
+    /* reduced 15% from 64px -> 54px */
+    --header-height-mobile: 54px;
   }
 
   .global-header,
@@ -257,10 +258,10 @@ MOBILE HEADER (<= 900px)
     display: block !important;
   }
 
-  /* Mobile: make logo container 40% width and image fill it */
+  /* Mobile: make logo container 50% width and image fill it; header 15% smaller */
   .logo {
-    flex: 0 0 40% !important;
-    max-width: 40% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
   }
 
   .logo img {
