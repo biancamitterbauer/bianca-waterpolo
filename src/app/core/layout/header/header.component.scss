@@ -21,6 +21,7 @@
   justify-content: space-between;
   gap: 2rem;
   min-height: 120px;
+  overflow: visible; /* ensure children (logo) are not clipped */
 }
 
 .logo {
@@ -28,8 +29,9 @@
   align-items: center;
   gap: 0.5rem;
   min-height: 56px;
-  margin-left: 60px;
+  margin-left: 16px; /* reduced left offset so logo sits more naturally */
   cursor: pointer;
+  overflow: visible; /* prevent clipping of wide logos */
 }
 
 .logo img {
