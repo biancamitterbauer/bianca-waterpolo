@@ -257,17 +257,7 @@ MOBILE HEADER (<= 900px)
     display: block !important;
   }
 
-  /* Reduce logo to 20% of header width on small screens per request */
-  .logo {
-    flex: 0 0 20% !important;
-    max-width: 20% !important;
-  }
-
-  .logo img {
-    width: 100% !important;
-    height: auto !important;
-    max-height: calc(var(--header-height-mobile) - 8px) !important;
-  }
+  /* logo sizing preserved (no forced 20% width) */
 
   /* Hide desktop nav, keep actions visible */
   .primary-nav {
