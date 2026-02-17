@@ -1,11 +1,13 @@
 <section class="about-shell">
-  <div
-    #track
-    class="about-track"
-    role="group"
-    aria-label="Über Bianca – Slides"
-  >
-    <article class="about-slide is-hero" aria-labelledby="about-slide1-title">
+  <!-- DESKTOP SLIDER: Horizontal track with pagination -->
+  <div class="about-desktop">
+    <div
+      #track
+      class="about-track"
+      role="group"
+      aria-label="Über Bianca – Slides"
+    >
+      <article class="about-slide is-hero" aria-labelledby="about-slide1-title">
       <div class="slide-bg" aria-hidden="true"></div>
       <div class="slide-content">
         <div #heroPanel class="glass-panel hero-panel">
@@ -213,41 +215,246 @@
     </article>
 
     
+    </div>
+
+    <div class="about-pagination" role="tablist" aria-label="Über Bianca Navigation">
+      <button
+        type="button"
+        class="about-arrow left"
+        (click)="prevSlide()"
+        [disabled]="activeSlide() === 0"
+        aria-label="Vorherige Slide"
+      >
+        <span aria-hidden="true">←</span>
+      </button>
+
+      <button
+        type="button"
+        class="about-dot"
+        *ngFor="let index of slideIndices"
+        [class.active]="activeSlide() === index"
+        (click)="goToSlide(index)"
+        role="tab"
+        [attr.aria-selected]="activeSlide() === index"
+        [attr.aria-pressed]="activeSlide() === index"
+        [attr.aria-label]="'Gehe zu Slide ' + (index + 1)"
+      >
+        <span aria-hidden="true"></span>
+      </button>
+
+      <button
+        type="button"
+        class="about-arrow right"
+        (click)="nextSlide()"
+        [disabled]="activeSlide() === slideIndices.length - 1"
+        aria-label="Nächste Slide"
+      >
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
   </div>
 
-  <div class="about-pagination" role="tablist" aria-label="Über Bianca Navigation">
-    <button
-      type="button"
-      class="about-arrow left"
-      (click)="prevSlide()"
-      [disabled]="activeSlide() === 0"
-      aria-label="Vorherige Slide"
-    >
-      <span aria-hidden="true">←</span>
-    </button>
+  <!-- MOBILE STACKED LAYOUT: Vertical cards with all content visible -->
+  <div class="about-mobile">
+    <!-- Stack Card 1: Hero / Profile -->
+    <article class="about-stack-card is-hero">
+      <div class="stack-content">
+        <p class="slide-eyebrow">Spielerprofil</p>
+        <h2>Bianca Mitterbauer</h2>
+        <p class="slide-lead">Nationalspielerin · Wasserfreunde Spandau 04 Berlin</p>
 
-    <button
-      type="button"
-      class="about-dot"
-      *ngFor="let index of slideIndices"
-      [class.active]="activeSlide() === index"
-      (click)="goToSlide(index)"
-      role="tab"
-      [attr.aria-selected]="activeSlide() === index"
-      [attr.aria-pressed]="activeSlide() === index"
-      [attr.aria-label]="'Gehe zu Slide ' + (index + 1)"
-    >
-      <span aria-hidden="true"></span>
-    </button>
+        <p class="slide-body">
+          Nationalspielerin im Wasserball der Frauen sowie der U18- und U20-Juniorinnen. Stammspielerin
+          in der Wasserball-Bundesliga mit den Wasserfreunden Spandau 04.
+        </p>
 
-    <button
-      type="button"
-      class="about-arrow right"
-      (click)="nextSlide()"
-      [disabled]="activeSlide() === slideIndices.length - 1"
-      aria-label="Nächste Slide"
-    >
-      <span aria-hidden="true">→</span>
-    </button>
+        <dl class="stats" aria-label="Kurzprofil Kennzahlen">
+          <div class="stat">
+            <dt>Nationalteam</dt>
+            <dd>
+              <div class="stat-main">Deutsche Frauen-Nationalmannschaft</div>
+              <div class="stat-sub" aria-label="Internationaler Wettbewerb & Erfolge">
+                <div class="stat-line"><strong>Wettbewerbe:</strong> regelmäßige Teilnahmen an WM- und EM-Turnieren</div>
+                <div class="stat-line">
+                  <strong>Historischer Erfolg:</strong> Gold bei den FISU World University Games 2025
+                  <span class="stat-note">(erster internationaler Medaillengewinn im deutschen Frauenwasserball)</span>
+                </div>
+                <div class="stat-line"><strong>Entwicklung:</strong> starke Platzierungen und nachhaltiger Aufwärtstrend im internationalen Vergleich</div>
+              </div>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt>Verein</dt>
+            <dd>
+              <div class="stat-main">Wasserfreunde Spandau 04</div>
+              <div class="stat-sub" aria-label="Vereins-Erfolge">
+                <div class="stat-line">
+                  <strong>Deutsche Meisterschaften:</strong> 2019, 2021, 2022, 2023, 2024, 2025
+                  <span class="stat-note">(mehrfacher Serienmeister)</span>
+                </div>
+                <div class="stat-line">
+                  <strong>Deutscher Pokal (Cup):</strong> 2019, 2020, 2021, 2022, 2023, 2024
+                  <span class="stat-note">(dauerhafte Pokalpräsenz)</span>
+                </div>
+                <div class="stat-line">
+                  <strong>Supercup:</strong> 2019, 2022, 2024
+                </div>
+                <div class="stat-line">
+                  <strong>International:</strong> Champions League Hauptrunde (2025)
+                  <span class="stat-note">(bedeutender Fortschritt)</span>
+                </div>
+                <div class="stat-source">Quellen: Wikipedia · DIE WELT</div>
+              </div>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt>Liga</dt>
+            <dd>
+              <div class="stat-main">1. Bundesliga (Frauen)</div>
+              <div class="stat-sub" aria-label="Highlights der Deutschen Wasserball-Bundesliga der Frauen">
+                <div class="stat-line"><strong>Profil:</strong> enge Meisterschaftsduelle, intensive Playoff-Serien und hohe Leistungsdichte</div>
+                <div class="stat-line"><strong>Bühne:</strong> nationale Spitzenleistungen und internationale Vergleiche auf europäischer Ebene</div>
+                <div class="stat-line"><strong>Saisonhöhepunkte:</strong> Finalrunden zwischen Topteams wie Spandau 04, Waspo Hannover und Blau‑Weiß Bochum</div>
+                <div class="stat-line"><strong>Meilenstein:</strong> erstmaliger Einzug der Spandau‑Frauen in die Hauptrunde der LEN Women's Champions League</div>
+              </div>
+            </dd>
+          </div>
+          <div class="stat">
+            <dt>Rolle</dt>
+            <dd>
+              <div class="stat-main">Linkshänderin</div>
+              <div class="stat-sub" aria-label="Rollenprofil Linkshänderin im Wasserball">
+                <div class="stat-line"><strong>Taktischer Mehrwert:</strong> besondere Wurfwinkel und schwerer zu verteidigende Abschlussoptionen</div>
+                <div class="stat-line"><strong>Überzahl:</strong> hohe Effektivität im Powerplay, wertvoll auf Außen- und Rückraumpositionen</div>
+                <div class="stat-line"><strong>Impact:</strong> mehr Variabilität im Angriffsspiel und strategisch wichtige Rolle auf Leistungsniveau</div>
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="stack-brand-logos" aria-label="Partnerlogos">
+          <img
+            class="stack-brand-logo"
+            src="/assets/images/logos/logo_spandau_04_lang.png"
+            alt="Logo Wasserfreunde Spandau 04"
+            loading="lazy"
+          />
+          <img
+            class="stack-brand-logo"
+            src="/assets/images/logos/logo_team_germany.png"
+            alt="Logo Team Germany"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </article>
+
+    <!-- Stack Card 2: Vita / Career Path -->
+    <article class="about-stack-card is-vita">
+      <div class="stack-content">
+        <p class="slide-eyebrow">Karriere</p>
+        <h2>Werdegang auf Spitzenniveau</h2>
+        <p class="slide-body">
+          Vom frühen Training in Hildesheim bis zu Bundesligaspielen in Berlin zieht sich eine klare Linie:
+          Bianca nutzt jede Etappe für messbare Fortschritte, verbindet schulische Eliteförderung mit
+          internationalem Turnierkalender und liefert ihrem Umfeld die Konstanz, die Top-Vereine von einer
+          Profispielerin erwarten.
+        </p>
+
+        <div class="grid-2">
+          <div class="glass-card">
+            <h3>Profil</h3>
+            <ul class="list">
+              <li><strong>Geboren:</strong> 20.10.2009</li>
+              <li><strong>Größe:</strong> 1,73 m</li>
+              <li><strong>Position:</strong> Rechts</li>
+              <li><strong>Wurfhand:</strong> Links</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3>Stärken</h3>
+            <ul class="list">
+              <li>Game Intelligence / Übersicht</li>
+              <li>Athletik / Explosivität</li>
+              <li>Leadership / Teamkultur</li>
+              <li>Professionalität / Trainingsdisziplin</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card wide">
+          <h3>Über Bianca</h3>
+          <p class="muted">
+            Ich heiße Bianca Mitterbauer, bin 16 Jahre alt und besuche den Gymnasialzweig Sportschule im
+            Olympiapark – Poelchau Schule in Berlin, einer Eliteschule des Sports. Ich bin Wasserballspielerin
+            in der deutschen Wasserball-Nationalmannschaft der Frauen und spiele für die
+            Wassersportfreunde Spandau 04 Berlin in der deutschen Wasserball-Bundesliga und weiteren
+            nationalen und internationalen Turnieren.
+          </p>
+          <p class="muted">
+            Meine Leidenschaft für diesen Sport begann schon früh. Bereits im Alter von sechs Jahren konnte ich mich
+            beim Verein Hellas 1899 in meinem Heimatort Hildesheim ausprobieren. Schnell wurde klar, dass neben dem
+            Spaß auch das nötige Talent vorhanden war. Nach meinem Wechsel zu den White Sharks Hannover konnte ich
+            mit meiner Mannschaft bereits Erfolge bei U10-Turnieren erzielen.
+          </p>
+          <p class="muted">
+            Bis zur U14 setzte sich diese Erfolgsstory fort. Da im Wasserball jedoch nur bis zur U14 in gemischten
+            Teams gespielt werden kann, stand für mich ein weiterer Wechsel bevor.
+          </p>
+          <p class="muted">
+            Nachdem ich bei der Kadersichtung des Deutschen Schwimm-Verbands in den Nachwuchskader der deutschen
+            Nationalmannschaft aufgenommen wurde, wechselte ich zunächst zum SC Chemnitz nach Sachsen.
+          </p>
+          <p class="muted">
+            Im Juli 2024 kehrte ich in meine Heimat Niedersachsen zurück und spielte die Saison 2024/25 für WASPO 98
+            Hannover, einen der erfolgreichsten Vereine im deutschen Wasserball. Hier feierte ich auch mein Debüt in
+            der Wasserball-Bundesliga der Frauen.
+          </p>
+          <p class="muted">
+            2023 durfte ich bereits mit dem Nationalteam an der U15-Wasserball-Europameisterschaft in Zagreb
+            teilnehmen. Die U16-Weltmeisterschaft 2024 in der Türkei verlief ebenso erfolgreich, und ich konnte mit
+            meiner Mannschaft in die Top Ten der Welt aufschließen.
+          </p>
+          <p class="muted">
+            Seit August 2025 spiele ich für die Wasserfreunde Spandau 04 Berlin und freue mich sehr auf weitere
+            spannende nationale und internationale Turniere mit dem sechsfachen Deutschen Meister im Frauenwasserball.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Stack Card 3: Milestones / Timeline -->
+    <article class="about-stack-card is-milestones">
+      <div class="stack-content">
+        <p class="slide-eyebrow">Meilensteine</p>
+        <h2>Karriere Timeline</h2>
+        <p class="slide-body">Platzhalter: Auswahl der wichtigsten sportlichen Stationen.</p>
+
+        <ol class="timeline" aria-label="Karriere Timeline">
+          <li class="timeline-item">
+            <div class="time">2025</div>
+            <div class="content">
+              <h3>Platzhalter: Highlight / Titel</h3>
+              <p class="muted">Platzhalter: Kontext, Wettbewerb, Rolle, Ergebnis.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="time">2024</div>
+            <div class="content">
+              <h3>Platzhalter: Nationalteam / Turniere</h3>
+              <p class="muted">Platzhalter: Kontext, Entwicklung, Leistungsdaten.</p>
+            </div>
+          </li>
+          <li class="timeline-item">
+            <div class="time">2023</div>
+            <div class="content">
+              <h3>Platzhalter: Verein / Bundesliga</h3>
+              <p class="muted">Platzhalter: Kontext, Leistung, Verantwortung.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </article>
   </div>
 </section>
