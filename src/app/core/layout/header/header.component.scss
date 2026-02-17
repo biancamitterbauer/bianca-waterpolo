@@ -216,7 +216,7 @@ MOBILE HEADER (<= 900px)
 @media (max-width: 900px) {
 
   :root {
-    --header-height-mobile: 60px;
+    --header-height-mobile: 64px;
   }
 
   .global-header,
@@ -250,6 +250,7 @@ MOBILE HEADER (<= 900px)
   .logo img {
     height: auto !important;
     width: auto !important;
+    /* larger mobile logo: leave 12px vertical padding inside header */
     max-height: calc(var(--header-height-mobile) - 12px) !important;
     max-width: 100% !important;
     object-fit: contain !important;
