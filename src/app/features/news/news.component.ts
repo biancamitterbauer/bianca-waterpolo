@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, AfterViewInit, Renderer2, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 type NewsStory = {
   id: string;
@@ -44,6 +44,37 @@ type InstagramPost = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsComponent {
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {}
+
+  ngAfterViewInit(): void {
+    if (typeof window === 'undefined') return;
+    this.loadInstagramEmbedScript();
+  }
+
+  private loadInstagramEmbedScript(): void {
+    const win = window as any;
+    if (win.instgrm && win.instgrm.Embeds) {
+      try { win.instgrm.Embeds.process(); } catch {}
+      return;
+    }
+
+    const existing = Array.from(this.document.getElementsByTagName('script')).find(
+      (s) => s.src && s.src.includes('instagram.com/embed.js')
+    );
+    if (existing) {
+      existing.addEventListener('load', () => win.instgrm?.Embeds?.process());
+      return;
+    }
+
+    const script = this.renderer.createElement('script');
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      try { win.instgrm?.Embeds?.process(); } catch {}
+    };
+    this.renderer.appendChild(this.document.body, script);
+  }
   readonly heroStats: HeroStat[] = [
     { label: 'Aktuelle Saison', value: 'Bundesliga 24/25', detail: 'Spandau 04 · Tabellenführung' },
     { label: 'Letztes Spiel', value: '02. Januar 2026', detail: 'LEN Qualification · 4 Tore' },
