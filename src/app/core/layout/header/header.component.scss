@@ -211,22 +211,26 @@ MOBILE HEADER (<= 900px)
 
 @media (max-width: 900px) {
 
+  :root {
+    --header-height-mobile: 60px;
+  }
+
   .global-header,
   .header-bar {
     background: #000 !important;
   }
 
   .header-bar {
-    height: 64px !important;
+    height: var(--header-height-mobile) !important;
   }
 
   .header-container {
-    height: 64px !important;
+    height: var(--header-height-mobile) !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 0 14px !important;
-    gap: 12px !important;
+    justify-content: space-between !important;
+    padding: 0 12px !important;
+    gap: 8px !important;
   }
 
   /* LOGO — fully left */
@@ -236,25 +240,26 @@ MOBILE HEADER (<= 900px)
     display: flex !important;
     align-items: center !important;
     flex: 0 0 auto !important;
+    margin-right: auto !important;
   }
 
   .logo img {
-    height: 28px !important;
+    height: 32px !important;
     width: auto !important;
     display: block !important;
   }
 
-  /* Hide desktop nav */
+  /* Hide desktop nav, keep actions visible */
   .primary-nav {
     display: none !important;
   }
 
   /* Right side container */
   .actions {
-    margin-left: auto !important;
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
+    margin: 0 !important;
   }
 
   /* Language switch */
@@ -267,39 +272,44 @@ MOBILE HEADER (<= 900px)
   .lang-btn {
     background: transparent !important;
     color: #fff !important;
-    border: 1px solid rgba(255,255,255,.25) !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
     border-radius: 999px !important;
-    padding: 5px 9px !important;
+    padding: 4px 8px !important;
     font-size: 12px !important;
     line-height: 1 !important;
     cursor: pointer;
-    opacity: .9;
+    opacity: .95 !important;
+    min-width: 34px !important;
+    text-align: center !important;
   }
 
   .lang-btn.active {
     border-color: rgba(255,255,255,.6) !important;
-    opacity: 1;
+    opacity: 1 !important;
   }
 
-  /* Hamburger */
+  /* Hamburger — ensure accessible touch target and white bars */
   .hamburger {
     display: inline-flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    width: 26px !important;
-    height: 18px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
     background: transparent !important;
     border: none !important;
-    padding: 0 !important;
-    cursor: pointer;
+    padding: 6px !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .hamburger span {
+    display: block !important;
     height: 2px !important;
     width: 100% !important;
     background: #fff !important;
     border-radius: 2px !important;
-    display: block !important;
+    margin: 3px 0 !important;
+    transition: transform 0.18s ease !important;
   }
 
 }
