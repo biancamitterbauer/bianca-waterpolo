@@ -9,7 +9,7 @@ export const routes: Routes = [
 	{ path: 'training', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'tournaments', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'media', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
-	{ path: 'sponsors', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'sponsors', loadComponent: () => import('./features/sponsors/sponsors.component').then(m => m.SponsorsComponent) },
 	{ path: 'press', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'contact', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'legal', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
