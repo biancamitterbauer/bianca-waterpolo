@@ -4,6 +4,17 @@
 @import './styles/_layout.scss';
 @import './styles/_pitch-print.scss';
 
+/* Elite athlete app theme */
+:root {
+  --color-bg: #000000;
+  --color-surface: #201f1f;
+  --color-accent: #d11f26;
+  --color-accent-green: #95ae91;
+  --color-muted: rgba(255, 255, 255, 0.72);
+  --color-muted2: rgba(255, 255, 255, 0.55);
+  --border-soft: rgba(255, 255, 255, 0.10);
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -12,4 +23,3 @@ img {
 	max-width: 100%;
 	height: auto;
 }
-

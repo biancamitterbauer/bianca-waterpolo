@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { BottomTabbarComponent } from './bottom-tabbar/bottom-tabbar.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, RouterLink, HeaderComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, RouterLink, HeaderComponent, BottomTabbarComponent],
   template: `
     <app-header></app-header>
     <main class="app-main">
       <router-outlet></router-outlet>
     </main>
+    <app-bottom-tabbar></app-bottom-tabbar>
 
     <footer class="site-footer">
       <div class="site-container">

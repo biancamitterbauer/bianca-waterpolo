@@ -1,0 +1,15 @@
+<nav class="bottom-tabbar" role="navigation" aria-label="Mobile app navigation">
+  <div class="tabbar-inner">
+    <a
+      *ngFor="let tab of tabs"
+      [routerLink]="tab.path"
+      [routerLinkActiveOptions]="{ exact: tab.exact !== false }"
+      routerLinkActive="active"
+      class="tab"
+      [attr.aria-current]="(tab.path === '/' ? true : null)"
+    >
+      <span class="tab-icon" [innerHTML]="getIconSVG(tab.icon)"></span>
+      <span class="tab-label">{{ tab.label }}</span>
+    </a>
+  </div>
+</nav>

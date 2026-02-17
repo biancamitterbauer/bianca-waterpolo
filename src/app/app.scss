@@ -19,3 +19,14 @@ main.app-main:has(> app-sponsor-pitch) {
 .brand {
 	display:flex; align-items:center; gap:var(--space-sm);
 }
+/* Mobile app shell: safe-area padding for bottom tab bar */
+@media (max-width: 900px) {
+	main.app-main {
+		padding-bottom: calc(72px + env(safe-area-inset-bottom) + var(--space-lg));
+		min-height: calc(100vh - 54px); /* 54px mobile header height */
+	}
+
+	main.app-main:has(> app-sponsor-pitch) {
+		padding-bottom: calc(72px + env(safe-area-inset-bottom));
+	}
+}
