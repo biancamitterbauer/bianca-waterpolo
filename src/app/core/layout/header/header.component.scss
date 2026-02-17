@@ -13,8 +13,8 @@
 }
 
 .header-container {
-  max-width: var(--container-max);
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   padding: 0 2rem;
   display: flex;
   align-items: center;
@@ -28,20 +28,21 @@
   align-items: center;
   gap: 0.5rem;
   min-height: 56px;
+  margin-left: 60px;
   cursor: pointer;
 }
 
 .logo img {
   display: block;
-  height: 96px;
+  height: clamp(32px, 2.9vw, 52px);
   width: auto;
-  max-width: 240px;
+  max-width: clamp(138px, 13.8vw, 253px);
 }
 
 .primary-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   font-weight: 600;
 }
 
@@ -51,6 +52,7 @@
   letter-spacing: 0.02em;
   position: relative;
   padding-bottom: 0.4rem;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 

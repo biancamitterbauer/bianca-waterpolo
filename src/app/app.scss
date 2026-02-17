@@ -10,6 +10,12 @@ main.app-main {
 	padding-bottom: var(--space-lg);
 }
 
+main.app-main:has(> app-sponsor-pitch) {
+	padding-top: 0;
+	padding-bottom: 0;
+	min-height: calc(100vh - var(--app-header-height));
+}
+
 .brand {
 	display:flex; align-items:center; gap:var(--space-sm);
 }

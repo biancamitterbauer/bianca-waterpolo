@@ -31,7 +31,7 @@ export class HeaderComponent {
 
   readonly currentLang = this.i18n.currentLang;
   readonly navItems: NavItem[] = [
-    { labelKey: 'nav.home', path: '/', exact: true },
+    { labelKey: 'nav.home', path: '/about', exact: true },
     { labelKey: 'nav.achievements', path: '/achievements', exact: false },
     { labelKey: 'nav.news', path: '/news', exact: false },
     { labelKey: 'nav.training', path: '/training', exact: false },

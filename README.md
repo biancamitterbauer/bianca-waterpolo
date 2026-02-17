@@ -36,6 +36,36 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Server-Side Rendering (SSR) on Netlify
+
+This project uses Angular SSR with Netlify Edge Functions for server-side rendering in production.
+
+### Local SSR Testing
+
+To test the full SSR experience locally (before deploying to Netlify), use the Netlify CLI:
+
+```bash
+# Install netlify-cli globally (if not already installed)
+npm install -g netlify-cli
+
+# Build the project with SSR
+npm run build
+
+# Start the local Netlify dev server (runs SSR via Edge Functions simulation)
+netlify dev
+```
+
+The server will be available at `http://localhost:8888/`. This simulates the Netlify Edge Functions environment locally, so you can verify SSR rendering before deployment.
+
+**Note:** Always use `ng serve` for quick local development (faster rebuild). Use `netlify dev` only when you need to test production-like SSR behavior or Netlify-specific features.
+
+### Deployment to Netlify
+
+1. Connect your repository to Netlify
+2. Netlify will automatically detect the `netlify.toml` configuration
+3. The build will run `npm ci && npx ng build` and serve from `dist/bianca-waterpolo/browser`
+4. All requests are handled by the Angular SSR Edge Function for dynamic rendering
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:

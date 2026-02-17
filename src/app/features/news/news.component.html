@@ -1,0 +1,133 @@
+<section class="news-shell">
+  <section class="site-container instagram-highlight" aria-label="Instagram Highlights">
+    <div class="highlight-header">
+      <div>
+        <p class="hero-kicker">Instagram Highlights</p>
+        <h1>Aktuelle Beiträge</h1>
+        <p>
+          Die fünf neuesten Beiträge von Bianca Mitterbauer.
+        </p>
+      </div>
+      <a
+        class="instagram-card__cta highlight-cta"
+        href="https://www.instagram.com/spandau04_official/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Profil ansehen ↗
+      </a>
+    </div>
+
+    <div class="instagram-grid" role="list">
+      <article class="instagram-card" *ngFor="let post of instagramPosts" role="listitem">
+        <header class="instagram-card__header">
+          <a
+            class="instagram-card__identity"
+            [href]="post.accountUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Instagram-Profil von ' + post.accountLabel + ' öffnen'"
+          >
+            <span class="avatar-pill" [class.avatar-pill--image]="post.accountProfileImage">
+              <img
+                *ngIf="post.accountProfileImage"
+                [src]="post.accountProfileImage"
+                [alt]="'Profilbild ' + post.accountLabel"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <span *ngIf="!post.accountProfileImage">IG</span>
+            </span>
+            <div>
+              <p class="account-label">{{ post.accountLabel }}</p>
+              <p class="account-handle">{{ post.accountHandle }}</p>
+            </div>
+          </a>
+        </header>
+
+        <a
+          class="embed-wrapper"
+          [href]="post.permalink"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Beitrag auf Instagram öffnen"
+        >
+          <img
+            [src]="post.imageUrl"
+            alt="Instagram Post Preview"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </a>
+
+        <div class="instagram-meta">
+          <p class="post-caption">{{ post.caption }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="site-container news-hero">
+    <p class="hero-kicker">Game Feed</p>
+    <h2>Spielberichte & Performance Log</h2>
+    <p class="hero-lead">
+      Alle sportlichen Entwicklungen von Bianca Mitterbauer auf einen Blick: Bundesliga-Runden, LEN-Spiele und
+      Nationalteam-Sessions inklusive Kerndaten zu Minuten, Quoten und Impact Plays.
+    </p>
+
+    <div class="hero-stats" aria-label="Kennzahlen">
+      <article class="stat-card" *ngFor="let stat of heroStats">
+        <p class="stat-label">{{ stat.label }}</p>
+        <p class="stat-value">{{ stat.value }}</p>
+        <p class="stat-detail">{{ stat.detail }}</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="site-container news-grid">
+    <section class="news-feed" aria-label="Aktuelle Meldungen">
+      <article class="news-card" *ngFor="let story of newsStories">
+        <div class="card-kicker">{{ story.kicker }}</div>
+        <div class="card-headline">
+          <h3>{{ story.title }}</h3>
+          <span class="card-date">{{ story.date }}</span>
+        </div>
+        <p class="card-summary">{{ story.summary }}</p>
+        <ul class="card-meta">
+          <li *ngIf="story.location">{{ story.location }}</li>
+          <li *ngFor="let metric of story.metrics">{{ metric }}</li>
+        </ul>
+        <a
+          *ngIf="story.link"
+          class="deep-link"
+          [href]="story.link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Briefing öffnen
+        </a>
+      </article>
+    </section>
+
+    <aside class="news-aside" aria-label="Redaktionelle Leitplanken">
+      <article class="intel-card primary">
+        <p class="intel-kicker">Editorial Focus</p>
+        <h3>Worauf wir schauen</h3>
+        <ul>
+          <li *ngFor="let angle of editorialAngles">
+            <strong>{{ angle.label }}</strong>
+            <p>{{ angle.description }}</p>
+          </li>
+        </ul>
+      </article>
+      <article class="intel-card secondary">
+        <p class="intel-kicker">Trainings- und Spielbezug</p>
+        <h3>Live vom Beckenrand</h3>
+        <p>
+          Matchday-Clips, Recovery-Sequenzen und Trainingsausschnitte ergänzen die Spielberichte – ideal, um Inhalte
+          schnell in Vereins- oder Verbandsupdates zu spiegeln.
+        </p>
+      </article>
+    </aside>
+  </div>
+</section>

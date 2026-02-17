@@ -1,68 +1,35 @@
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express from 'express';
-import { join } from 'node:path';
-
-const browserDistFolder = join(import.meta.dirname, '../browser');
-
-const app = express();
-const angularApp = new AngularNodeAppEngine();
+import { AngularAppEngine, createRequestHandler } from '@angular/ssr';
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
+ * Netlify Edge Function Handler
+ * This enables true server-side rendering on Netlify via Edge Functions.
+ * 
+ * The AngularAppEngine handles all routing and server-side rendering.
+ * Static assets are served from dist/bianca-waterpolo/browser (configured in netlify.toml).
  */
+const angularAppEngine = new AngularAppEngine();
 
 /**
- * Serve static files from /browser
+ * Netlify Edge Function handler for server-side rendering.
+ * Processes all requests and returns rendered Angular responses.
  */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
-
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
-
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
+export async function netlifyAppEngineHandler(request: Request): Promise<Response> {
+  const result = await angularAppEngine.handle(request);
+  return result || new Response('Not found', { status: 404 });
 }
 
 /**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ * Request handler exported for use with Netlify Angular Runtime.
+ * This is automatically invoked by Netlify Edge Functions.
  */
-export const reqHandler = createNodeRequestHandler(app);
+export const reqHandler = createRequestHandler(netlifyAppEngineHandler);
+
+/**
+ * Development server entry point (for local testing with netlify-cli).
+ * When running `netlify dev`, this allows local SSR testing before deploy.
+ */
+if (process.env['NETLIFY_DEV']) {
+  const port = process.env['PORT'] || 8888;
+  console.log(`[SSR] Netlify development server configured on port ${port}`);
+  console.log(`[SSR] Use 'netlify dev' to test SSR locally`);
+}

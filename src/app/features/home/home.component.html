@@ -15,99 +15,304 @@
 
         <div class="hero-cta">
           <a class="btn primary" routerLink="/achievements">Erfolge ansehen</a>
-          <a class="btn secondary" routerLink="/sponsors">Sponsor werden</a>
+          <a class="btn secondary" routerLink="/sponsor-pitch" [queryParams]="{ slide: 0 }">Sponsor werden</a>
         </div>
       </div>
 
-      <div class="hero-portrait-wrap" aria-hidden="true">
-        <div class="hero-portrait-fade">
-          <img
-            #portrait
-            class="hero-portrait"
-            src="assets/images/logos/portrait1.png"
-            alt="Portrait Bianca Mitterbauer"
-          />
-        </div>
-      </div>
     </div>
+
+    <img
+      class="hero-team-logo"
+      src="assets/images/logos/logo_team_germany.png"
+      alt="Team Germany Water Polo Women"
+    />
   </div>
 </section>
 
 <section class="trust" aria-labelledby="trust-title">
   <div class="trust-container">
-    <header class="trust-header">
-      <div class="trust-eyebrow">Sponsoren &amp; Partner</div>
-      <h2 id="trust-title" class="trust-title">Gemeinsam Sichtbarkeit schaffen – und Leistung fördern</h2>
-      <p class="trust-lead">
-        Eine starke Marke im Spitzensportumfeld: transparente Kommunikation, messbare Reichweite und echte Nähe zur Community.
-      </p>
-      <div class="trust-metrics" aria-label="Kennzahlen">
-        <div class="metric">
-          <div class="metric-value">—</div>
-          <div class="metric-label">Reichweite / Monat</div>
+    <div class="trust-block trust-block--intro">
+      <header class="trust-header">
+        <div class="trust-copy">
+          <div class="trust-eyebrow">Sponsoren &amp; Partner</div>
+          <h2 id="trust-title" class="trust-title">Gemeinsam Sichtbarkeit schaffen – und Leistung fördern</h2>
+          <p class="trust-lead">
+            Eine starke Marke im Spitzensportumfeld: transparente Kommunikation, messbare Reichweite und echte Nähe zur Community.
+          </p>
         </div>
-        <div class="metric">
-          <div class="metric-value">—</div>
-          <div class="metric-label">Turniere / Saison</div>
+        <div class="trust-metrics" aria-label="Kennzahlen">
+          <div class="metric">
+            <div class="metric-value">10.000+ Sichtkontakte</div>
+            <div class="metric-label">Reichweite / Monat</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">Internationale Wettbewerbe &amp; Ligen</div>
+            <div class="metric-label">Turniere / Saison</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">Social Media · Website · Livestream</div>
+            <div class="metric-label">Content-Formate</div>
+          </div>
         </div>
-        <div class="metric">
-          <div class="metric-value">—</div>
-          <div class="metric-label">Content-Formate</div>
-        </div>
-      </div>
-    </header>
-
-    <div class="trust-strip" aria-label="Partner Logos">
-      <div class="logo-chip" title="Logo Platzhalter">LOGO 1</div>
-      <div class="logo-chip" title="Logo Platzhalter">LOGO 2</div>
-      <div class="logo-chip" title="Logo Platzhalter">LOGO 3</div>
-      <div class="logo-chip" title="Logo Platzhalter">LOGO 4</div>
-      <div class="logo-chip" title="Ihr Logo">IHR LOGO</div>
+      </header>
     </div>
 
-    <div class="trust-grid" aria-label="Vorteile">
+    <div class="trust-block">
+      <div class="trust-strip" aria-label="Partner Logos">
+      <a
+        class="logo-chip"
+        href="https://www.sporthilfe.de/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Sponsor: Deutsche Sporthilfe"
+        title="Deutsche Sporthilfe"
+      >
+        <img src="assets/images/logos/Logo_deutsche_sporthilfe_2023.svg" alt="Deutsche Sporthilfe" />
+      </a>
+      <button class="logo-chip logo-chip--spandau" type="button" title="Wasserfreunde Spandau 04" aria-label="Wasserfreunde Spandau 04">
+        <img src="assets/images/logos/logo_spandau_04_lang.png" alt="Wasserfreunde Spandau 04" />
+      </button>
+      <button class="logo-chip logo-chip--ec" type="button" title="Logo 3" aria-label="Logo 3">
+        <img src="assets/images/logos/eclogo.png" alt="Logo 3" />
+      </button>
+      <button class="logo-chip" type="button" title="Logo Platzhalter">LOGO 4</button>
+      <button class="logo-chip" type="button" title="Ihr Logo">IHR LOGO</button>
+    </div>
+    </div>
+
+    <div class="trust-block">
+      <div class="trust-grid" aria-label="Vorteile">
       <article class="trust-card">
         <div class="trust-card-top">
-          <div class="trust-icon" aria-hidden="true"></div>
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <polyline points="6 24 14 16 20 21 27 12 34 17" />
+              <line x1="6" y1="30" x2="34" y2="30" />
+            </svg>
+          </div>
           <h3>Reichweite</h3>
         </div>
-        <p>Professioneller Content rund um Training, Turniere und Erfolge – ideal für Social &amp; Presse.</p>
+        <p>Monatlich über 10.000 digitale Sichtkontakte über Social Media, Website und internationale Livestream-Umfelder. Mehr als 60&nbsp;% der Reichweite entsteht außerhalb der bestehenden Community.</p>
       </article>
 
       <article class="trust-card">
         <div class="trust-card-top">
-          <div class="trust-icon" aria-hidden="true"></div>
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <circle cx="16" cy="20" r="8" />
+              <circle cx="24" cy="20" r="8" />
+              <polyline points="14 22 17 25 26 16" />
+            </svg>
+          </div>
           <h3>Markenfit</h3>
         </div>
-        <p>Sportlichkeit, Disziplin und Performance – ein Umfeld, das Werte sichtbar macht.</p>
+        <p>Leistungssport, Disziplin und internationale Wettbewerbe liefern ein glaubwürdiges Umfeld für Marken mit Fokus auf Qualität, Nachhaltigkeit und Förderung.</p>
       </article>
 
       <article class="trust-card">
         <div class="trust-card-top">
-          <div class="trust-icon" aria-hidden="true"></div>
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <path d="M8 12h10c3 0 5 2.2 5 4.8V32c-1.6-1.2-3.5-1.8-5.5-1.8H8z" />
+              <path d="M32 12H22c-3 0-5 2.2-5 4.8V32c1.6-1.2 3.5-1.8 5.5-1.8H32z" />
+              <line x1="12" y1="18" x2="16" y2="18" />
+              <line x1="24" y1="18" x2="28" y2="18" />
+            </svg>
+          </div>
           <h3>Storytelling</h3>
         </div>
-        <p>Ein klarer Weg zur nächsten Bestleistung – authentisch, nahbar und sponsorentauglich erzählt.</p>
+        <p>Authentische Einblicke in Training, Turniere und Erfolge – erzählt aus dem Alltag einer Nationalspielerin im Nachwuchs- und Frauenleistungssport.</p>
       </article>
 
       <article class="trust-card">
         <div class="trust-card-top">
-          <div class="trust-icon" aria-hidden="true"></div>
+          <div class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <path d="M8 22l5.5-5.5a3.5 3.5 0 0 1 5 0L26 24" />
+              <path d="M32 22l-5.5-5.5a3.5 3.5 0 0 0-5 0L14 24" />
+              <path d="M18 24l2 2a3.5 3.5 0 0 0 5 0l2-2" />
+            </svg>
+          </div>
           <h3>Partnerschaft</h3>
         </div>
-        <p>Flexible Pakete: Logo-Platzierung, Kampagnen, Events – auf Ziele &amp; Budget abgestimmt.</p>
+        <p>Keine kurzfristige Werbefläche, sondern kontextuelle Medienpräsenz im Leistungs- und Spitzensport mit nachhaltiger Sichtbarkeit.</p>
       </article>
     </div>
+    </div>
 
-    <div class="trust-cta" role="region" aria-label="Sponsoring CTA">
-      <div class="trust-cta-copy">
-        <h3>Partnerschaft anfragen</h3>
-        <p>Mediakit, Reichweite und Pakete – kompakt als PDF. Antwort in der Regel innerhalb von 24–48 Stunden.</p>
-      </div>
-      <div class="trust-cta-actions">
-        <a class="btn primary" routerLink="/sponsors">Sponsor werden</a>
-        <a class="btn secondary" routerLink="/contact">Mediakit anfordern</a>
+    <div class="trust-block">
+      <div class="trust-infobox" role="note" aria-label="Digitale Reichweite – Überblick">
+        <div class="infobox-title">Digitale Reichweite – Überblick</div>
+        <p>
+          Über Social Media, Website und internationale Livestream-Umfelder werden monatlich über 10.000 qualifizierte Sichtkontakte erzielt.
+          Ergänzt durch eine redaktionelle Website mit über 1.000 Seitenaufrufen pro Monat sowie internationale Berichterstattung über World Aquatics und European Aquatics.
+        </p>
       </div>
     </div>
+
+    <div class="trust-block">
+      <section class="trust-media" aria-labelledby="media-channels-title">
+        <header class="media-header">
+          <h3 id="media-channels-title">Weitere Medien- &amp; Distributionskanäle</h3>
+          <p>
+            Die mediale Sichtbarkeit entsteht nicht nur über eigene Kanäle, sondern auch durch internationale Verbände, Livestreams und redaktionelle Berichterstattung.
+          </p>
+        </header>
+
+        <div class="media-grid" role="list">
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_wfs.png" alt="Logo Wasserfreunde Spandau 04" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Club Channel · YouTube</p>
+            <h4>Wasserfreunde Spandau 04</h4>
+            <p class="media-meta">Livestreams, Behind-the-Scenes &amp; ca. 5.000+ Abonnenten</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.youtube.com/@WfS04"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube-Kanal Wasserfreunde Spandau 04 in neuem Tab öffnen"
+          >Zum Kanal</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_wa.png" alt="Logo World Aquatics" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">International Federation · YouTube</p>
+            <h4>World Aquatics</h4>
+            <p class="media-meta">Globale Events &amp; ca. 260.000+ Abonnenten</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.youtube.com/@WorldAquatics"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube-Kanal World Aquatics in neuem Tab öffnen"
+          >Zum Kanal</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_ea.png" alt="Logo European Aquatics" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">European Federation · YouTube</p>
+            <h4>European Aquatics</h4>
+            <p class="media-meta">Events, Highlights &amp; ca. 85.000+ Abonnenten</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.youtube.com/@EuropeanAquatics"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube-Kanal European Aquatics in neuem Tab öffnen"
+          >Zum Kanal</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_cz.png" alt="Logo Czech Water Polo" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Regional Hub · YouTube</p>
+            <h4>Czech Water Polo</h4>
+            <p class="media-meta">Livestreams &amp; ca. 2.000+ Abonnenten</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.youtube.com/@czechwaterpolo"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube-Kanal Czech Water Polo in neuem Tab öffnen"
+          >Zum Kanal</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_wa.png" alt="Logo World Aquatics" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Verbandsplattform · Livestream</p>
+            <h4>World Aquatics Live</h4>
+            <p class="media-meta">Offizielle Livestreams &amp; Replays internationaler Turniere</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.worldaquatics.com/watch"
+            target="_blank"
+            rel="noopener"
+            aria-label="Livestream-Plattform von World Aquatics in neuem Tab öffnen"
+          >Zur Plattform</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_ea.png" alt="Logo European Aquatics" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Verbandsplattform · Events</p>
+            <h4>European Aquatics Live</h4>
+            <p class="media-meta">LEN Eventstreams, Highlight-Coverage &amp; Reports</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.len.eu/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Website von European Aquatics in neuem Tab öffnen"
+          >Zu European Aquatics</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Nationalverband · Deutschland</p>
+            <h4>DSV – Deutscher Schwimmverband</h4>
+            <p class="media-meta">Bundesweite Wasserball-Coverage &amp; Turnierberichte</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.dsv.de/wasserball/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Wasserballseite des Deutschen Schwimmverbands in neuem Tab öffnen"
+          >Zum DSV</a>
+        </article>
+
+        <article class="media-card" role="listitem">
+          <div class="media-logo">
+            <img src="assets/images/logos/logo_rbb.png" alt="Logo Rundfunk Berlin-Brandenburg" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">Regionale Berichterstattung</p>
+            <h4>rbb · TV &amp; Online</h4>
+            <p class="media-meta">Redaktionelle Beiträge &amp; Interviews im öffentlich-rechtlichen Umfeld</p>
+          </div>
+          <a
+            class="media-link"
+            href="https://www.rbb24.de/sport/beitrag/2025/06/wasserball-frauen-spandau-04-deutscher-meister-bochum.html"
+            target="_blank"
+            rel="noopener"
+            aria-label="Artikel über Wasserball bei rbb24 in neuem Tab öffnen"
+          >Zum Beispielartikel</a>
+        </article>
+        </div>
+
+        <div class="media-summary" role="note">
+          <h4>Crossmediale Reichweite</h4>
+          <p>
+            Die Kombination aus Social Media, redaktioneller Website, internationalen Livestreams sowie Verbands- und Medienkanälen ermöglicht eine nachhaltige, glaubwürdige und sportlich kontextualisierte Sichtbarkeit – keine klassische Werbung, sondern authentische Präsenz im Leistungssport.
+          </p>
+        </div>
+      </section>
+    </div>
+
   </div>
 </section>
