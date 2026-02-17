@@ -257,6 +257,18 @@ MOBILE HEADER (<= 900px)
     display: block !important;
   }
 
+  /* Mobile: make logo container 40% width and image fill it */
+  .logo {
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+  }
+
+  .logo img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: calc(var(--header-height-mobile) - 8px) !important;
+  }
+
   /* logo sizing preserved (no forced 20% width) */
 
   /* Hide desktop nav, keep actions visible */
