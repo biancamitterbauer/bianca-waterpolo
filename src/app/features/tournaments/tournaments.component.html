@@ -1,0 +1,100 @@
+<section class="tournaments-shell">
+  <div class="site-container tournaments-hero">
+    <p class="hero-kicker">Turnierkalender</p>
+    <h1>Turniere</h1>
+    <p class="hero-lead">
+      Strukturierter Überblick über aktuelle Wettbewerbe, Spielzeiten und den Fokus auf Wasserfreunde Spandau 04.
+      Klar aufbereitet für Team, Medien und potenzielle Partner.
+    </p>
+  </div>
+
+  <section class="site-container next-tournament" aria-label="Aktuelles Turnier">
+    <div class="next-tournament__content">
+      <p class="card-kicker">Aktuelles Turnier</p>
+      <h2>{{ nextTournament.title }}</h2>
+
+      <div class="next-tournament__chips" aria-label="Turnierdetails">
+        <span>{{ nextTournament.period }}</span>
+        <span>{{ nextTournament.location }}</span>
+        <span class="chip-status">{{ nextTournament.status }}</span>
+      </div>
+
+      <p class="next-tournament__objective">{{ nextTournament.objective }}</p>
+
+      <ul class="next-tournament__notes" aria-label="Turniertermine">
+        <li>{{ nextTournament.meeting }}</li>
+        <li>{{ nextTournament.ceremony }}</li>
+      </ul>
+    </div>
+
+    <div class="next-tournament__logo" aria-hidden="true">
+      <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="site-container schedule" aria-labelledby="schedule-title">
+    <div class="schedule-head">
+      <p class="card-kicker">Spielplan</p>
+      <h2 id="schedule-title">U18 DSV-Cup · Match Schedule</h2>
+    </div>
+
+    <div class="schedule-table-wrapper">
+      <table class="schedule-table" aria-describedby="schedule-caption">
+        <caption id="schedule-caption">
+          Spieltermine und Begegnungen. Spandau-Spiele sind markiert.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Spiel</th>
+            <th scope="col">Spieltag</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Uhrzeit</th>
+            <th scope="col">Begegnung</th>
+            <th scope="col">Ort</th>
+            <th scope="col">Info / Erg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let match of matches" [class.row-spandau]="match.isSpandauGame">
+            <td>{{ match.matchNumber }}</td>
+            <td>{{ match.matchDay }}</td>
+            <td>{{ match.date }}</td>
+            <td>{{ match.time }} Uhr</td>
+            <td>{{ match.teamA }} <span aria-hidden="true">vs.</span> {{ match.teamB }}</td>
+            <td>{{ match.venue }}</td>
+            <td>{{ match.info }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="schedule-cards" role="list" aria-label="Spielplan mobil">
+      <article class="match-card" role="listitem" *ngFor="let match of matches" [class.match-card--spandau]="match.isSpandauGame">
+        <div class="match-card__top">
+          <p>Spiel {{ match.matchNumber }}</p>
+          <p>{{ match.time }} Uhr</p>
+        </div>
+        <p class="match-card__day">{{ match.matchDay }} · {{ match.date }}</p>
+        <p class="match-card__teams">{{ match.teamA }} <span>vs.</span> {{ match.teamB }}</p>
+        <div class="match-card__meta">
+          <span>{{ match.venue }}</span>
+          <span>{{ match.info }}</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="site-container sponsor-cta" aria-label="Sponsoring und Media">
+    <p class="card-kicker">Partnerschaften</p>
+    <h2>Turnierpräsenz für starke Marken</h2>
+    <p>
+      Sichtbarkeit im Leistungssport entsteht im richtigen Moment. Rund um Turniere bieten sich hochwertige
+      Integrationen für Sponsoren, Medienpartner und langfristige Kooperationen.
+    </p>
+
+    <div class="sponsor-cta__actions">
+      <a routerLink="/sponsors" class="cta-button cta-button--primary">Sponsor werden</a>
+      <a routerLink="/contact" class="cta-button cta-button--secondary">Media Kit anfordern</a>
+    </div>
+  </section>
+</section>

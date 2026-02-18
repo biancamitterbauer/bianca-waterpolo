@@ -7,7 +7,7 @@ export const routes: Routes = [
 	{ path: 'achievements', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'news', loadComponent: () => import('./features/news/news.component').then(m => m.NewsComponent) },
 	{ path: 'training', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
-	{ path: 'tournaments', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'tournaments', loadComponent: () => import('./features/tournaments/tournaments.component').then(m => m.TournamentsComponent) },
 	{ path: 'media', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'sponsors', loadComponent: () => import('./features/sponsors/sponsors.component').then(m => m.SponsorsComponent) },
 	{ path: 'press', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
