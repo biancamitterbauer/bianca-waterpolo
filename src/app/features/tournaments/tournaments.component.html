@@ -50,26 +50,6 @@
           <li>{{ tournament.ceremony }}</li>
         </ul>
       </section>
-
-      <section class="dash-card livestream span-2" aria-labelledby="livestream-title">
-        <p class="section-kicker">Streaming</p>
-        <h2 id="livestream-title">Live dabei sein</h2>
-        <p>Offizieller Livestream-Kanal</p>
-
-        <div class="livestream__frame" *ngIf="isBrowser">
-          <iframe
-            [src]="livestreamEmbedUrl"
-            title="ETV Wasserball Livestream"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-
-        <a class="livestream__button" [href]="livestreamChannelUrl" target="_blank" rel="noopener">
-          Zum Livestream-Kanal
-        </a>
-      </section>
     </div>
   </section>
 
@@ -139,6 +119,26 @@
         </article>
       </div>
     </div>
+  </section>
+
+  <section class="livestream block" aria-labelledby="livestream-title">
+    <p class="section-kicker">Streaming</p>
+    <h2 id="livestream-title">Live dabei sein</h2>
+    <p>Offizieller Livestream-Kanal</p>
+
+    <div class="livestream__frame" *ngIf="isBrowser">
+      <iframe
+        [src]="livestreamEmbedUrl"
+        title="ETV Wasserball Livestream"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <a class="livestream__button" [href]="livestreamChannelUrl" target="_blank" rel="noopener">
+      Zum Livestream-Kanal
+    </a>
   </section>
 
   <section class="tournaments-ranking block" aria-labelledby="ranking-title">
