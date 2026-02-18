@@ -143,35 +143,45 @@
   </section>
 
   <section class="tournaments-ranking block" aria-labelledby="ranking-title">
-    <h2 id="ranking-title">Zwischenstand</h2>
+    <h2 id="ranking-title">{{ rankingTitle }}</h2>
 
-    <div class="ranking-table-wrap" *ngIf="hasResults; else rankingFallback">
-      <table class="ranking-table" aria-label="Aktueller Tabellenstand">
+    <div class="ranking-table-wrap">
+      <table class="ranking-table" aria-label="Aktueller Tabellenstand DSV U18 Deutschland-Pokal">
         <thead>
           <tr>
+            <th scope="col">Platz</th>
             <th scope="col">Team</th>
             <th scope="col">Spiele</th>
-            <th scope="col">Siege</th>
-            <th scope="col">Remis</th>
-            <th scope="col">Niederlagen</th>
+            <th scope="col">S*</th>
+            <th scope="col">U*</th>
+            <th scope="col">N*</th>
+            <th scope="col">Tore</th>
+            <th scope="col">TD*</th>
             <th scope="col">Punkte</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of rankingTable">
+          <tr *ngFor="let row of rankingTable; let index = index">
+            <td>{{ rankingPlace(index) }}</td>
             <td>{{ row.team }}</td>
-            <td>{{ row.played }}</td>
+            <td>{{ formatPlayed(row) }}</td>
             <td>{{ row.wins }}</td>
             <td>{{ row.draws }}</td>
             <td>{{ row.losses }}</td>
+            <td>{{ formatGoals(row) }}</td>
+            <td>{{ row.goalDiff }}</td>
             <td>{{ row.points }}</td>
+          </tr>
+          <tr *ngFor="let row of rankingTable" class="ranking-note-row">
+            <td></td>
+            <td colspan="8">{{ row.team }} - {{ row.comparisonNote }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <ng-template #rankingFallback>
-      <div class="ranking-fallback">Tabelle wird nach Turnierbeginn angezeigt.</div>
-    </ng-template>
+    <p class="ranking-legend">S = Siege, U = Unentschieden, N = Niederlagen, TD = Tordifferenz</p>
+    <p class="ranking-legend">Für die Tabelle, Tore und Tordifferenz ist das Ergebnis nach dem 4. Abschnitt maßgeblich.</p>
+    <p class="ranking-legend">Für die Statistik Sieg/Niederlage wird das Ergebnis nach dem Entscheidungswerfen herangezogen.</p>
   </section>
 </section>

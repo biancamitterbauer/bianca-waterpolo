@@ -421,6 +421,12 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.ranking-note-row td {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .ranking-table th {
   border-top: 0;
   color: rgba(255, 255, 255, 0.68);
@@ -436,6 +442,13 @@
   background: rgba(255, 255, 255, 0.03);
   padding: 0.95rem;
   color: rgba(255, 255, 255, 0.78);
+}
+
+.ranking-legend {
+  margin: 0.65rem 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 @keyframes pulse-live {

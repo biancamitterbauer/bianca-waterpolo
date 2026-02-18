@@ -24,6 +24,7 @@ type FixtureView = Fixture & {
 
 type RankingRow = {
   team: string;
+  comparisonNote: string;
   played: number;
   wins: number;
   draws: number;
@@ -57,6 +58,28 @@ type FixtureSource = Fixture & {
 
 const LIVE_MATCH_DURATION_MINUTES = 120;
 const TOURNAMENT_VENUE = 'Am Inselpark, 21109 Hamburg';
+const RANKING_TEAMS: Array<{ team: string; comparisonNote: string }> = [
+  {
+    team: 'Eimsbütteler Turnverband',
+    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
+  },
+  {
+    team: 'SC Chemnitz 1892',
+    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
+  },
+  {
+    team: 'SSV Esslingen',
+    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
+  },
+  {
+    team: 'Uerdinger Schwimmverein 08',
+    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
+  },
+  {
+    team: 'Wfr. Spandau 04',
+    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
+  },
+];
 
 const FIXTURE_SOURCE: FixtureSource[] = [
   {
@@ -162,7 +185,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
 ];
 
 const TOURNAMENT_META: TournamentMeta = {
-  title: 'DSV U18 Deutschland-Pokal',
+  title: 'Deutscher Wasserball Pokal weiblich U18',
   subtitle: 'Hamburg · 21–22 Februar 2026',
   location: TOURNAMENT_VENUE,
   status: '10 Spielansetzungen | 3 Punktsystem',
@@ -211,6 +234,10 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
   get hasResults(): boolean {
     return this.fixtures.some((fixture) => !!fixture.score);
+  }
+
+  get rankingTitle(): string {
+    return 'Deutscher Wasserball Pokal weiblich U18: 5 Mannschaften | 3 Punktsystem';
   }
 
   get isTournamentOver(): boolean {
@@ -269,6 +296,19 @@ export class TournamentsComponent implements OnInit, OnDestroy {
     }
 
     return this.statusLabel(fixture.status);
+  }
+
+  formatGoals(row: RankingRow): string {
+    return `${row.goalsFor}:${row.goalsAgainst}`;
+  }
+
+  formatPlayed(row: RankingRow): string {
+    const maxGames = 4;
+    return `${row.played}/${maxGames}`;
+  }
+
+  rankingPlace(index: number): string {
+    return this.hasResults ? String(index + 1) : '';
   }
 
   statusClass(status: Fixture['status']): string {
@@ -398,6 +438,21 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
   private calculateRanking(fixtures: Fixture[]): RankingRow[] {
     const table = new Map<string, RankingRow>();
+    for (const entry of RANKING_TEAMS) {
+      table.set(entry.team, {
+        team: entry.team,
+        comparisonNote: entry.comparisonNote,
+        played: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        points: 0,
+        goalsFor: 0,
+        goalsAgainst: 0,
+        goalDiff: 0,
+      });
+    }
+
     const fixturesWithScore = fixtures.filter((fixture) => !!fixture.score);
 
     for (const fixture of fixturesWithScore) {
@@ -471,6 +526,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
     const row: RankingRow = {
       team,
+      comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
       played: 0,
       wins: 0,
       draws: 0,
