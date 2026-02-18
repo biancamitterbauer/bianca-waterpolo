@@ -5,11 +5,12 @@ import {
   ElementRef,
   HostListener,
   OnDestroy,
+  PLATFORM_ID,
   ViewChild,
   inject,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { I18nPipe } from '../../core/i18n/i18n.pipe';
@@ -45,6 +46,7 @@ type Slide4Kpi = {
 })
 export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
+  private readonly platformId = inject(PLATFORM_ID);
 
   @ViewChild('track')
   set track(value: ElementRef<HTMLElement> | undefined) {
@@ -65,11 +67,16 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
   private resizeObserver?: ResizeObserver;
   private downloadNoticeTimeout: number | null = null;
   private pendingSlideIndex: number | null = 0;
+  private isBrowser = false;
+  private mobileMediaQuery?: MediaQueryList;
+  private standaloneMediaQuery?: MediaQueryList;
+  private readonly viewportModeListener = () => this.updateViewportMode();
 
   protected readonly slideIndices = Array.from({ length: this.slideCount }, (_, index) => index);
   protected readonly activeSlide = signal(0);
   protected readonly guidesOn = signal(false);
   protected readonly downloadNoticeVisible = signal(false);
+  protected isMobile = false;
 
   protected readonly slide2Cards: ReadonlyArray<SlideCard> = [
     {
@@ -178,6 +185,9 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
     },
   ];
   constructor() {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    this.initializeViewportModeTracking();
+
     const initialGuides = this.route.snapshot.queryParamMap.get('guides') === '1';
     this.guidesOn.set(initialGuides);
 
@@ -208,19 +218,32 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.teardownViewportModeTracking();
     this.teardownTrack();
     this.clearDownloadNoticeTimer();
   }
 
   protected prevSlide(): void {
+    if (this.isMobile) {
+      return;
+    }
+
     this.goToSlide(this.activeSlide() - 1);
   }
 
   protected nextSlide(): void {
+    if (this.isMobile) {
+      return;
+    }
+
     this.goToSlide(this.activeSlide() + 1);
   }
 
   protected goToSlide(index: number, behavior: ScrollBehavior = 'smooth'): void {
+    if (this.isMobile) {
+      return;
+    }
+
     if (!this.trackEl) {
       return;
     }
@@ -232,6 +255,10 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   protected handleKeyNavigation(event: KeyboardEvent): void {
+    if (this.isMobile) {
+      return;
+    }
+
     if (event.key === 'g' || event.key === 'G') {
       if (!this.isEditableTarget(event.target)) {
         event.preventDefault();
@@ -250,6 +277,10 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateActiveFromScroll(): void {
+    if (this.isMobile) {
+      return;
+    }
+
     if (!this.trackEl) {
       return;
     }
@@ -290,6 +321,10 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
   }
 
   private syncScrollPosition(): void {
+    if (this.isMobile) {
+      return;
+    }
+
     this.runAnimation(() => this.scrollToIndex(this.activeSlide(), 'auto'));
   }
 
@@ -301,11 +336,19 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
 
       this.activeSlide.set(0);
       this.pendingSlideIndex = 0;
-      this.scrollToIndex(0, 'auto');
+
+      if (!this.isMobile) {
+        this.scrollToIndex(0, 'auto');
+      }
     });
   }
 
   private initializeTrack(element: HTMLElement): void {
+    if (this.isMobile) {
+      this.trackEl = undefined;
+      return;
+    }
+
     this.trackEl = element;
     this.trackEl.addEventListener('scroll', this.scrollListener, { passive: true });
     this.updateActiveFromScroll();
@@ -339,6 +382,44 @@ export class SponsorPitchComponent implements AfterViewInit, OnDestroy {
     this.trackEl = undefined;
     this.resizeObserver?.disconnect();
     this.resizeObserver = undefined;
+  }
+
+  private initializeViewportModeTracking(): void {
+    if (!this.isBrowser || typeof window.matchMedia !== 'function') {
+      return;
+    }
+
+    this.mobileMediaQuery = window.matchMedia('(max-width: 899px)');
+    this.standaloneMediaQuery = window.matchMedia('(display-mode: standalone)');
+    this.updateViewportMode();
+
+    this.mobileMediaQuery.addEventListener('change', this.viewportModeListener);
+    this.standaloneMediaQuery.addEventListener('change', this.viewportModeListener);
+  }
+
+  private teardownViewportModeTracking(): void {
+    this.mobileMediaQuery?.removeEventListener('change', this.viewportModeListener);
+    this.standaloneMediaQuery?.removeEventListener('change', this.viewportModeListener);
+    this.mobileMediaQuery = undefined;
+    this.standaloneMediaQuery = undefined;
+  }
+
+  private updateViewportMode(): void {
+    const nextIsMobile = Boolean(this.mobileMediaQuery?.matches || this.standaloneMediaQuery?.matches);
+    if (this.isMobile === nextIsMobile) {
+      return;
+    }
+
+    this.isMobile = nextIsMobile;
+
+    if (this.isMobile) {
+      this.teardownTrack();
+      this.pendingSlideIndex = 0;
+      this.activeSlide.set(0);
+      return;
+    }
+
+    this.syncScrollPosition();
   }
 
   private startDownloadNoticeTimer(): void {

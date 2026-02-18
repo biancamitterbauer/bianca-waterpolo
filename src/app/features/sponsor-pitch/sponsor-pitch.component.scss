@@ -1429,6 +1429,77 @@ p {
   }
 }
 
+/* ============================================================================
+   Desktop slider vs mobile stacked layout
+   ============================================================================ */
+
+.pitch-desktop {
+  display: block;
+}
+
+.pitch-mobile {
+  display: none;
+}
+
+@media (max-width: 899px), (display-mode: standalone) {
+  :host {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .pitch-shell {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .pitch-desktop {
+    display: none;
+  }
+
+  .pitch-mobile {
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.25rem 1rem 2.5rem;
+  }
+
+  .pitch-stack-card {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .pitch-mobile .slide-bg {
+    display: none;
+  }
+
+  .pitch-mobile .pitch-slide {
+    height: auto !important;
+    min-height: auto !important;
+    min-width: 0 !important;
+    flex: none !important;
+    overflow: visible !important;
+  }
+
+  .pitch-mobile .slide-content {
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  .pitch-mobile .slide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pitch-mobile .slide-index,
+  .pitch-mobile .dev-guides {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pitch-track {
     scroll-behavior: auto;

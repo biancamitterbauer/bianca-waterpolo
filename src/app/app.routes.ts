@@ -9,9 +9,9 @@ export const routes: Routes = [
 	{ path: 'training', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'tournaments', loadComponent: () => import('./features/tournaments/tournaments.component').then(m => m.TournamentsComponent) },
 	{ path: 'media', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
-	{ path: 'sponsors', loadComponent: () => import('./features/sponsors/sponsors.component').then(m => m.SponsorsComponent) },
+	{ path: 'sponsors', redirectTo: 'sponsor-pitch', pathMatch: 'full' },
 	{ path: 'press', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
-	{ path: 'contact', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'contact', loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent) },
 	{ path: 'legal', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'sponsor-pitch', loadComponent: () => import('./features/sponsor-pitch/sponsor-pitch.component').then(m => m.SponsorPitchComponent) },
 	{ path: '**', redirectTo: '' }

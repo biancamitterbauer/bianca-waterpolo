@@ -1,0 +1,106 @@
+<section class="contact-shell">
+  <section class="contact-hero block">
+    <p class="kicker">Kontakt</p>
+    <h1>Kontaktformular</h1>
+    <p>
+      Für Sponsoring, Medienanfragen und Kooperationen. Jede Anfrage wird professionell geprüft und zeitnah beantwortet.
+    </p>
+  </section>
+
+  <section class="contact-grid block" aria-label="Kontaktbereich">
+    <article class="contact-card contact-card--info">
+      <p class="kicker">Direkter Kontakt</p>
+      <h2>Bianca Mitterbauer Team</h2>
+      <ul>
+        <li><strong>E-Mail:</strong> kontakt@biancamitterbauer.de</li>
+        <li><strong>Antwortzeit:</strong> in der Regel innerhalb von 24–48 Stunden</li>
+        <li><strong>Fokus:</strong> Sponsoring, Presse, Events, Partnerschaften</li>
+      </ul>
+      <p class="note">
+        Bitte möglichst konkrete Informationen zur Anfrage und zum gewünschten Zeitraum angeben.
+      </p>
+    </article>
+
+    <article class="contact-card contact-card--form">
+      <p class="kicker">Anfrage senden</p>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="field-grid field-grid--two">
+          <label>
+            <span>Name *</span>
+            <input type="text" formControlName="fullName" autocomplete="name" />
+            <small *ngIf="contactForm.controls.fullName.touched && contactForm.controls.fullName.invalid">
+              Bitte einen gültigen Namen eingeben.
+            </small>
+          </label>
+
+          <label>
+            <span>E-Mail *</span>
+            <input type="email" formControlName="email" autocomplete="email" />
+            <small *ngIf="contactForm.controls.email.touched && contactForm.controls.email.invalid">
+              Bitte eine gültige E-Mail-Adresse eingeben.
+            </small>
+          </label>
+        </div>
+
+        <div class="field-grid field-grid--two">
+          <label>
+            <span>Organisation</span>
+            <input type="text" formControlName="organization" autocomplete="organization" />
+          </label>
+
+          <label>
+            <span>Telefon</span>
+            <input type="tel" formControlName="phone" autocomplete="tel" />
+          </label>
+        </div>
+
+        <div class="field-grid field-grid--two">
+          <label>
+            <span>Thema *</span>
+            <select formControlName="topic">
+              <option>Sponsoring</option>
+              <option>Presse / Medien</option>
+              <option>Event / Auftritt</option>
+              <option>Kooperation</option>
+              <option>Sonstiges</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Bevorzugter Kontaktweg *</span>
+            <select formControlName="preferredContact">
+              <option>E-Mail</option>
+              <option>Telefon</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          <span>Nachricht *</span>
+          <textarea formControlName="message" rows="7" maxlength="2000"></textarea>
+          <small class="counter">{{ messageLength }}/2000</small>
+          <small *ngIf="contactForm.controls.message.touched && contactForm.controls.message.invalid">
+            Bitte mindestens 20 Zeichen eingeben.
+          </small>
+        </label>
+
+        <label class="consent">
+          <input type="checkbox" formControlName="consent" />
+          <span>Ich stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu. *</span>
+        </label>
+        <small *ngIf="contactForm.controls.consent.touched && contactForm.controls.consent.invalid">
+          Bitte der Datenverarbeitung zustimmen.
+        </small>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Wird gesendet…' : 'Anfrage senden' }}
+          </button>
+          <p class="success" *ngIf="submitState === 'success'">Danke! Die Anfrage wurde erfolgreich übermittelt.</p>
+          <p class="error" *ngIf="submitState === 'error'">Bitte prüfe die markierten Pflichtfelder.</p>
+        </div>
+      </form>
+    </article>
+  </section>
+</section>

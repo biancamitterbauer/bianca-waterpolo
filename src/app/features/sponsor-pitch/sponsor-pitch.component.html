@@ -1,22 +1,37 @@
 <section class="pitch-shell">
-  <div
-    #track
-    class="pitch-track"
-    role="group"
-    [attr.aria-label]="'pitch.deck.aria' | t"
-  >
-    <ng-container [ngTemplateOutlet]="slides"></ng-container>
-  <section class="pitch-shell">
+  <div class="pitch-desktop">
     <div
       #track
       class="pitch-track"
       role="group"
       [attr.aria-label]="'pitch.deck.aria' | t"
     >
-      <ng-container [ngTemplateOutlet]="slides"></ng-container>
+      <article class="pitch-slide is-hero is-hero-bg slide-1" aria-labelledby="slide1-title">
+        <ng-container [ngTemplateOutlet]="slide1" [ngTemplateOutletContext]="{ titleId: 'slide1-title' }"></ng-container>
+      </article>
+
+      <article class="pitch-slide is-portrait slide-two slide-2" aria-labelledby="slide2-title">
+        <ng-container [ngTemplateOutlet]="slide2" [ngTemplateOutletContext]="{ titleId: 'slide2-title' }"></ng-container>
+      </article>
+
+      <article class="pitch-slide is-graph" aria-labelledby="slide3-title">
+        <ng-container [ngTemplateOutlet]="slide3" [ngTemplateOutletContext]="{ titleId: 'slide3-title' }"></ng-container>
+      </article>
+
+      <article class="pitch-slide is-benefits" aria-labelledby="slide4-title">
+        <ng-container [ngTemplateOutlet]="slide4" [ngTemplateOutletContext]="{ titleId: 'slide4-title' }"></ng-container>
+      </article>
+
+      <article class="pitch-slide is-models" aria-labelledby="slide5-title">
+        <ng-container [ngTemplateOutlet]="slide5" [ngTemplateOutletContext]="{ titleId: 'slide5-title' }"></ng-container>
+      </article>
+
+      <article class="pitch-slide is-cta" aria-labelledby="slide6-title">
+        <ng-container [ngTemplateOutlet]="slide6" [ngTemplateOutletContext]="{ titleId: 'slide6-title' }"></ng-container>
+      </article>
     </div>
 
-    <div class="pitch-pagination" role="tablist" [attr.aria-label]="'pitch.pagination.aria' | t">
+    <div class="pitch-pagination" role="tablist" [attr.aria-label]="'pitch.pagination.aria' | t" *ngIf="!isMobile">
       <button
         type="button"
         class="pitch-arrow left"
@@ -51,332 +66,378 @@
         <span aria-hidden="true">→</span>
       </button>
     </div>
+  </div>
 
-    <ng-template #slides>
-      <article class="pitch-slide is-hero is-hero-bg slide-1" aria-labelledby="slide1-title">
-        <div class="slide-bg hero-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-index">01</div>
-          <div class="dev-guides" *ngIf="guidesOn()" aria-hidden="true"></div>
-          <div class="hero-badge slide-badge" aria-hidden="true">
-            <img
-              class="hero-badge-logo"
-              src="assets/images/logos/EM_U18_Malta_25.png"
-              loading="lazy"
-              decoding="async"
-              [alt]="'pitch.slide1.eventLogoAlt' | t"
-            />
-          </div>
+  <div class="pitch-mobile">
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-hero is-hero-bg slide-1" aria-labelledby="slide1-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide1" [ngTemplateOutletContext]="{ titleId: 'slide1-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
 
-          <div class="hero-copy glass-panel">
-            <p class="slide-eyebrow">{{ 'pitch.slide1.eyebrow' | t }}</p>
-            <h2 id="slide1-title">{{ 'pitch.slide1.title' | t }}</h2>
-            <p class="slide-lead">{{ 'pitch.slide1.text' | t }}</p>
-            <p class="slide-body">{{ 'pitch.slide1.body' | t }}</p>
-          </div>
-        </div>
-      </article>
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-portrait slide-two slide-2" aria-labelledby="slide2-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide2" [ngTemplateOutletContext]="{ titleId: 'slide2-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
 
-      <article class="pitch-slide is-portrait slide-two slide-2" aria-labelledby="slide2-title">
-        <div class="slide-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-grid">
-            <div class="slide-two-panel glass-panel slide-copy" aria-labelledby="slide2-title">
-              <div class="slide-two-content">
-                <p class="slide-eyebrow">{{ 'pitch.slide2.eyebrow' | t }}</p>
-                <h2 id="slide2-title">{{ 'pitch.slide2.title' | t }}</h2>
-                <div class="slide-profile">
-                  <p class="slide-lead">{{ 'pitch.slide2.lead' | t }}</p>
-                  <p>{{ 'pitch.slide2.profile.paragraph2' | t }}</p>
-                  <p>{{ 'pitch.slide2.profile.paragraph3' | t }}</p>
-                  <p>{{ 'pitch.slide2.profile.paragraph4' | t }}</p>
-                  <p>{{ 'pitch.slide2.profile.paragraph5' | t }}</p>
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-graph" aria-labelledby="slide3-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide3" [ngTemplateOutletContext]="{ titleId: 'slide3-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
 
-                  <div class="slide-experience" aria-label="{{ 'pitch.slide2.experience.heading' | t }}">
-                    <p class="experience-heading">{{ 'pitch.slide2.experience.heading' | t }}</p>
-                    <ul>
-                      <li>{{ 'pitch.slide2.experience.euros' | t }}</li>
-                      <li>{{ 'pitch.slide2.experience.worlds' | t }}</li>
-                    </ul>
-                    <p class="experience-note">{{ 'pitch.slide2.experience.goal' | t }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-benefits" aria-labelledby="slide4-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide4" [ngTemplateOutletContext]="{ titleId: 'slide4-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
 
-            <figure class="slide-media">
-              <img
-                class="slide-image"
-                src="assets/images/logos/Bianca_1.png"
-                loading="lazy"
-                decoding="async"
-                [alt]="'pitch.slide2.imageAlt' | t"
-              />
-            </figure>
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-models" aria-labelledby="slide5-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide5" [ngTemplateOutletContext]="{ titleId: 'slide5-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
 
-            <div class="slide-two-card-grid" role="list">
-              <article class="slide-two-card" role="listitem" *ngFor="let card of slide2Cards">
-                <h3>{{ card.titleKey | t }}</h3>
-                <p>{{ card.bodyKey | t }}</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </article>
+    <article class="pitch-stack-card">
+      <div class="stack-content">
+        <article class="pitch-slide is-cta" aria-labelledby="slide6-mobile-title">
+          <ng-container [ngTemplateOutlet]="slide6" [ngTemplateOutletContext]="{ titleId: 'slide6-mobile-title' }"></ng-container>
+        </article>
+      </div>
+    </article>
+  </div>
 
-      <article class="pitch-slide is-graph" aria-labelledby="slide3-title">
-        <div class="slide-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-grid">
-            <div class="glass-panel slide-copy">
-            <p class="slide-eyebrow">{{ 'pitch.slide3.eyebrow' | t }}</p>
-            <h2 id="slide3-title">{{ 'pitch.slide3.title' | t }}</h2>
-            <p class="slide-lead">{{ 'pitch.slide3.lead' | t }}</p>
+  <ng-template #slide1 let-titleId="titleId">
+    <div class="slide-bg hero-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-index">01</div>
+      <div class="dev-guides" *ngIf="guidesOn()" aria-hidden="true"></div>
+      <div class="hero-badge slide-badge" aria-hidden="true">
+        <img
+          class="hero-badge-logo"
+          src="assets/images/logos/EM_U18_Malta_25.png"
+          loading="lazy"
+          decoding="async"
+          [alt]="'pitch.slide1.eventLogoAlt' | t"
+        />
+      </div>
 
-            <div class="icon-grid" role="list">
-              <div class="icon-card" role="listitem" *ngFor="let channel of visibilityChannels">
-                <span class="icon" aria-hidden="true">
-                  <span></span>
-                </span>
-                <span class="icon-label">{{ channel.labelKey | t }}</span>
-              </div>
-            </div>
+      <div class="hero-copy glass-panel">
+        <p class="slide-eyebrow">{{ 'pitch.slide1.eyebrow' | t }}</p>
+        <h2 [id]="titleId">{{ 'pitch.slide1.title' | t }}</h2>
+        <p class="slide-lead">{{ 'pitch.slide1.text' | t }}</p>
+        <p class="slide-body">{{ 'pitch.slide1.body' | t }}</p>
+      </div>
+    </div>
+  </ng-template>
 
-            <div class="reach-section" aria-labelledby="slide3-reach-title">
-              <div class="reach-copy">
-                <p class="reach-eyebrow">{{ 'pitch.slide3.reach.eyebrow' | t }}</p>
-                <h3 id="slide3-reach-title">{{ 'pitch.slide3.reach.title' | t }}</h3>
-                <p class="reach-body">{{ 'pitch.slide3.reach.body' | t }}</p>
+  <ng-template #slide2 let-titleId="titleId">
+    <div class="slide-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-grid">
+        <div class="slide-two-panel glass-panel slide-copy" [attr.aria-labelledby]="titleId">
+          <div class="slide-two-content">
+            <p class="slide-eyebrow">{{ 'pitch.slide2.eyebrow' | t }}</p>
+            <h2 [id]="titleId">{{ 'pitch.slide2.title' | t }}</h2>
+            <div class="slide-profile">
+              <p class="slide-lead">{{ 'pitch.slide2.lead' | t }}</p>
+              <p>{{ 'pitch.slide2.profile.paragraph2' | t }}</p>
+              <p>{{ 'pitch.slide2.profile.paragraph3' | t }}</p>
+              <p>{{ 'pitch.slide2.profile.paragraph4' | t }}</p>
+              <p>{{ 'pitch.slide2.profile.paragraph5' | t }}</p>
 
-                <div class="reach-matrix" role="list">
-                  <article class="reach-card" role="listitem" *ngFor="let highlight of reachHighlights">
-                    <span class="reach-stat">{{ highlight.statKey | t }}</span>
-                    <span class="reach-label">{{ highlight.labelKey | t }}</span>
-                    <p>{{ highlight.bodyKey | t }}</p>
-                  </article>
-                </div>
-              </div>
-
-              <aside
-                class="sponsor-infobox"
-                [attr.aria-label]="'pitch.slide3.infobox.aria' | t"
-              >
-                <p class="box-eyebrow">{{ 'pitch.slide3.infobox.eyebrow' | t }}</p>
-                <h4>{{ 'pitch.slide3.infobox.title' | t }}</h4>
-                <p class="box-body">{{ 'pitch.slide3.infobox.body' | t }}</p>
-
-                <ul class="box-list">
-                  <li *ngFor="let item of sponsorSnapshot">
-                    <span class="box-label">{{ item.labelKey | t }}</span>
-                    <span class="box-value">{{ item.valueKey | t }}</span>
-                  </li>
+              <div class="slide-experience" aria-label="{{ 'pitch.slide2.experience.heading' | t }}">
+                <p class="experience-heading">{{ 'pitch.slide2.experience.heading' | t }}</p>
+                <ul>
+                  <li>{{ 'pitch.slide2.experience.euros' | t }}</li>
+                  <li>{{ 'pitch.slide2.experience.worlds' | t }}</li>
                 </ul>
-              </aside>
+                <p class="experience-note">{{ 'pitch.slide2.experience.goal' | t }}</p>
+              </div>
             </div>
-            </div>
-
-            <figure class="slide-media">
-              <img
-                src="assets/images/logos/image_5.jpg"
-                loading="lazy"
-                decoding="async"
-                [alt]="'pitch.slide3.imageAlt' | t"
-              />
-            </figure>
           </div>
         </div>
-      </article>
 
-      <article class="pitch-slide is-benefits" aria-labelledby="slide4-title">
-        <div class="slide-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-grid">
-            <div class="glass-panel slide-copy slide-benefits" aria-labelledby="slide4-title">
-              <div class="slide-benefits-intro">
-                <p class="slide-eyebrow">{{ 'pitch.slide4.eyebrow' | t }}</p>
-                <h2 id="slide4-title">{{ 'pitch.slide4.title' | t }}</h2>
-                <p class="slide-lead">{{ 'pitch.slide4.lead' | t }}</p>
+        <figure class="slide-media">
+          <img
+            class="slide-image"
+            src="assets/images/logos/Bianca_1.png"
+            loading="lazy"
+            decoding="async"
+            [alt]="'pitch.slide2.imageAlt' | t"
+          />
+        </figure>
+
+        <div class="slide-two-card-grid" role="list">
+          <article class="slide-two-card" role="listitem" *ngFor="let card of slide2Cards">
+            <h3>{{ card.titleKey | t }}</h3>
+            <p>{{ card.bodyKey | t }}</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #slide3 let-titleId="titleId">
+    <div class="slide-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-grid">
+        <div class="glass-panel slide-copy">
+          <p class="slide-eyebrow">{{ 'pitch.slide3.eyebrow' | t }}</p>
+          <h2 [id]="titleId">{{ 'pitch.slide3.title' | t }}</h2>
+          <p class="slide-lead">{{ 'pitch.slide3.lead' | t }}</p>
+
+          <div class="icon-grid" role="list">
+            <div class="icon-card" role="listitem" *ngFor="let channel of visibilityChannels">
+              <span class="icon" aria-hidden="true">
+                <span></span>
+              </span>
+              <span class="icon-label">{{ channel.labelKey | t }}</span>
+            </div>
+          </div>
+
+          <div class="reach-section" aria-labelledby="slide3-reach-title">
+            <div class="reach-copy">
+              <p class="reach-eyebrow">{{ 'pitch.slide3.reach.eyebrow' | t }}</p>
+              <h3 id="slide3-reach-title">{{ 'pitch.slide3.reach.title' | t }}</h3>
+              <p class="reach-body">{{ 'pitch.slide3.reach.body' | t }}</p>
+
+              <div class="reach-matrix" role="list">
+                <article class="reach-card" role="listitem" *ngFor="let highlight of reachHighlights">
+                  <span class="reach-stat">{{ highlight.statKey | t }}</span>
+                  <span class="reach-label">{{ highlight.labelKey | t }}</span>
+                  <p>{{ highlight.bodyKey | t }}</p>
+                </article>
               </div>
+            </div>
 
-              <ul class="benefit-list">
-                <li *ngFor="let benefit of slide4Benefits">
-                  <span class="dot" aria-hidden="true"></span>
-                  <span>{{ benefit | t }}</span>
+            <aside class="sponsor-infobox" [attr.aria-label]="'pitch.slide3.infobox.aria' | t">
+              <p class="box-eyebrow">{{ 'pitch.slide3.infobox.eyebrow' | t }}</p>
+              <h4>{{ 'pitch.slide3.infobox.title' | t }}</h4>
+              <p class="box-body">{{ 'pitch.slide3.infobox.body' | t }}</p>
+
+              <ul class="box-list">
+                <li *ngFor="let item of sponsorSnapshot">
+                  <span class="box-label">{{ item.labelKey | t }}</span>
+                  <span class="box-value">{{ item.valueKey | t }}</span>
                 </li>
               </ul>
+            </aside>
+          </div>
+        </div>
 
-              <div class="package-section">
-                <p class="section-label">{{ 'pitch.slide4.package.label' | t }}</p>
-                <div class="package-grid">
-                  <ul class="package-list">
-                    <li *ngFor="let item of slide4PackageColumns.left">{{ item | t }}</li>
-                  </ul>
-                  <ul class="package-list">
-                    <li *ngFor="let item of slide4PackageColumns.right">{{ item | t }}</li>
-                  </ul>
-                </div>
+        <figure class="slide-media">
+          <img
+            src="assets/images/logos/image_5.jpg"
+            loading="lazy"
+            decoding="async"
+            [alt]="'pitch.slide3.imageAlt' | t"
+          />
+        </figure>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #slide4 let-titleId="titleId">
+    <div class="slide-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-grid">
+        <div class="glass-panel slide-copy slide-benefits" [attr.aria-labelledby]="titleId">
+          <div class="slide-benefits-intro">
+            <p class="slide-eyebrow">{{ 'pitch.slide4.eyebrow' | t }}</p>
+            <h2 [id]="titleId">{{ 'pitch.slide4.title' | t }}</h2>
+            <p class="slide-lead">{{ 'pitch.slide4.lead' | t }}</p>
+          </div>
+
+          <ul class="benefit-list">
+            <li *ngFor="let benefit of slide4Benefits">
+              <span class="dot" aria-hidden="true"></span>
+              <span>{{ benefit | t }}</span>
+            </li>
+          </ul>
+
+          <div class="package-section">
+            <p class="section-label">{{ 'pitch.slide4.package.label' | t }}</p>
+            <div class="package-grid">
+              <ul class="package-list">
+                <li *ngFor="let item of slide4PackageColumns.left">{{ item | t }}</li>
+              </ul>
+              <ul class="package-list">
+                <li *ngFor="let item of slide4PackageColumns.right">{{ item | t }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="kpi-section" aria-label="{{ 'pitch.slide4.kpi.label' | t }}">
+            <p class="section-label">{{ 'pitch.slide4.kpi.label' | t }}</p>
+            <div class="kpi-grid" role="list">
+              <div class="kpi-chip" role="listitem" *ngFor="let kpi of slide4Kpis">
+                <span class="kpi-value">{{ kpi.statKey | t }}</span>
+                <span class="kpi-detail">{{ kpi.labelKey | t }}</span>
               </div>
+            </div>
+          </div>
 
-              <div class="kpi-section" aria-label="{{ 'pitch.slide4.kpi.label' | t }}">
-                <p class="section-label">{{ 'pitch.slide4.kpi.label' | t }}</p>
-                <div class="kpi-grid" role="list">
-                  <div class="kpi-chip" role="listitem" *ngFor="let kpi of slide4Kpis">
-                    <span class="kpi-value">{{ kpi.statKey | t }}</span>
-                    <span class="kpi-detail">{{ kpi.labelKey | t }}</span>
-                  </div>
-                </div>
+          <p class="slide-closing">{{ 'pitch.slide4.closing' | t }}</p>
+        </div>
+
+        <figure class="slide-media benefits-media">
+          <img
+            src="assets/images/logos/Bianca_2.png"
+            loading="lazy"
+            decoding="async"
+            [alt]="'pitch.slide4.imageAlt' | t"
+          />
+        </figure>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #slide5 let-titleId="titleId">
+    <div class="slide-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-grid">
+        <div class="glass-panel slide-copy">
+          <p class="slide-eyebrow">Sponsoring-Angebote</p>
+          <h2 [id]="titleId">Personal Sponsoring | Bianca Mitterbauer</h2>
+          <p class="slide-lead">
+            Die folgenden Sponsoring-Pakete bieten Unternehmen und Förderpartnern eine hochwertige, glaubwürdige Präsenz im Umfeld des Nachwuchs- und Frauenleistungssports.
+          </p>
+          <p class="slide-body">
+            Alle Pakete sind auf nachhaltige Sichtbarkeit, mediale Reichweite und authentische Markenintegration ausgerichtet.
+          </p>
+
+          <div class="model-grid premium-grid">
+            <article class="model-card premium-card">
+              <div class="package-head">
+                <h3 class="package-headline">
+                  <span class="package-tier">Paket 1</span>
+                  <span class="package-sep" aria-hidden="true">|</span>
+                  <span class="package-title">Digital Visibility</span>
+                </h3>
+                <p class="package-price">200 €</p>
               </div>
+              <ul class="package-points">
+                <li>Präsentation des Sponsors auf biancamitterbauer.de</li>
+                <li>Sichtbarkeit auf Instagram @biancamitterbauer</li>
+                <li>Integration in redaktionelle &amp; sportbezogene Inhalte</li>
+              </ul>
+              <p class="package-note"><strong>Ideal für:</strong> Erste, hochwertige digitale Präsenz im Leistungssportumfeld.</p>
+            </article>
 
-              <p class="slide-closing">{{ 'pitch.slide4.closing' | t }}</p>
-            </div>
+            <article class="model-card premium-card">
+              <div class="package-head">
+                <h3 class="package-headline">
+                  <span class="package-tier">Paket 2</span>
+                  <span class="package-sep" aria-hidden="true">|</span>
+                  <span class="package-title">Performance Partner</span>
+                </h3>
+                <p class="package-price">500 €</p>
+              </div>
+              <ul class="package-points">
+                <li>Logo auf dem Ärmel der Sportbekleidung</li>
+              </ul>
+              <p class="package-note"><strong>Mehrwert:</strong> Sichtbarkeit bei Training, Auftritten &amp; Berichterstattung.</p>
+            </article>
 
-            <figure class="slide-media benefits-media">
-              <img
-                src="assets/images/logos/Bianca_2.png"
-                loading="lazy"
-                decoding="async"
-                [alt]="'pitch.slide4.imageAlt' | t"
-              />
-            </figure>
+            <article class="model-card premium-card">
+              <div class="package-head">
+                <h3 class="package-headline">
+                  <span class="package-tier">Paket 3</span>
+                  <span class="package-sep" aria-hidden="true">|</span>
+                  <span class="package-title">Official Partner</span>
+                </h3>
+                <p class="package-price">1.000 €</p>
+              </div>
+              <ul class="package-points">
+                <li>Logo auf der Vorderseite der Sportbekleidung</li>
+              </ul>
+              <p class="package-note"><strong>Mehrwert:</strong> Zentrale Logo-Präsenz in Foto, Video &amp; Social Media.</p>
+            </article>
+
+            <article class="model-card premium-card">
+              <div class="package-head">
+                <h3 class="package-headline">
+                  <span class="package-tier">Paket 4</span>
+                  <span class="package-sep" aria-hidden="true">|</span>
+                  <span class="package-title">Premium Partner</span>
+                </h3>
+                <p class="package-price">2.500 €</p>
+              </div>
+              <p class="package-availability">2 Pakete verfügbar</p>
+              <ul class="package-points">
+                <li>Professionelles Video-Interview</li>
+                <li>Logo auf Wettkampfbekleidung (Bundesliga &amp; national)</li>
+              </ul>
+              <p class="package-note"><strong>Mehrwert:</strong> Exklusive Inhalte &amp; Sichtbarkeit im Wettkampfumfeld.</p>
+            </article>
+
+            <article class="model-card premium-card highlight">
+              <div class="package-head">
+                <h3 class="package-headline">
+                  <span class="package-tier">Paket 5</span>
+                  <span class="package-sep" aria-hidden="true">|</span>
+                  <span class="package-title">Exclusive Main Partner</span>
+                </h3>
+                <p class="package-price">5.000 €</p>
+              </div>
+              <p class="package-availability">2 Pakete verfügbar</p>
+              <ul class="package-points">
+                <li>Dominante Logo-Platzierung vorne &amp; hinten</li>
+                <li>Gebrandeter Wasserballanzug für Werbeaufnahmen</li>
+                <li>Vorrangige Präsenz in Bild, Video &amp; Social Media</li>
+              </ul>
+              <p class="package-note"><strong>Mehrwert:</strong> Maximale Sichtbarkeit &amp; exklusive Hauptpartner-Positionierung.</p>
+            </article>
           </div>
         </div>
-      </article>
 
-      <article class="pitch-slide is-models" aria-labelledby="slide5-title">
-        <div class="slide-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-grid">
-            <div class="glass-panel slide-copy">
-            <p class="slide-eyebrow">Sponsoring-Angebote</p>
-            <h2 id="slide5-title">Personal Sponsoring | Bianca Mitterbauer</h2>
-            <p class="slide-lead">
-              Die folgenden Sponsoring-Pakete bieten Unternehmen und Förderpartnern eine hochwertige, glaubwürdige Präsenz im Umfeld des Nachwuchs- und Frauenleistungssports.
-            </p>
-            <p class="slide-body">
-              Alle Pakete sind auf nachhaltige Sichtbarkeit, mediale Reichweite und authentische Markenintegration ausgerichtet.
-            </p>
+        <figure class="slide-media">
+          <img
+            src="assets/images/logos/bild6.png"
+            loading="lazy"
+            decoding="async"
+            [alt]="'pitch.slide5.imageAlt' | t"
+          />
+        </figure>
+      </div>
+    </div>
+  </ng-template>
 
-            <div class="model-grid premium-grid">
-              <article class="model-card premium-card">
-                <div class="package-head">
-                  <h3 class="package-headline">
-                    <span class="package-tier">Paket 1</span>
-                    <span class="package-sep" aria-hidden="true">|</span>
-                    <span class="package-title">Digital Visibility</span>
-                  </h3>
-                  <p class="package-price">200 €</p>
-                </div>
-                <ul class="package-points">
-                  <li>Präsentation des Sponsors auf biancamitterbauer.de</li>
-                  <li>Sichtbarkeit auf Instagram @biancamitterbauer</li>
-                  <li>Integration in redaktionelle & sportbezogene Inhalte</li>
-                </ul>
-                <p class="package-note"><strong>Ideal für:</strong> Erste, hochwertige digitale Präsenz im Leistungssportumfeld.</p>
-              </article>
+  <ng-template #slide6 let-titleId="titleId">
+    <div class="slide-bg" aria-hidden="true"></div>
+    <div class="slide-content">
+      <div class="slide-grid">
+        <div class="glass-panel slide-copy">
+          <p class="slide-eyebrow">{{ 'pitch.slide6.eyebrow' | t }}</p>
+          <h2 [id]="titleId">{{ 'pitch.slide6.title' | t }}</h2>
+          <p class="slide-lead">{{ 'pitch.slide6.text' | t }}</p>
 
-              <article class="model-card premium-card">
-                <div class="package-head">
-                  <h3 class="package-headline">
-                    <span class="package-tier">Paket 2</span>
-                    <span class="package-sep" aria-hidden="true">|</span>
-                    <span class="package-title">Performance Partner</span>
-                  </h3>
-                  <p class="package-price">500 €</p>
-                </div>
-                <ul class="package-points">
-                  <li>Logo auf dem Ärmel der Sportbekleidung</li>
-                </ul>
-                <p class="package-note"><strong>Mehrwert:</strong> Sichtbarkeit bei Training, Auftritten & Berichterstattung.</p>
-              </article>
-
-              <article class="model-card premium-card">
-                <div class="package-head">
-                  <h3 class="package-headline">
-                    <span class="package-tier">Paket 3</span>
-                    <span class="package-sep" aria-hidden="true">|</span>
-                    <span class="package-title">Official Partner</span>
-                  </h3>
-                  <p class="package-price">1.000 €</p>
-                </div>
-                <ul class="package-points">
-                  <li>Logo auf der Vorderseite der Sportbekleidung</li>
-                </ul>
-                <p class="package-note"><strong>Mehrwert:</strong> Zentrale Logo-Präsenz in Foto, Video & Social Media.</p>
-              </article>
-
-              <article class="model-card premium-card">
-                <div class="package-head">
-                  <h3 class="package-headline">
-                    <span class="package-tier">Paket 4</span>
-                    <span class="package-sep" aria-hidden="true">|</span>
-                    <span class="package-title">Premium Partner</span>
-                  </h3>
-                  <p class="package-price">2.500 €</p>
-                </div>
-                <p class="package-availability">2 Pakete verfügbar</p>
-                <ul class="package-points">
-                  <li>Professionelles Video-Interview</li>
-                  <li>Logo auf Wettkampfbekleidung (Bundesliga & national)</li>
-                </ul>
-                <p class="package-note"><strong>Mehrwert:</strong> Exklusive Inhalte & Sichtbarkeit im Wettkampfumfeld.</p>
-              </article>
-
-              <article class="model-card premium-card highlight">
-                <div class="package-head">
-                  <h3 class="package-headline">
-                    <span class="package-tier">Paket 5</span>
-                    <span class="package-sep" aria-hidden="true">|</span>
-                    <span class="package-title">Exclusive Main Partner</span>
-                  </h3>
-                  <p class="package-price">5.000 €</p>
-                </div>
-                <p class="package-availability">2 Pakete verfügbar</p>
-                <ul class="package-points">
-                  <li>Dominante Logo-Platzierung vorne & hinten</li>
-                  <li>Gebrandeter Wasserballanzug für Werbeaufnahmen</li>
-                  <li>Vorrangige Präsenz in Bild, Video & Social Media</li>
-                </ul>
-                <p class="package-note"><strong>Mehrwert:</strong> Maximale Sichtbarkeit & exklusive Hauptpartner-Positionierung.</p>
-              </article>
-            </div>
-            </div>
-
-            <figure class="slide-media">
-              <img
-                src="assets/images/logos/bild6.png"
-                loading="lazy"
-                decoding="async"
-                [alt]="'pitch.slide5.imageAlt' | t"
-              />
-            </figure>
-          </div>
+          <a class="cta-btn" routerLink="/contact">
+            {{ 'pitch.slide6.button' | t }}
+          </a>
         </div>
-      </article>
 
-      <article class="pitch-slide is-cta" aria-labelledby="slide6-title">
-        <div class="slide-bg" aria-hidden="true"></div>
-        <div class="slide-content">
-          <div class="slide-grid">
-            <div class="glass-panel slide-copy">
-            <p class="slide-eyebrow">{{ 'pitch.slide6.eyebrow' | t }}</p>
-            <h2 id="slide6-title">{{ 'pitch.slide6.title' | t }}</h2>
-            <p class="slide-lead">{{ 'pitch.slide6.text' | t }}</p>
-
-            <a class="cta-btn" routerLink="/contact">
-              {{ 'pitch.slide6.button' | t }}
-            </a>
-            </div>
-
-            <figure class="slide-media">
-              <img
-                src="assets/images/logos/portrait1.png"
-                loading="lazy"
-                decoding="async"
-                [alt]="'pitch.slide6.imageAlt' | t"
-              />
-            </figure>
-          </div>
-        </div>
-      </article>
-    </ng-template>
-  </section>
+        <figure class="slide-media">
+          <img
+            src="assets/images/logos/portrait1.png"
+            loading="lazy"
+            decoding="async"
+            [alt]="'pitch.slide6.imageAlt' | t"
+          />
+        </figure>
+      </div>
+    </div>
+  </ng-template>
+</section>
