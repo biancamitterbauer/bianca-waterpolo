@@ -308,7 +308,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   }
 
   rankingPlace(index: number): string {
-    return this.hasResults ? String(index + 1) : '';
+    return String(index + 1);
   }
 
   statusClass(status: Fixture['status']): string {
@@ -503,7 +503,11 @@ export class TournamentsComponent implements OnInit, OnDestroy {
         return right.goalDiff - left.goalDiff;
       }
 
-      return right.goalsFor - left.goalsFor;
+      if (right.goalsFor !== left.goalsFor) {
+        return right.goalsFor - left.goalsFor;
+      }
+
+      return left.team.localeCompare(right.team, 'de');
     });
   }
 

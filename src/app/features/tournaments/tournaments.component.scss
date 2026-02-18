@@ -421,10 +421,21 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.ranking-note-row td {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.02);
+.ranking-team-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ranking-team-name {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.ranking-team-note {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.4;
 }
 
 .ranking-table th {

@@ -163,7 +163,12 @@
         <tbody>
           <tr *ngFor="let row of rankingTable; let index = index">
             <td>{{ rankingPlace(index) }}</td>
-            <td>{{ row.team }}</td>
+            <td>
+              <div class="ranking-team-cell">
+                <span class="ranking-team-name">{{ row.team }}</span>
+                <span class="ranking-team-note">{{ row.comparisonNote }}</span>
+              </div>
+            </td>
             <td>{{ formatPlayed(row) }}</td>
             <td>{{ row.wins }}</td>
             <td>{{ row.draws }}</td>
@@ -171,10 +176,6 @@
             <td>{{ formatGoals(row) }}</td>
             <td>{{ row.goalDiff }}</td>
             <td>{{ row.points }}</td>
-          </tr>
-          <tr *ngFor="let row of rankingTable" class="ranking-note-row">
-            <td></td>
-            <td colspan="8">{{ row.team }} - {{ row.comparisonNote }}</td>
           </tr>
         </tbody>
       </table>
