@@ -408,3 +408,22 @@ body.standalone-mode {
     mask-repeat: no-repeat;
   }
 }
+
+@media (max-width: 900px) and (display-mode: standalone) {
+  .header-bar {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .header-container {
+    height: calc(56px + env(safe-area-inset-top));
+  }
+
+  .logo {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .hamburger {
+    margin-top: 2px;
+  }
+}
