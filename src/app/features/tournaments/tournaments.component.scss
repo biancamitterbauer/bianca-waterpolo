@@ -26,7 +26,8 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.tournament-hero {
+.tournaments-hero {
+  width: 100%;
   background: linear-gradient(155deg, rgba(15, 18, 28, 0.95), rgba(0, 0, 0, 0.9));
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -45,7 +46,7 @@
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.34));
 }
 
-.tournament-hero h1 {
+.tournaments-hero h1 {
   margin: 0.55rem 0 0;
   font-size: clamp(2rem, 4.2vw, 3.8rem);
   line-height: 1.03;
@@ -57,15 +58,27 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.match-center {
-  margin-top: clamp(1.2rem, 2.6vw, 2.2rem);
+.tournaments-dashboard {
   width: 100%;
-  border-radius: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: start;
+}
+
+.dash-card {
+  width: 100%;
+  border-radius: 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  padding: clamp(1rem, 2.2vw, 1.45rem);
+}
+
+.match-center {
   border-left: 5px solid #d11f26;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.38);
-  padding: clamp(1rem, 2.2vw, 1.6rem);
 }
 
 .match-center h2 {
@@ -108,7 +121,7 @@
 
 .match-center__teams {
   margin: 0.9rem 0 0;
-  font-size: clamp(1.2rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.2rem, 2.6vw, 1.85rem);
   font-weight: 800;
   line-height: 1.32;
 }
@@ -141,20 +154,19 @@
   letter-spacing: 0.05em;
 }
 
-.tournament-info {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.tournament-info h2,
+.livestream h2,
+.match-grid h2,
+.tournaments-ranking h2 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
 }
 
-.tournament-info h2 {
-  margin: 0.7rem 0 0;
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
-}
-
-.tournament-info p {
+.tournament-info p,
+.livestream p {
   margin: 0.72rem 0 0;
-  max-width: 90ch;
-  line-height: 1.65;
   color: rgba(255, 255, 255, 0.82);
+  line-height: 1.62;
 }
 
 .tournament-info ul {
@@ -168,16 +180,8 @@
   margin-top: 0.24rem;
 }
 
-.livestream h2,
-.match-grid h2,
-.ranking h2 {
-  margin: 0.65rem 0 0;
-  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-}
-
-.livestream p {
-  margin: 0.7rem 0 0;
-  color: rgba(255, 255, 255, 0.78);
+.span-2 {
+  grid-column: 1 / -1;
 }
 
 .livestream__frame {
@@ -187,7 +191,6 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(209, 31, 38, 0.12);
 }
 
 .livestream__frame iframe {
@@ -216,6 +219,10 @@
 .livestream__button:focus-visible {
   border-color: #d11f26;
   transform: translateY(-1px);
+}
+
+.matchday-nav {
+  margin-bottom: 1rem;
 }
 
 .matchday-tabs {
@@ -270,10 +277,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
-  position: sticky;
-  top: 0;
   background: rgba(6, 8, 12, 0.95);
-  z-index: 2;
 }
 
 .match-grid-desktop__row {
@@ -383,6 +387,10 @@
   animation: pulse-soon 1.7s ease-in-out infinite;
 }
 
+.tournaments-ranking {
+  width: 100%;
+}
+
 .ranking-table-wrap {
   margin-top: 1rem;
   width: 100%;
@@ -447,6 +455,25 @@
 }
 
 @media (min-width: 900px) {
+  .dash-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .match-center {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .tournament-info {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .span-2 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .match-grid-desktop {
     display: block;
   }
@@ -454,12 +481,17 @@
   .match-grid-mobile {
     display: none;
   }
+}
 
-  .ranking-table thead th {
-    position: sticky;
-    top: 0;
-    background: rgba(8, 11, 16, 0.98);
-    z-index: 1;
+@media (min-width: 1100px) {
+  .dash-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+@media (min-width: 1400px) {
+  .dash-grid {
+    gap: clamp(1.4rem, 2.4vw, 2.2rem);
   }
 }
 
@@ -469,7 +501,21 @@
   }
 }
 
-@media (max-width: 899.98px) {
+@media (max-width: 899px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-center {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tournament-info {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
   .match-center__top {
     flex-direction: column;
   }
@@ -477,9 +523,7 @@
   .match-center__badges {
     justify-content: flex-start;
   }
-}
 
-@media (max-width: 767.98px) {
   .tournaments-shell {
     padding: 0 1.2rem;
   }
