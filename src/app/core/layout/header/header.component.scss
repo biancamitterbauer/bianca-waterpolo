@@ -325,14 +325,16 @@ MOBILE HEADER (<= 900px)
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Use local hamburger icon for mobile; hide spans */
+  .hamburger {
+    background-image: url('/assets/images/logos/hamburger.png');
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .hamburger span {
-    display: block !important;
-    height: 2px !important;
-    width: 100% !important;
-    background: #fff !important;
-    border-radius: 2px !important;
-    margin: 3px 0 !important;
-    transition: transform 0.18s ease !important;
+    display: none !important;
   }
 
 }

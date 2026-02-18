@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { BottomTabbarComponent } from './bottom-tabbar/bottom-tabbar.component';
 import { InstallService } from '../pwa/install.service';
+import { I18nPipe } from '../i18n/i18n.pipe';
+import { I18nService, SupportedLang } from '../i18n/i18n.service';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, RouterLink, HeaderComponent, BottomTabbarComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, RouterLink, HeaderComponent, BottomTabbarComponent, I18nPipe],
   template: `
     <app-header></app-header>
     <main class="app-main">
@@ -20,9 +22,21 @@ import { InstallService } from '../pwa/install.service';
       <div class="site-container">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
           <div>© {{ currentYear }} Bianca Mitterbauer</div>
+          <div style="display:flex;justify-content:center;align-items:center;gap:1rem">
+            <div class="language-switch" role="group" aria-label="Sprachauswahl Footer">
+              <button
+                *ngFor="let lang of languageOptions"
+                type="button"
+                class="lang-btn"
+                [class.active]="currentLang() === lang.code"
+                [attr.aria-pressed]="currentLang() === lang.code"
+                (click)="setLang(lang.code)"
+              >
+                {{ lang.labelKey | t }}
+              </button>
+            </div>
+          </div>
           <div style="display:flex;gap:1rem;align-items:center">
-            <a class="nav-link" routerLink="/legal">Legal</a>
-            <a class="nav-link" href="#">Privacy</a>
             <button
               *ngIf="!isStandalone && (canPrompt || isIosPlatform)"
               class="nav-link footer-install"
@@ -41,9 +55,17 @@ import { InstallService } from '../pwa/install.service';
 export class LayoutComponent {
   readonly currentYear = new Date().getFullYear();
   private installService = inject(InstallService);
+  private readonly i18n = inject(I18nService);
   isStandalone = false;
   canPrompt = false;
   isIosPlatform = false;
+
+  readonly languageOptions: { code: SupportedLang; labelKey: string }[] = [
+    { code: 'de', labelKey: 'lang.de' },
+    { code: 'en', labelKey: 'lang.en' },
+  ];
+
+  readonly currentLang = this.i18n.currentLang;
 
   ngOnInit(): void {
     this.isStandalone = this.installService.isInStandaloneMode();
@@ -58,6 +80,10 @@ export class LayoutComponent {
         // noop - defensive for strict CSP or SSR edge cases
       }
     }
+  }
+
+  setLang(lang: SupportedLang): void {
+    this.i18n.setLang(lang);
   }
 
   footerInstall(): void {
