@@ -190,9 +190,9 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   readonly isBrowser = isPlatformBrowser(this.platformId);
   readonly tournament = TOURNAMENT_META;
   readonly matchDays: MatchDayLabel[] = ['1. Spieltag', '2. Spieltag'];
-  readonly livestreamChannelUrl = 'https://www.youtube.com/@etvwasserball';
+  readonly livestreamChannelUrl = 'https://www.youtube.com/live/fRTCG2qFpL4?si=YK_zyuUY5wiOb8_Q';
   readonly livestreamEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    'https://www.youtube-nocookie.com/embed?listType=user_uploads&list=etvwasserball',
+    'https://www.youtube-nocookie.com/embed/fRTCG2qFpL4',
   );
 
   selectedMatchDay: MatchDayLabel = '1. Spieltag';
