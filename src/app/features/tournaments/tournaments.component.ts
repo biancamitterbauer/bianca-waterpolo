@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { SeoService } from '../../core/seo/seo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -39,12 +38,12 @@ type CountdownParts = {
   days: number;
   hours: number;
   minutes: number;
+  seconds: number;
 };
 
 type TournamentMeta = {
   title: string;
-  period: string;
-  location: string;
+  subtitle: string;
   status: string;
   objective: string;
   meeting: string;
@@ -52,7 +51,7 @@ type TournamentMeta = {
 };
 
 type FixtureSource = Fixture & {
-  matchDay: string;
+  matchDay: MatchDayLabel;
 };
 
 const LIVE_MATCH_DURATION_MINUTES = 120;
@@ -162,8 +161,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
 
 const TOURNAMENT_META: TournamentMeta = {
   title: 'DSV U18 Deutschland-Pokal',
-  period: '21.–22. Februar 2026',
-  location: 'Hamburg',
+  subtitle: 'Hamburg · 21–22 Februar 2026',
   status: '10 Spielansetzungen | 3 Punktsystem',
   objective: 'Kompakter Rundenturnier-Modus mit zwei Spieltagen und klarer Struktur für Team, Medien und Partner.',
   meeting: 'Turnierbesprechung: Do, 19.02.2026 um 19:00 Uhr',
@@ -173,7 +171,7 @@ const TOURNAMENT_META: TournamentMeta = {
 @Component({
   selector: 'app-tournaments',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './tournaments.component.html',
   styleUrl: './tournaments.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -182,62 +180,51 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sanitizer = inject(DomSanitizer);
-  private intervalId: ReturnType<typeof setInterval> | undefined;
+  private intervalId?: ReturnType<typeof setInterval>;
   private readonly notifiedLiveIds = new Set<number>();
 
   readonly isBrowser = isPlatformBrowser(this.platformId);
-  readonly nextTournament = TOURNAMENT_META;
+  readonly tournament = TOURNAMENT_META;
+  readonly matchDays: MatchDayLabel[] = ['1. Spieltag', '2. Spieltag'];
   readonly livestreamChannelUrl = 'https://www.youtube.com/@etvwasserball';
   readonly livestreamEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     'https://www.youtube-nocookie.com/embed?listType=user_uploads&list=etvwasserball',
   );
-  readonly matchDays: MatchDayLabel[] = ['1. Spieltag', '2. Spieltag'];
+
   selectedMatchDay: MatchDayLabel = '1. Spieltag';
   now = new Date();
   fixtures: FixtureView[] = [];
   nextMatch: FixtureView | null = null;
-  countdown: CountdownParts = { days: 0, hours: 0, minutes: 0 };
   rankingTable: RankingRow[] = [];
+  countdown: CountdownParts = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  countdownText = '00d : 00h : 00m : 00s';
+  isLiveSoon = false;
   isLiveMatch = false;
 
   get filteredFixtures(): FixtureView[] {
     return this.fixtures.filter((fixture) => fixture.matchDay === this.selectedMatchDay);
   }
 
-  get isTournamentOver(): boolean {
-    return this.fixtures.length > 0 && !this.nextMatch && !this.isLiveMatch;
-  }
-
-  get isLiveSoon(): boolean {
-    if (!this.nextMatch || this.nextMatch.status !== 'upcoming') {
-      return false;
-    }
-
-    const msUntilStart = this.nextMatch.startsAt.getTime() - this.now.getTime();
-    return msUntilStart > 0 && msUntilStart <= LIVE_MATCH_DURATION_MINUTES * 60 * 1000;
-  }
-
   get hasResults(): boolean {
     return this.fixtures.some((fixture) => !!fixture.score);
+  }
+
+  get isTournamentOver(): boolean {
+    return this.fixtures.length > 0 && !this.nextMatch;
   }
 
   ngOnInit(): void {
     this.seo.updateSeo({
       title: 'Turniere | Bianca Mitterbauer',
       description:
-        'Elite Turnierübersicht mit Next-Match Widget, Countdown, LIVE-Status, Livestream und Zwischenstand für Wasserfreunde Spandau 04.',
+        'Full-Width Turnierübersicht mit Match Center, Echtzeit-Countdown, Livestream, Spieltagsnavigation und Ranking für Wasserfreunde Spandau 04.',
       image: 'https://biancamitterbauer.de/assets/images/logos/logo_dsv.png',
       url: 'https://biancamitterbauer.de/tournaments',
       canonical: 'https://biancamitterbauer.de/tournaments',
     });
 
     this.updateDerivedState();
-
-    if (this.isBrowser) {
-      this.intervalId = setInterval(() => {
-        this.updateDerivedState();
-      }, 60_000);
-    }
+    this.startCountdown();
   }
 
   ngOnDestroy(): void {
@@ -272,8 +259,38 @@ export class TournamentsComponent implements OnInit, OnDestroy {
     return 'Upcoming';
   }
 
+  scoreOrStatus(fixture: FixtureView): string {
+    if (fixture.score) {
+      return fixture.score;
+    }
+
+    return this.statusLabel(fixture.status);
+  }
+
+  statusClass(status: Fixture['status']): string {
+    if (status === 'live') {
+      return 'status-badge status-badge--live';
+    }
+
+    if (status === 'finished') {
+      return 'status-badge status-badge--finished';
+    }
+
+    return 'status-badge status-badge--upcoming';
+  }
+
   triggerMatchNotification(fixture: Fixture): void {
     console.log(`Match Live: ${fixture.home} vs ${fixture.away}`);
+  }
+
+  startCountdown(): void {
+    if (!this.isBrowser || !this.nextMatch) {
+      return;
+    }
+
+    this.intervalId = setInterval(() => {
+      this.updateDerivedState();
+    }, 1000);
   }
 
   private updateDerivedState(): void {
@@ -285,14 +302,24 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
       return {
         ...fixture,
-        matchDay: fixture.matchDay as MatchDayLabel,
         startsAt,
         status,
       };
     }).sort((left, right) => left.startsAt.getTime() - right.startsAt.getTime());
 
-    this.nextMatch = this.fixtures.find((fixture) => fixture.status === 'upcoming') ?? null;
-    this.isLiveMatch = this.fixtures.some((fixture) => fixture.status === 'live');
+    const spandauFixtures = this.fixtures.filter((fixture) => fixture.isSpandau);
+    const liveSpandau = spandauFixtures.find((fixture) => fixture.status === 'live') ?? null;
+    const upcomingSpandau = spandauFixtures.find((fixture) => fixture.status === 'upcoming') ?? null;
+
+    this.nextMatch = liveSpandau ?? upcomingSpandau;
+    this.isLiveMatch = !!liveSpandau;
+
+    if (upcomingSpandau) {
+      const msUntilStart = upcomingSpandau.startsAt.getTime() - this.now.getTime();
+      this.isLiveSoon = msUntilStart > 0 && msUntilStart <= LIVE_MATCH_DURATION_MINUTES * 60 * 1000;
+    } else {
+      this.isLiveSoon = false;
+    }
 
     for (const fixture of this.fixtures) {
       if (fixture.status === 'live' && !this.notifiedLiveIds.has(fixture.id)) {
@@ -303,6 +330,41 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
     this.updateCountdown();
     this.rankingTable = this.calculateRanking(this.fixtures);
+  }
+
+  private updateCountdown(): void {
+    if (!this.nextMatch) {
+      this.countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      this.countdownText = '00d : 00h : 00m : 00s';
+      return;
+    }
+
+    if (this.nextMatch.status === 'live') {
+      this.countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      this.countdownText = '00d : 00h : 00m : 00s';
+      return;
+    }
+
+    const difference = this.nextMatch.startsAt.getTime() - this.now.getTime();
+
+    if (difference <= 0) {
+      this.countdown = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      this.countdownText = '00d : 00h : 00m : 00s';
+      return;
+    }
+
+    const totalSeconds = Math.floor(difference / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    this.countdown = { days, hours, minutes, seconds };
+    this.countdownText = `${this.pad2(days)}d : ${this.pad2(hours)}h : ${this.pad2(minutes)}m : ${this.pad2(seconds)}s`;
+  }
+
+  private pad2(value: number): string {
+    return value.toString().padStart(2, '0');
   }
 
   private toFixtureDate(dateIso: string, time: string): Date {
@@ -323,27 +385,6 @@ export class TournamentsComponent implements OnInit, OnDestroy {
     }
 
     return 'upcoming';
-  }
-
-  private updateCountdown(): void {
-    if (!this.nextMatch) {
-      this.countdown = { days: 0, hours: 0, minutes: 0 };
-      return;
-    }
-
-    const difference = this.nextMatch.startsAt.getTime() - this.now.getTime();
-
-    if (difference <= 0) {
-      this.countdown = { days: 0, hours: 0, minutes: 0 };
-      return;
-    }
-
-    const totalMinutes = Math.floor(difference / 60_000);
-    const days = Math.floor(totalMinutes / (24 * 60));
-    const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
-    const minutes = totalMinutes % 60;
-
-    this.countdown = { days, hours, minutes };
   }
 
   private calculateRanking(fixtures: Fixture[]): RankingRow[] {
@@ -419,7 +460,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
       return existing;
     }
 
-    const created: RankingRow = {
+    const row: RankingRow = {
       team,
       played: 0,
       wins: 0,
@@ -431,7 +472,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
       goalDiff: 0,
     };
 
-    table.set(team, created);
-    return created;
+    table.set(team, row);
+    return row;
   }
 }

@@ -1,84 +1,56 @@
 <section class="tournaments-shell">
-  <div class="site-container tournaments-hero">
-    <p class="hero-kicker">Turnierkalender</p>
-    <h1>Turniere</h1>
-    <p class="hero-lead">
-      Strukturierter Überblick über aktuelle Wettbewerbe, Spielzeiten und den Fokus auf Wasserfreunde Spandau 04.
-      Klar aufbereitet für Team, Medien und potenzielle Partner.
-    </p>
+  <section class="tournament-hero block">
+    <div class="tournament-hero__head">
+      <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" loading="lazy" />
+      <div>
+        <p class="hero-kicker">Turniere</p>
+        <h1>{{ tournament.title }}</h1>
+        <p class="hero-subtitle">{{ tournament.subtitle }}</p>
+      </div>
+    </div>
 
-    <section class="next-match" aria-label="Nächstes Spiel">
-      <p class="card-kicker">Nächstes Spiel</p>
+    <section class="match-center" aria-label="Match Center">
+      <p class="section-kicker">Match Center</p>
 
       <ng-container *ngIf="nextMatch as fixture; else tournamentOverState">
-        <div class="next-match__row">
+        <div class="match-center__top">
           <div>
-            <h2>{{ formatDisplayDate(fixture.dateISO) }}</h2>
-            <p class="next-match__time">{{ fixture.time }} Uhr</p>
+            <p class="match-center__date">{{ formatDisplayDate(fixture.dateISO) }}</p>
+            <p class="match-center__time">{{ fixture.time }} Uhr</p>
           </div>
-          <div class="next-match__badges">
+
+          <div class="match-center__badges">
             <span class="status-badge status-badge--live" *ngIf="fixture.status === 'live'">LIVE</span>
             <span class="status-badge status-badge--soon" *ngIf="isLiveSoon">LIVE SOON</span>
           </div>
         </div>
 
-        <p class="next-match__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
-        <p class="next-match__location">{{ fixture.location }}</p>
+        <p class="match-center__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
+        <p class="match-center__location">{{ fixture.location }}</p>
 
-        <div class="next-match__countdown" aria-label="Countdown bis zum nächsten Spiel">
-          <article>
-            <strong>{{ countdown.days }}</strong>
-            <span>Tage</span>
-          </article>
-          <article>
-            <strong>{{ countdown.hours }}</strong>
-            <span>Std</span>
-          </article>
-          <article>
-            <strong>{{ countdown.minutes }}</strong>
-            <span>Min</span>
-          </article>
-        </div>
-
-        <a class="next-match__button" href="#spielplan">Zum Spielplan</a>
+        <p class="match-center__countdown-label">Countdown</p>
+        <p class="match-center__countdown">{{ countdownText }}</p>
       </ng-container>
-    </section>
 
-    <ng-template #tournamentOverState>
-      <div class="next-match next-match--done" role="status">
-        <p class="card-kicker">Nächstes Spiel</p>
+      <ng-template #tournamentOverState>
         <h2>Turnier abgeschlossen</h2>
         <p>Alle Partien sind beendet. Der nächste Wettbewerb wird zeitnah veröffentlicht.</p>
-      </div>
-    </ng-template>
-  </div>
-
-  <section class="site-container next-tournament" aria-label="Aktuelles Turnier">
-    <div class="next-tournament__content">
-      <p class="card-kicker">Aktuelles Turnier</p>
-      <h2>{{ nextTournament.title }}</h2>
-
-      <div class="next-tournament__chips" aria-label="Turnierdetails">
-        <span>{{ nextTournament.period }}</span>
-        <span>{{ nextTournament.location }}</span>
-        <span class="chip-status">{{ nextTournament.status }}</span>
-      </div>
-
-      <p class="next-tournament__objective">{{ nextTournament.objective }}</p>
-
-      <ul class="next-tournament__notes" aria-label="Turniertermine">
-        <li>{{ nextTournament.meeting }}</li>
-        <li>{{ nextTournament.ceremony }}</li>
-      </ul>
-    </div>
-
-    <div class="next-tournament__logo" aria-hidden="true">
-      <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" loading="lazy" />
-    </div>
+      </ng-template>
+    </section>
   </section>
 
-  <section class="site-container livestream" aria-labelledby="livestream-title">
-    <p class="card-kicker">Streaming</p>
+  <section class="tournament-info block" aria-label="Turnierinformationen">
+    <p class="section-kicker">Turnierinfo</p>
+    <h2>{{ tournament.status }}</h2>
+    <p>{{ tournament.objective }}</p>
+    <ul>
+      <li>{{ tournament.meeting }}</li>
+      <li>{{ tournament.ceremony }}</li>
+    </ul>
+  </section>
+
+  <section class="livestream block" aria-labelledby="livestream-title">
+    <p class="section-kicker">Streaming</p>
     <h2 id="livestream-title">Live dabei sein</h2>
     <p>Offizieller Livestream-Kanal</p>
 
@@ -97,87 +69,74 @@
     </a>
   </section>
 
-  <section class="site-container schedule" id="spielplan" aria-labelledby="schedule-title">
-    <div class="schedule-head">
-      <p class="card-kicker">Spielplan</p>
-      <h2 id="schedule-title">U18 DSV-Cup · Match Center</h2>
-    </div>
-
-    <nav class="matchday-tabs" aria-label="Spieltag Navigation">
+  <section class="matchday-nav block" aria-label="Spieltag Navigation">
+    <p class="section-kicker">Spieltage</p>
+    <div class="matchday-tabs" role="tablist" aria-label="Spieltage Auswahl">
       <button
         type="button"
+        role="tab"
         *ngFor="let day of matchDays"
         (click)="selectMatchDay(day)"
+        [attr.aria-selected]="selectedMatchDay === day"
         [class.matchday-tabs__button--active]="selectedMatchDay === day"
         class="matchday-tabs__button"
       >
         {{ day }}
       </button>
-    </nav>
-
-    <div class="schedule-grid" role="table" aria-label="Spielplan Desktop">
-      <div class="schedule-grid__head" role="row">
-        <span role="columnheader">Zeit</span>
-        <span role="columnheader">Heim</span>
-        <span role="columnheader">Gast</span>
-        <span role="columnheader">Ort</span>
-        <span role="columnheader">Status</span>
-      </div>
-
-      <div
-        class="schedule-grid__row"
-        role="row"
-        *ngFor="let fixture of filteredFixtures"
-        [class.schedule-grid__row--spandau]="fixture.isSpandau"
-      >
-        <span>{{ fixture.time }} Uhr</span>
-        <span>{{ fixture.home }}</span>
-        <span>{{ fixture.away }}</span>
-        <span>{{ fixture.location }}</span>
-        <span
-          class="status-badge"
-          [class.status-badge--live]="fixture.status === 'live'"
-          [class.status-badge--finished]="fixture.status === 'finished'"
-          [class.status-badge--upcoming]="fixture.status === 'upcoming'"
-        >
-          {{ statusLabel(fixture.status) }}
-        </span>
-      </div>
-    </div>
-
-    <div class="schedule-table-wrapper">
-      <table class="schedule-table" aria-describedby="schedule-caption">
-        <caption id="schedule-caption">Spieltermine und Begegnungen als mobile Kartenansicht.</caption>
-        <tbody>
-          <tr *ngFor="let fixture of filteredFixtures">
-            <td>
-              <article class="match-card" [class.match-card--spandau]="fixture.isSpandau">
-                <div class="match-card__top">
-                  <p>{{ fixture.time }} Uhr</p>
-                  <span
-                    class="status-badge"
-                    [class.status-badge--live]="fixture.status === 'live'"
-                    [class.status-badge--finished]="fixture.status === 'finished'"
-                    [class.status-badge--upcoming]="fixture.status === 'upcoming'"
-                  >
-                    {{ statusLabel(fixture.status) }}
-                  </span>
-                </div>
-                <p class="match-card__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
-                <p class="match-card__location">{{ fixture.location }}</p>
-              </article>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
-  <section class="site-container ranking" aria-labelledby="ranking-title">
-    <div class="ranking-head">
-      <p class="card-kicker">3-Punkte-System</p>
-      <h2 id="ranking-title">Zwischenstand</h2>
+  <section class="match-grid block" aria-labelledby="match-grid-title">
+    <h2 id="match-grid-title">Spielübersicht</h2>
+
+    <div class="match-grid-desktop" role="table" aria-label="Spielplan Desktop">
+      <div class="match-grid-desktop__head" role="row">
+        <span role="columnheader">Zeit</span>
+        <span role="columnheader">Heim</span>
+        <span role="columnheader">Score / Status</span>
+        <span role="columnheader">Gast</span>
+        <span role="columnheader">Ort</span>
+      </div>
+
+      <div
+        class="match-grid-desktop__row"
+        role="row"
+        *ngFor="let fixture of filteredFixtures; let index = index"
+        [class.match-grid-desktop__row--alt]="index % 2 === 1"
+        [class.match-grid-desktop__row--spandau]="fixture.isSpandau"
+      >
+        <span>{{ fixture.time }} Uhr</span>
+        <span>{{ fixture.home }}</span>
+        <span>
+          <span *ngIf="fixture.score; else statusCell">{{ fixture.score }}</span>
+          <ng-template #statusCell>
+            <span [class]="statusClass(fixture.status)">{{ statusLabel(fixture.status) }}</span>
+          </ng-template>
+        </span>
+        <span>{{ fixture.away }}</span>
+        <span>{{ fixture.location }}</span>
+      </div>
     </div>
+
+    <div class="match-grid-mobile" role="list" aria-label="Spielplan Mobil">
+      <article
+        class="match-card"
+        role="listitem"
+        *ngFor="let fixture of filteredFixtures"
+        [class.match-card--spandau]="fixture.isSpandau"
+      >
+        <div class="match-card__top">
+          <p>{{ fixture.time }} Uhr</p>
+          <span [class]="statusClass(fixture.status)">{{ scoreOrStatus(fixture) }}</span>
+        </div>
+        <p class="match-card__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
+        <p class="match-card__location">{{ fixture.location }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ranking block" aria-labelledby="ranking-title">
+    <h2 id="ranking-title">Zwischenstand</h2>
 
     <div class="ranking-table-wrap" *ngIf="hasResults; else rankingFallback">
       <table class="ranking-table" aria-label="Aktueller Tabellenstand">
@@ -186,7 +145,7 @@
             <th scope="col">Team</th>
             <th scope="col">Spiele</th>
             <th scope="col">Siege</th>
-            <th scope="col">Unentschieden</th>
+            <th scope="col">Remis</th>
             <th scope="col">Niederlagen</th>
             <th scope="col">Punkte</th>
           </tr>
@@ -207,19 +166,5 @@
     <ng-template #rankingFallback>
       <div class="ranking-fallback">Tabelle wird nach Turnierbeginn angezeigt.</div>
     </ng-template>
-  </section>
-
-  <section class="site-container sponsor-cta" aria-label="Sponsoring und Media">
-    <p class="card-kicker">Partnerschaften</p>
-    <h2>Turnierpräsenz für starke Marken</h2>
-    <p>
-      Sichtbarkeit im Leistungssport entsteht im richtigen Moment. Rund um Turniere bieten sich hochwertige
-      Integrationen für Sponsoren, Medienpartner und langfristige Kooperationen.
-    </p>
-
-    <div class="sponsor-cta__actions">
-      <a routerLink="/sponsors" class="cta-button cta-button--primary">Sponsor werden</a>
-      <a routerLink="/contact" class="cta-button cta-button--secondary">Media Kit anfordern</a>
-    </div>
   </section>
 </section>
