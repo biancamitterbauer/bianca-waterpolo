@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SeoService } from '../../core/seo/seo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -44,6 +44,7 @@ type CountdownParts = {
 type TournamentMeta = {
   title: string;
   subtitle: string;
+  location: string;
   status: string;
   objective: string;
   meeting: string;
@@ -55,6 +56,7 @@ type FixtureSource = Fixture & {
 };
 
 const LIVE_MATCH_DURATION_MINUTES = 120;
+const TOURNAMENT_VENUE = 'Am Inselpark, 21109 Hamburg';
 
 const FIXTURE_SOURCE: FixtureSource[] = [
   {
@@ -64,7 +66,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '10:00',
     home: 'Uerdinger Schwimmverein 08',
     away: 'SC Chemnitz 1892',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
   {
@@ -74,7 +76,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '11:30',
     home: 'Eimsbütteler Turnverband',
     away: 'Wfr. Spandau 04',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: true,
   },
   {
@@ -84,7 +86,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '13:30',
     home: 'Uerdinger Schwimmverein 08',
     away: 'SSV Esslingen',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
   {
@@ -94,7 +96,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '15:00',
     home: 'Wfr. Spandau 04',
     away: 'SC Chemnitz 1892',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: true,
   },
   {
@@ -104,7 +106,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '16:30',
     home: 'SSV Esslingen',
     away: 'Eimsbütteler Turnverband',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
   {
@@ -114,7 +116,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '09:00',
     home: 'Eimsbütteler Turnverband',
     away: 'Uerdinger Schwimmverein 08',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
   {
@@ -124,7 +126,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '10:30',
     home: 'SSV Esslingen',
     away: 'Wfr. Spandau 04',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: true,
   },
   {
@@ -134,7 +136,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '12:00',
     home: 'Eimsbütteler Turnverband',
     away: 'SC Chemnitz 1892',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
   {
@@ -144,7 +146,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '13:30',
     home: 'Wfr. Spandau 04',
     away: 'Uerdinger Schwimmverein 08',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: true,
   },
   {
@@ -154,7 +156,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     time: '15:00',
     home: 'SC Chemnitz 1892',
     away: 'SSV Esslingen',
-    location: 'Hamburg',
+    location: TOURNAMENT_VENUE,
     isSpandau: false,
   },
 ];
@@ -162,6 +164,7 @@ const FIXTURE_SOURCE: FixtureSource[] = [
 const TOURNAMENT_META: TournamentMeta = {
   title: 'DSV U18 Deutschland-Pokal',
   subtitle: 'Hamburg · 21–22 Februar 2026',
+  location: TOURNAMENT_VENUE,
   status: '10 Spielansetzungen | 3 Punktsystem',
   objective: 'Kompakter Rundenturnier-Modus mit zwei Spieltagen und klarer Struktur für Team, Medien und Partner.',
   meeting: 'Turnierbesprechung: Do, 19.02.2026 um 19:00 Uhr',
@@ -180,6 +183,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly cdr = inject(ChangeDetectorRef);
   private intervalId?: ReturnType<typeof setInterval>;
   private readonly notifiedLiveIds = new Set<number>();
 
@@ -284,12 +288,17 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   }
 
   startCountdown(): void {
-    if (!this.isBrowser || !this.nextMatch) {
+    if (!this.isBrowser) {
       return;
+    }
+
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
     }
 
     this.intervalId = setInterval(() => {
       this.updateDerivedState();
+      this.cdr.markForCheck();
     }, 1000);
   }
 
