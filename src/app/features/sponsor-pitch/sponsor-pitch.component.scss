@@ -1458,23 +1458,15 @@ p {
 
   .pitch-mobile {
     display: grid;
-    gap: 1.25rem;
-    padding: 1.25rem 1rem 2.5rem;
+    padding: 1rem 0.9rem 2rem;
   }
 
   .pitch-stack-card {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
+    padding: 1.1rem;
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    overflow: hidden;
-  }
-
-  .pitch-mobile .slide-bg {
-    display: none;
   }
 
   .pitch-mobile .pitch-slide {
@@ -1490,8 +1482,13 @@ p {
     padding: 0 !important;
   }
 
-  .pitch-mobile .slide-grid {
-    grid-template-columns: 1fr;
+  .pitch-mobile [class*='grid'],
+  .pitch-mobile .reach-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pitch-mobile .package-title {
+    white-space: normal;
   }
 
   .pitch-mobile .slide-index,
