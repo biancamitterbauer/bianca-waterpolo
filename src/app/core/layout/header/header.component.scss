@@ -368,20 +368,6 @@ MOBILE HEADER (<= 900px)
   .logo img {
     max-height: calc(var(--app-header-height, 56px));
   }
-
-  /* Ensure hamburger is white in standalone */
-  .hamburger {
-    -webkit-mask-image: url('/assets/images/logos/hamburger.png') !important;
-    -webkit-mask-size: 20px 20px !important;
-    -webkit-mask-position: center !important;
-    -webkit-mask-repeat: no-repeat !important;
-    mask-image: url('/assets/images/logos/hamburger.png') !important;
-    mask-size: 20px 20px !important;
-    mask-position: center !important;
-    mask-repeat: no-repeat !important;
-    background-color: #fff !important;
-    background-image: none !important;
-  }
 }
 
 /* Legacy iOS support via body class applied from TS */
@@ -393,19 +379,5 @@ body.standalone-mode {
   .header-container {
     height: calc(56px + env(safe-area-inset-top));
     align-items: center;
-  }
-
-  /* Ensure hamburger is white in standalone mode (body class fallback) */
-  .hamburger {
-    -webkit-mask-image: url('/assets/images/logos/hamburger.png') !important;
-    -webkit-mask-size: 20px 20px !important;
-    -webkit-mask-position: center !important;
-    -webkit-mask-repeat: no-repeat !important;
-    mask-image: url('/assets/images/logos/hamburger.png') !important;
-    mask-size: 20px 20px !important;
-    mask-position: center !important;
-    mask-repeat: no-repeat !important;
-    background-color: #fff !important;
-    background-image: none !important;
   }
 }
