@@ -388,6 +388,23 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* Ensure Instagram cards stack cleanly and images are fully visible on small screens */
+  .instagram-card {
+    padding: 0.85rem;
+  }
+
+  .embed-wrapper {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .embed-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+  }
 }
 
 @media (max-width: 1024px) {
