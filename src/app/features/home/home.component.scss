@@ -644,6 +644,13 @@
 
   .hero-cta {
     justify-content: center;
+    margin-top: clamp(3rem, 10vh, 5rem);
+  }
+}
+
+@media (display-mode: standalone) {
+  .hero-cta {
+    margin-top: clamp(3.2rem, 12vh, 5.4rem);
   }
 }
 

@@ -20,14 +20,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly installService = inject(InstallService);
   isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   isStandalone = false;
+  isMobile = false;
   canPrompt = false;
   isIosPlatform = false;
+  private mobileMediaQuery?: MediaQueryList;
+  private readonly viewportListener = () => this.updateViewportFlags();
 
   constructor(@Inject(PLATFORM_ID) private readonly platformId: object) {}
 
   install(): void {
     if (!this.isBrowser) return;
-    if (this.isStandalone) return;
+    if (!this.showInstallEntry) return;
 
     if (this.canPrompt) {
       this.installService.promptInstall();
@@ -68,6 +71,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.mobileMediaQuery?.removeEventListener('change', this.viewportListener);
+    this.mobileMediaQuery = undefined;
     this.portraitObserver?.disconnect();
   }
   ngAfterContentInit(): void {
@@ -84,8 +89,32 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       canonical: 'https://biancamitterbauer.de'
     });
 
-    this.isStandalone = this.installService.isInStandaloneMode();
+    this.updateViewportFlags();
+
+    if (this.isBrowser && typeof window.matchMedia === 'function') {
+      this.mobileMediaQuery = window.matchMedia('(max-width: 900px)');
+      this.mobileMediaQuery.addEventListener('change', this.viewportListener);
+    }
+
     this.canPrompt = this.installService.canPromptInstall();
     this.isIosPlatform = this.installService.isIos();
+  }
+
+  get showInstallEntry(): boolean {
+    return !this.isStandalone && !this.isMobile;
+  }
+
+  get showInstallCta(): boolean {
+    return this.showInstallEntry && (this.canPrompt || this.isIosPlatform);
+  }
+
+  private updateViewportFlags(): void {
+    this.isStandalone = this.installService.isInStandaloneMode();
+    if (!this.isBrowser || typeof window.matchMedia !== 'function') {
+      this.isMobile = false;
+      return;
+    }
+
+    this.isMobile = window.matchMedia('(max-width: 900px)').matches;
   }
 }
