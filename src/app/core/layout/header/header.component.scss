@@ -3,12 +3,13 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background: var(--color-header-bg);
+  background: #000000;
   color: var(--color-text-on-dark);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .header-bar {
+  background: #000000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -350,12 +351,16 @@ MOBILE HEADER (<= 900px)
 
 /* PWA standalone safe-area support */
 @media (display-mode: standalone) {
+  :root {
+    --standalone-top-extra: 10px;
+  }
+
   .header-bar {
-    padding-top: env(safe-area-inset-top);
+    padding-top: calc(env(safe-area-inset-top) + var(--standalone-top-extra));
   }
 
   .header-container {
-    height: calc(56px + env(safe-area-inset-top));
+    height: calc(56px + env(safe-area-inset-top) + var(--standalone-top-extra));
     align-items: center;
   }
 
@@ -379,12 +384,14 @@ MOBILE HEADER (<= 900px)
 
 /* Legacy iOS support via body class applied from TS */
 body.standalone-mode {
+  --standalone-top-extra: 10px;
+
   .header-bar {
-    padding-top: env(safe-area-inset-top);
+    padding-top: calc(env(safe-area-inset-top) + var(--standalone-top-extra));
   }
 
   .header-container {
-    height: calc(56px + env(safe-area-inset-top));
+    height: calc(56px + env(safe-area-inset-top) + var(--standalone-top-extra));
     align-items: center;
   }
 
