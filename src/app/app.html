@@ -1,13 +1,5 @@
-<div class="app-shell">
+<div class="app-shell" [class.app-ready]="appReady">
   <app-layout></app-layout>
-
-  <div class="launch-overlay" [class.launch-overlay--hidden]="!launchActive" aria-hidden="true">
-    <img
-      class="launch-overlay__logo"
-      src="/assets/images/logos/logo_spandau_04_lang_hell.png"
-      alt="Bianca Mitterbauer App"
-      decoding="async"
-      loading="eager"
-    />
-  </div>
 </div>
+
+<div class="intro-glow" *ngIf="runIntro" aria-hidden="true"></div>

@@ -60,3 +60,43 @@ body {
 body.standalone-mode {
   background: #000000;
 }
+
+app-root,
+.app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell {
+  opacity: 1;
+  transform: none;
+}
+
+@media (display-mode: standalone) {
+  .app-shell {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .35s ease, transform .35s ease;
+  }
+
+  .app-shell.app-ready {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 35%, rgba(209, 31, 38, .18), transparent 60%);
+  opacity: 0;
+  animation: introGlow .65s ease forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes introGlow {
+  0% { opacity: 0; }
+  35% { opacity: .55; }
+  100% { opacity: 0; }
+}
