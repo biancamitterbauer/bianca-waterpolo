@@ -45,44 +45,20 @@
           </a>
         </header>
 
-        <ng-container *ngIf="post.id !== 'insta-2'">
-          <a
-            class="embed-wrapper"
-            [href]="post.permalink"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Beitrag auf Instagram öffnen"
-          >
-            <img
-              [src]="post.imageUrl"
-              alt="Instagram Post Preview"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-            />
-          </a>
-        </ng-container>
-
-        <!-- Render the real Instagram blockquote for the middle card. The embed script is loaded dynamically by the component. -->
-        <ng-container *ngIf="post.id === 'insta-2'">
-          <figure class="instagram-embed">
-            <blockquote
-              class="instagram-media"
-              data-instgrm-captioned
-              data-instgrm-permalink="https://www.instagram.com/p/DKU82xos4nz/"
-              data-instgrm-version="14"
-              style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:0;max-width:540px;min-width:326px;padding:0;width:100%;"
-            >
-              <div style="padding:16px;">
-                <a href="https://www.instagram.com/p/DKU82xos4nz/" target="_blank" rel="noopener noreferrer">
-                  Sieh dir diesen Beitrag auf Instagram an
-                </a>
-                <p style="color:#c9c8cd;font-family:Arial,sans-serif;font-size:14px;line-height:17px;margin:8px 0 0;text-align:center;">
-                  <a href="https://www.instagram.com/p/DKU82xos4nz/" target="_blank" rel="noopener noreferrer" style="color:#c9c8cd;text-decoration:none;">Ein Beitrag geteilt von Wasserball Bundesliga (@wasserballbundesliga)</a>
-                </p>
-              </div>
-            </blockquote>
-          </figure>
-        </ng-container>
+        <a
+          class="embed-wrapper"
+          [href]="post.permalink"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Beitrag auf Instagram öffnen"
+        >
+          <img
+            [src]="post.imageUrl"
+            alt="Instagram Post Preview"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </a>
 
         <div class="instagram-meta">
           <p class="post-caption">{{ post.caption }}</p>
