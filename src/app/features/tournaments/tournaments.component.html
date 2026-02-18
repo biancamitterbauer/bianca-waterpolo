@@ -6,6 +6,51 @@
       Strukturierter Überblick über aktuelle Wettbewerbe, Spielzeiten und den Fokus auf Wasserfreunde Spandau 04.
       Klar aufbereitet für Team, Medien und potenzielle Partner.
     </p>
+
+    <section class="next-match" aria-label="Nächstes Spiel">
+      <p class="card-kicker">Nächstes Spiel</p>
+
+      <ng-container *ngIf="nextMatch as fixture; else tournamentOverState">
+        <div class="next-match__row">
+          <div>
+            <h2>{{ formatDisplayDate(fixture.dateISO) }}</h2>
+            <p class="next-match__time">{{ fixture.time }} Uhr</p>
+          </div>
+          <div class="next-match__badges">
+            <span class="status-badge status-badge--live" *ngIf="fixture.status === 'live'">LIVE</span>
+            <span class="status-badge status-badge--soon" *ngIf="isLiveSoon">LIVE SOON</span>
+          </div>
+        </div>
+
+        <p class="next-match__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
+        <p class="next-match__location">{{ fixture.location }}</p>
+
+        <div class="next-match__countdown" aria-label="Countdown bis zum nächsten Spiel">
+          <article>
+            <strong>{{ countdown.days }}</strong>
+            <span>Tage</span>
+          </article>
+          <article>
+            <strong>{{ countdown.hours }}</strong>
+            <span>Std</span>
+          </article>
+          <article>
+            <strong>{{ countdown.minutes }}</strong>
+            <span>Min</span>
+          </article>
+        </div>
+
+        <a class="next-match__button" href="#spielplan">Zum Spielplan</a>
+      </ng-container>
+    </section>
+
+    <ng-template #tournamentOverState>
+      <div class="next-match next-match--done" role="status">
+        <p class="card-kicker">Nächstes Spiel</p>
+        <h2>Turnier abgeschlossen</h2>
+        <p>Alle Partien sind beendet. Der nächste Wettbewerb wird zeitnah veröffentlicht.</p>
+      </div>
+    </ng-template>
   </div>
 
   <section class="site-container next-tournament" aria-label="Aktuelles Turnier">
@@ -32,56 +77,136 @@
     </div>
   </section>
 
-  <section class="site-container schedule" aria-labelledby="schedule-title">
+  <section class="site-container livestream" aria-labelledby="livestream-title">
+    <p class="card-kicker">Streaming</p>
+    <h2 id="livestream-title">Live dabei sein</h2>
+    <p>Offizieller Livestream-Kanal</p>
+
+    <div class="livestream__frame" *ngIf="isBrowser">
+      <iframe
+        [src]="livestreamEmbedUrl"
+        title="ETV Wasserball Livestream"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <a class="livestream__button" [href]="livestreamChannelUrl" target="_blank" rel="noopener">
+      Zum Livestream-Kanal
+    </a>
+  </section>
+
+  <section class="site-container schedule" id="spielplan" aria-labelledby="schedule-title">
     <div class="schedule-head">
       <p class="card-kicker">Spielplan</p>
-      <h2 id="schedule-title">U18 DSV-Cup · Match Schedule</h2>
+      <h2 id="schedule-title">U18 DSV-Cup · Match Center</h2>
+    </div>
+
+    <nav class="matchday-tabs" aria-label="Spieltag Navigation">
+      <button
+        type="button"
+        *ngFor="let day of matchDays"
+        (click)="selectMatchDay(day)"
+        [class.matchday-tabs__button--active]="selectedMatchDay === day"
+        class="matchday-tabs__button"
+      >
+        {{ day }}
+      </button>
+    </nav>
+
+    <div class="schedule-grid" role="table" aria-label="Spielplan Desktop">
+      <div class="schedule-grid__head" role="row">
+        <span role="columnheader">Zeit</span>
+        <span role="columnheader">Heim</span>
+        <span role="columnheader">Gast</span>
+        <span role="columnheader">Ort</span>
+        <span role="columnheader">Status</span>
+      </div>
+
+      <div
+        class="schedule-grid__row"
+        role="row"
+        *ngFor="let fixture of filteredFixtures"
+        [class.schedule-grid__row--spandau]="fixture.isSpandau"
+      >
+        <span>{{ fixture.time }} Uhr</span>
+        <span>{{ fixture.home }}</span>
+        <span>{{ fixture.away }}</span>
+        <span>{{ fixture.location }}</span>
+        <span
+          class="status-badge"
+          [class.status-badge--live]="fixture.status === 'live'"
+          [class.status-badge--finished]="fixture.status === 'finished'"
+          [class.status-badge--upcoming]="fixture.status === 'upcoming'"
+        >
+          {{ statusLabel(fixture.status) }}
+        </span>
+      </div>
     </div>
 
     <div class="schedule-table-wrapper">
       <table class="schedule-table" aria-describedby="schedule-caption">
-        <caption id="schedule-caption">
-          Spieltermine und Begegnungen. Spandau-Spiele sind markiert.
-        </caption>
+        <caption id="schedule-caption">Spieltermine und Begegnungen als mobile Kartenansicht.</caption>
+        <tbody>
+          <tr *ngFor="let fixture of filteredFixtures">
+            <td>
+              <article class="match-card" [class.match-card--spandau]="fixture.isSpandau">
+                <div class="match-card__top">
+                  <p>{{ fixture.time }} Uhr</p>
+                  <span
+                    class="status-badge"
+                    [class.status-badge--live]="fixture.status === 'live'"
+                    [class.status-badge--finished]="fixture.status === 'finished'"
+                    [class.status-badge--upcoming]="fixture.status === 'upcoming'"
+                  >
+                    {{ statusLabel(fixture.status) }}
+                  </span>
+                </div>
+                <p class="match-card__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
+                <p class="match-card__location">{{ fixture.location }}</p>
+              </article>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="site-container ranking" aria-labelledby="ranking-title">
+    <div class="ranking-head">
+      <p class="card-kicker">3-Punkte-System</p>
+      <h2 id="ranking-title">Zwischenstand</h2>
+    </div>
+
+    <div class="ranking-table-wrap" *ngIf="hasResults; else rankingFallback">
+      <table class="ranking-table" aria-label="Aktueller Tabellenstand">
         <thead>
           <tr>
-            <th scope="col">Spiel</th>
-            <th scope="col">Spieltag</th>
-            <th scope="col">Datum</th>
-            <th scope="col">Uhrzeit</th>
-            <th scope="col">Begegnung</th>
-            <th scope="col">Ort</th>
-            <th scope="col">Info / Erg.</th>
+            <th scope="col">Team</th>
+            <th scope="col">Spiele</th>
+            <th scope="col">Siege</th>
+            <th scope="col">Unentschieden</th>
+            <th scope="col">Niederlagen</th>
+            <th scope="col">Punkte</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let match of matches" [class.row-spandau]="match.isSpandauGame">
-            <td>{{ match.matchNumber }}</td>
-            <td>{{ match.matchDay }}</td>
-            <td>{{ match.date }}</td>
-            <td>{{ match.time }} Uhr</td>
-            <td>{{ match.teamA }} <span aria-hidden="true">vs.</span> {{ match.teamB }}</td>
-            <td>{{ match.venue }}</td>
-            <td>{{ match.info }}</td>
+          <tr *ngFor="let row of rankingTable">
+            <td>{{ row.team }}</td>
+            <td>{{ row.played }}</td>
+            <td>{{ row.wins }}</td>
+            <td>{{ row.draws }}</td>
+            <td>{{ row.losses }}</td>
+            <td>{{ row.points }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="schedule-cards" role="list" aria-label="Spielplan mobil">
-      <article class="match-card" role="listitem" *ngFor="let match of matches" [class.match-card--spandau]="match.isSpandauGame">
-        <div class="match-card__top">
-          <p>Spiel {{ match.matchNumber }}</p>
-          <p>{{ match.time }} Uhr</p>
-        </div>
-        <p class="match-card__day">{{ match.matchDay }} · {{ match.date }}</p>
-        <p class="match-card__teams">{{ match.teamA }} <span>vs.</span> {{ match.teamB }}</p>
-        <div class="match-card__meta">
-          <span>{{ match.venue }}</span>
-          <span>{{ match.info }}</span>
-        </div>
-      </article>
-    </div>
+    <ng-template #rankingFallback>
+      <div class="ranking-fallback">Tabelle wird nach Turnierbeginn angezeigt.</div>
+    </ng-template>
   </section>
 
   <section class="site-container sponsor-cta" aria-label="Sponsoring und Media">
