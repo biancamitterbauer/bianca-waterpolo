@@ -27,12 +27,12 @@ img {
 /* Ensure background is black for standalone and Safari safe-area gaps */
 html,
 body {
-  background: #000;
+  background: #000000;
 }
 
 body {
   min-height: 100vh;
-  background-color: #000;
+  background-color: #000000;
 }
 
 /* Footer safe-area and main content padding for mobile/tabbar */
@@ -56,5 +56,5 @@ body {
 
 /* Ensure legacy iOS class also enforces safe-area styles */
 body.standalone-mode {
-  background: #000;
+  background: #000000;
 }
