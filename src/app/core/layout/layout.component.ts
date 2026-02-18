@@ -49,6 +49,15 @@ export class LayoutComponent {
     this.isStandalone = this.installService.isInStandaloneMode();
     this.canPrompt = this.installService.canPromptInstall();
     this.isIosPlatform = this.installService.isIos();
+
+    // SSR-safe: only access document/window in the browser
+    if (typeof window !== 'undefined' && this.isStandalone) {
+      try {
+        document.body.classList.add('standalone-mode');
+      } catch (e) {
+        // noop - defensive for strict CSP or SSR edge cases
+      }
+    }
   }
 
   footerInstall(): void {

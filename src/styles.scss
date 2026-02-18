@@ -23,3 +23,38 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
+/* Ensure background is black for standalone and Safari safe-area gaps */
+html,
+body {
+  background: #000;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #000;
+}
+
+/* Footer safe-area and main content padding for mobile/tabbar */
+.site-footer {
+  background: #000;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+}
+
+.site-footer::after {
+  content: "";
+  display: block;
+  height: env(safe-area-inset-bottom);
+  background: #000;
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Ensure legacy iOS class also enforces safe-area styles */
+body.standalone-mode {
+  background: #000;
+}

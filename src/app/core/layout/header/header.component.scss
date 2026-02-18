@@ -339,3 +339,31 @@ MOBILE HEADER (<= 900px)
 
 
 /* End of header styles */
+
+/* PWA standalone safe-area support */
+@media (display-mode: standalone) {
+  .header-bar {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .header-container {
+    height: calc(56px + env(safe-area-inset-top));
+    align-items: center;
+  }
+
+  .logo img {
+    max-height: calc(var(--app-header-height, 56px));
+  }
+}
+
+/* Legacy iOS support via body class applied from TS */
+body.standalone-mode {
+  .header-bar {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .header-container {
+    height: calc(56px + env(safe-area-inset-top));
+    align-items: center;
+  }
+}
