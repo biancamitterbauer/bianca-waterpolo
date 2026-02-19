@@ -64,7 +64,7 @@
       <article class="timeline-group" *ngFor="let group of timelineGroups()">
         <aside class="year-rail">{{ group.year }}</aside>
         <div class="year-content">
-          <section class="timeline-card" *ngFor="let item of group.items" [class.highlight]="item.highlight">
+          <section class="timeline-card" *ngFor="let item of group.items" [class.highlight]="item.highlight" [class.gold-outline]="item.goldOutline">
             <header>
               <p class="date" *ngIf="item.dateLabel">{{ item.dateLabel }}</p>
               <h3>{{ item.title }}</h3>

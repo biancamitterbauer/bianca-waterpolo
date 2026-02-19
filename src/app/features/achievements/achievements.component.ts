@@ -15,6 +15,7 @@ interface Achievement {
   subtitle?: string;
   details: string[];
   highlight?: boolean;
+  goldOutline?: boolean;
   sourceLabel?: string;
 }
 
@@ -167,6 +168,7 @@ export class AchievementsComponent {
         'Korrektur Altersangabe: Bianca war zum Turnierzeitpunkt 16 Jahre alt.',
       ],
       highlight: true,
+      goldOutline: true,
       sourceLabel: 'eunwp.eu/hrac/3195',
     },
     {
@@ -314,7 +316,7 @@ export class AchievementsComponent {
     {
       id: 'u18-em-2026-women',
       year: 2026,
-      dateLabel: '08/2026',
+      dateLabel: '16.–23.08.2026',
       category: 'nationalteam',
       title: 'Women’s U18 European Championships 2026 (geplant)',
       subtitle: 'Kommendes Turnier · Termin und Austragungsort bestätigt',
@@ -323,11 +325,13 @@ export class AchievementsComponent {
         'Women’s U18 Championships: 16.–23. August 2026.',
         'Austragungsort: Tenerife Aquatic Sports Centre (CDAT), Puerto de la Cruz.',
       ],
+      goldOutline: true,
       sourceLabel: 'European Aquatics (Terminankündigung 2026)',
     },
     {
       id: 'tournament-performance',
       year: 2026,
+      dateLabel: '03.–16.08.2026',
       category: 'tournament',
       title: 'European U20 Water Polo Championships 2026 (geplant)',
       subtitle: 'Kommendes Turnier · aktualisierte Terminierung',
@@ -339,6 +343,7 @@ export class AchievementsComponent {
         'Die Termine wurden nach Kalenderanpassungen von World Aquatics neu festgelegt.',
         'Die Auslosung wurde von November 2025 auf Ende Februar 2026 verschoben.',
       ],
+      goldOutline: true,
       sourceLabel:
         'https://europeanaquatics.org/new-dates-for-2026-european-u20-water-polo-championships-announced/',
     },
