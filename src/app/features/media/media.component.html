@@ -1,0 +1,41 @@
+<section class="media-shell">
+  <div class="site-container media-page">
+    <section class="trust-media" aria-labelledby="media-channels-title">
+      <header class="media-header">
+        <h1 id="media-channels-title">Weitere Medien- &amp; Distributionskanäle</h1>
+        <p>
+          Die mediale Sichtbarkeit entsteht nicht nur über eigene Kanäle, sondern auch durch internationale Verbände,
+          Livestreams und redaktionelle Berichterstattung.
+        </p>
+      </header>
+
+      <div class="media-grid" role="list">
+        <article class="media-card" role="listitem" *ngFor="let channel of channels">
+          <div class="media-logo">
+            <img [src]="channel.logoSrc" [alt]="channel.logoAlt" decoding="async" />
+          </div>
+          <div class="media-card-body">
+            <p class="media-type">{{ channel.type }}</p>
+            <h2>{{ channel.title }}</h2>
+            <p class="media-meta">{{ channel.meta }}</p>
+          </div>
+          <a
+            class="media-link"
+            [href]="channel.href"
+            target="_blank"
+            rel="noopener"
+          >{{ channel.ctaLabel }}</a>
+        </article>
+      </div>
+
+      <div class="media-summary" role="note">
+        <h2>Crossmediale Reichweite</h2>
+        <p>
+          Die Kombination aus Social Media, redaktioneller Website, internationalen Livestreams sowie Verbands- und
+          Medienkanälen ermöglicht eine nachhaltige, glaubwürdige und sportlich kontextualisierte Sichtbarkeit – keine
+          klassische Werbung, sondern authentische Präsenz im Leistungssport.
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
