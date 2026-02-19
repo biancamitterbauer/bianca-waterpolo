@@ -184,6 +184,21 @@ export class AchievementsComponent {
       sourceLabel: 'verifiziert',
     },
     {
+      id: 'u16-em-2025-ger-cro',
+      year: 2025,
+      dateLabel: '07/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Klassifikationsspiel: Deutschland 13:9 Kroatien',
+      details: [
+        'Match 41 (Classification 7-8), 03.07.2025: Deutschland gewinnt mit 13:9 gegen Kroatien.',
+        'Viertelergebnisse: 4:2, 2:1, 6:5, 1:1.',
+        'Bianca Mitterbauer erzielt 2 Tore in der Partie.',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/D81/1/GER/CRO/U16W',
+    },
+    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
