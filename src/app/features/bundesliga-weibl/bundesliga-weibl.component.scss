@@ -134,6 +134,31 @@
   color: #fff;
 }
 
+.match-center__countdown-label {
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.match-center__countdown {
+  margin: 0.42rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: clamp(1.15rem, 2.8vw, 2rem);
+  color: #d11f26;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.match-divider {
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  background: #d11f26;
+  margin: 0.2rem 0;
+}
+
 .status-badge {
   display: inline-flex;
   align-items: center;
