@@ -31,7 +31,7 @@ export class TrainingComponent {
       title: 'EM-Vorbereitung in Kalifornien',
       period: 'Januar 2026',
       location: 'Long Beach City College, Kalifornien (USA)',
-      imageSrc: 'assets/images/instagram/DTZglBBFEMi_4.jpg',
+      imageSrc: 'assets/images/logos/LA.jpeg',
       imageAlt: 'EM-Vorbereitung in Kalifornien – 4. Bild des Instagram-Posts',
       summary:
         'Das deutsche Frauen-Nationalteam startet mit einem intensiven Trainingslager in Long Beach ins neue Jahr und nutzt die Anlage des Long Beach City College für die EM-Vorbereitung.',
