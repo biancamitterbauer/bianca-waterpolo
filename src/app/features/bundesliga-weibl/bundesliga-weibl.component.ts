@@ -14,6 +14,17 @@ type MatchResult = {
   periods: string;
 };
 
+type RankingRow = {
+  team: string;
+  played: string;
+  wins: number;
+  draws: number;
+  losses: number;
+  goals: string;
+  goalDiff: string;
+  points: number;
+};
+
 @Component({
   selector: 'app-bundesliga-weibl',
   standalone: true,
@@ -43,6 +54,70 @@ export class BundesligaWeiblComponent {
     score: '7:35',
     periods: '(2:5, 2:11, 3:10, 0:9)',
   };
+
+  readonly rankingTitle = '6 Mannschaften | 3 Punktsystem';
+  readonly rankingRows: RankingRow[] = [
+    {
+      team: 'Wfr. Spandau 04',
+      played: '7/10',
+      wins: 7,
+      draws: 0,
+      losses: 0,
+      goals: '203:47',
+      goalDiff: '+156',
+      points: 21,
+    },
+    {
+      team: 'SV Blau-Weiß Bochum',
+      played: '6/10',
+      wins: 5,
+      draws: 0,
+      losses: 1,
+      goals: '139:50',
+      goalDiff: '+89',
+      points: 15,
+    },
+    {
+      team: 'SSV Esslingen',
+      played: '7/10',
+      wins: 4,
+      draws: 0,
+      losses: 3,
+      goals: '89:91',
+      goalDiff: '-2',
+      points: 11,
+    },
+    {
+      team: 'Eimsbütteler Turnverband',
+      played: '6/10',
+      wins: 2,
+      draws: 0,
+      losses: 4,
+      goals: '69:125',
+      goalDiff: '-56',
+      points: 6,
+    },
+    {
+      team: 'SC Chemnitz 1892',
+      played: '6/10',
+      wins: 1,
+      draws: 0,
+      losses: 5,
+      goals: '48:124',
+      goalDiff: '-76',
+      points: 4,
+    },
+    {
+      team: 'Uerdinger Schwimmverein 08',
+      played: '6/10',
+      wins: 0,
+      draws: 0,
+      losses: 6,
+      goals: '41:152',
+      goalDiff: '-111',
+      points: 0,
+    },
+  ];
 
   constructor() {
     this.seo.updateSeo({

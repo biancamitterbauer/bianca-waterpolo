@@ -51,4 +51,44 @@
       Video auf YouTube öffnen
     </a>
   </section>
+
+  <section class="tournaments-ranking block" aria-labelledby="ranking-title">
+    <p class="section-kicker">Aktuelle Tabelle</p>
+    <h2 id="ranking-title">{{ rankingTitle }}</h2>
+
+    <div class="ranking-table-wrap">
+      <table class="ranking-table" aria-label="Aktuelle Tabelle Bundesliga weiblich">
+        <thead>
+          <tr>
+            <th scope="col">Platz</th>
+            <th scope="col">Verein</th>
+            <th scope="col">Spiele</th>
+            <th scope="col">S*</th>
+            <th scope="col">U*</th>
+            <th scope="col">N*</th>
+            <th scope="col">Tore</th>
+            <th scope="col">TD*</th>
+            <th scope="col">Punkte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rankingRows; let index = index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ row.team }}</td>
+            <td>{{ row.played }}</td>
+            <td>{{ row.wins }}</td>
+            <td>{{ row.draws }}</td>
+            <td>{{ row.losses }}</td>
+            <td>{{ row.goals }}</td>
+            <td>{{ row.goalDiff }}</td>
+            <td>{{ row.points }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ranking-legend">S = Siege, U = Unentschieden, N = Niederlagen, TD = Tordifferenz</p>
+    <p class="ranking-legend">Für die Tabelle, Tore und Tordifferenz ist das Ergebnis nach dem 4. Abschnitt maßgeblich.</p>
+    <p class="ranking-legend">Für die Statistik Sieg/Niederlage wird das Ergebnis nach dem Entscheidungswerfen herangezogen.</p>
+  </section>
 </section>

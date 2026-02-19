@@ -183,6 +183,47 @@
   padding: 0.55rem 1rem;
 }
 
+.tournaments-ranking {
+  width: 100%;
+}
+
+.ranking-table-wrap {
+  margin-top: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ranking-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 0.78rem 0.85rem;
+  text-align: left;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ranking-table th {
+  border-top: 0;
+  color: rgba(255, 255, 255, 0.68);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.77rem;
+}
+
+.ranking-legend {
+  margin: 0.65rem 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 @media (max-width: 768px) {
   .tournaments-shell {
     padding: 0 1rem;
