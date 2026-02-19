@@ -202,6 +202,19 @@ export class AchievementsComponent {
       sourceLabel: 'verifiziert',
     },
     {
+      id: 'spandau-supercup-2025',
+      year: 2025,
+      dateLabel: '2025',
+      category: 'club',
+      title: 'Supercup-Siegerinnen 2025',
+      subtitle: 'Wasserfreunde Spandau 04',
+      details: [
+        'Titelgewinn im Supercup mit einem 15:11-Sieg gegen Blau-Weiß Bochum.',
+        'Beitragskontext: Der Pokal bleibt in Berlin.',
+      ],
+      sourceLabel: 'https://www.instagram.com/p/DP9kv20jI4C/',
+    },
+    {
       id: 'u16-em-2025-ger-cro',
       year: 2025,
       dateLabel: '07/2025',
