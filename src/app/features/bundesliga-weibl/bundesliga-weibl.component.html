@@ -1,12 +1,31 @@
 <section class="tournaments-shell">
   <section class="tournaments-hero block">
     <div class="tournament-hero__head">
-      <img src="assets/images/logos/logo_spandau_04_lang_hell.png" alt="Wasserfreunde Spandau 04" loading="lazy" />
+      <img src="assets/images/logos/WB.png" alt="Wasserball weiblich Logo" loading="lazy" />
       <div>
-        <p class="hero-kicker">Bundesliga weibl.</p>
-        <h1>Wasserfreunde Spandau 04</h1>
-        <p class="hero-subtitle">Letztes Spiel & Livestream</p>
+        <h1>Wasserball weibl. - Bundesliga 25/26 - Spiele und Ergebnisse</h1>
       </div>
+    </div>
+  </section>
+
+  <section class="tournaments-dashboard block" aria-label="Nächstes Spiel">
+    <div class="dash-grid single-card-grid">
+      <section class="dash-card match-center" aria-label="Nächstes Spiel">
+        <p class="section-kicker">Nächstes Spiel</p>
+        <h2>Spiel {{ nextMatch.matchNo }}</h2>
+
+        <div class="match-center__top">
+          <div>
+            <p class="match-center__date">{{ nextMatch.date }}</p>
+            <p class="match-center__time">{{ nextMatch.time }}</p>
+          </div>
+        </div>
+
+        <p class="match-center__teams">{{ nextMatch.home }} <span>vs.</span> {{ nextMatch.away }}</p>
+        <p class="match-center__location">{{ nextMatch.venue }}</p>
+        <p class="match-center__countdown-label">Countdown</p>
+        <p class="match-center__countdown">{{ countdownText }}</p>
+      </section>
     </div>
   </section>
 
@@ -50,27 +69,9 @@
     <p class="ranking-legend">Für die Statistik Sieg/Niederlage wird das Ergebnis nach dem Entscheidungswerfen herangezogen.</p>
   </section>
 
-  <section class="tournaments-dashboard block" aria-label="Nächstes und letztes Spiel">
-    <div class="dash-grid">
-      <section class="dash-card match-center" aria-label="Nächstes Spiel">
-        <p class="section-kicker">Nächstes Spiel</p>
-        <h2>Spiel {{ nextMatch.matchNo }}</h2>
-
-        <div class="match-center__top">
-          <div>
-            <p class="match-center__date">{{ nextMatch.date }}</p>
-            <p class="match-center__time">{{ nextMatch.time }}</p>
-          </div>
-        </div>
-
-        <p class="match-center__teams">{{ nextMatch.home }} <span>vs.</span> {{ nextMatch.away }}</p>
-        <p class="match-center__location">{{ nextMatch.venue }}</p>
-        <p class="match-center__countdown-label">Countdown</p>
-        <p class="match-center__countdown">{{ countdownText }}</p>
-      </section>
-
+  <section class="tournaments-dashboard block" aria-label="Letztes Spiel">
+    <div class="dash-grid single-card-grid">
       <div class="match-divider" aria-hidden="true"></div>
-
       <section class="dash-card match-center" aria-label="Letztes Spiel">
         <p class="section-kicker">Letztes Spiel</p>
         <h2>Spiel {{ lastMatch.matchNo }}</h2>

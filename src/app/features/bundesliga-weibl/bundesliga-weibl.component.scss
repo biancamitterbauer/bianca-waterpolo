@@ -58,6 +58,10 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+.single-card-grid {
+  max-width: 980px;
+}
+
 .dash-grid {
   display: grid;
   grid-template-columns: 1fr;
