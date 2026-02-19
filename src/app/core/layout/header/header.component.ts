@@ -41,7 +41,6 @@ export class HeaderComponent {
     { labelKey: 'nav.sponsors', path: '/sponsors', exact: false },
     { labelKey: 'nav.press', path: '/press', exact: false },
     { labelKey: 'nav.contact', path: '/contact', exact: false },
-    { labelKey: 'nav.legal', path: '/legal', exact: false },
   ];
 
   readonly languageOptions: LanguageOption[] = [

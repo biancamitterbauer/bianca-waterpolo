@@ -24,11 +24,10 @@ export class ContactComponent {
 
   readonly contactForm = this.fb.nonNullable.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
     organization: [''],
     phone: [''],
     topic: ['Sponsoring', [Validators.required]],
-    preferredContact: ['E-Mail', [Validators.required]],
+    preferredContact: ['Telefon', [Validators.required]],
     message: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(2000)]],
     consent: [false, [Validators.requiredTrue]],
   });
@@ -63,11 +62,10 @@ export class ContactComponent {
       this.submitState = 'success';
       this.contactForm.reset({
         fullName: '',
-        email: '',
         organization: '',
         phone: '',
         topic: 'Sponsoring',
-        preferredContact: 'E-Mail',
+        preferredContact: 'Telefon',
         message: '',
         consent: false,
       });

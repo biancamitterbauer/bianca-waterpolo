@@ -12,9 +12,8 @@
       <p class="kicker">Direkter Kontakt</p>
       <h2>Bianca Mitterbauer Team</h2>
       <ul>
-        <li><strong>E-Mail:</strong> kontakt@biancamitterbauer.de</li>
         <li><strong>Antwortzeit:</strong> in der Regel innerhalb von 24–48 Stunden</li>
-        <li><strong>Fokus:</strong> Sponsoring, Presse, Events, Partnerschaften</li>
+        <li><strong>Fokus:</strong> Fans, Sponsoring, Presse, Events, Partnerschaften</li>
       </ul>
       <p class="note">
         Bitte möglichst konkrete Informationen zur Anfrage und zum gewünschten Zeitraum angeben.
@@ -31,14 +30,6 @@
             <input type="text" formControlName="fullName" autocomplete="name" />
             <small *ngIf="contactForm.controls.fullName.touched && contactForm.controls.fullName.invalid">
               Bitte einen gültigen Namen eingeben.
-            </small>
-          </label>
-
-          <label>
-            <span>E-Mail *</span>
-            <input type="email" formControlName="email" autocomplete="email" />
-            <small *ngIf="contactForm.controls.email.touched && contactForm.controls.email.invalid">
-              Bitte eine gültige E-Mail-Adresse eingeben.
             </small>
           </label>
         </div>
@@ -70,7 +61,6 @@
           <label>
             <span>Bevorzugter Kontaktweg *</span>
             <select formControlName="preferredContact">
-              <option>E-Mail</option>
               <option>Telefon</option>
             </select>
           </label>
