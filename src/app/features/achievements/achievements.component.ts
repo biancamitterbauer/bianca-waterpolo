@@ -330,6 +330,20 @@ export class AchievementsComponent {
       sourceLabel: 'Quelle folgt',
     },
     {
+      id: 'spandau-instagram-top-scorer-2026-02',
+      year: 2026,
+      dateLabel: '18.02.2026',
+      category: 'club',
+      title: 'Spandau 04 Women · TOP SCORER (Instagram)',
+      subtitle: 'Auswärtsspiel-Highlight aus dem Teamkanal',
+      details: [
+        'Instagram-Post vom 18.02.2026 mit Top-Scorerinnen-Visual aus dem Spandau-Umfeld.',
+        'Beitragsaussage: „Viele Schützinnen, eine klare Botschaft: Offensivpower pur auswärts!“',
+        'Bianca Mitterbauer wird im Beitrag als Top-Scorerin geführt.',
+      ],
+      sourceLabel: 'https://www.instagram.com/p/DU5PzL0iIJs/?img_index=2',
+    },
+    {
       id: 'u18-em-2026-women',
       year: 2026,
       dateLabel: '16.–23.08.2026',
