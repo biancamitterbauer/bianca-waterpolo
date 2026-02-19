@@ -1456,10 +1456,6 @@ p {
     box-shadow: none;
   }
 
-  .pitch-stack-card .stack-content {
-    width: 100%;
-  }
-
   .pitch-mobile .pitch-slide {
     height: auto !important;
     min-height: auto !important;
@@ -1478,27 +1474,8 @@ p {
     grid-template-columns: 1fr !important;
   }
 
-  .pitch-mobile .slide-two-card-grid,
-  .pitch-mobile .icon-grid,
-  .pitch-mobile .reach-matrix,
-  .pitch-mobile .kpi-grid,
-  .pitch-mobile .package-grid,
-  .pitch-mobile .model-grid,
-  .pitch-mobile .model-grid.premium-grid {
+  .pitch-mobile .reach-matrix {
     grid-template-columns: 1fr !important;
-  }
-
-  .pitch-mobile .slide-two-card,
-  .pitch-mobile .icon-card,
-  .pitch-mobile .reach-card,
-  .pitch-mobile .kpi-chip,
-  .pitch-mobile .model-card {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .pitch-mobile .package-title {
-    white-space: normal;
   }
 
   .pitch-mobile .slide-index,
