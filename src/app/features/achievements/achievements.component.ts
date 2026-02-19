@@ -157,7 +157,7 @@ export class AchievementsComponent {
         'Bianca Mitterbauer erzielt 4 Tore in diesem Spiel.',
         'Viertelfinal-Ansetzung (28.06.2023): Ungarn vs. Deutschland.',
       ],
-      sourceLabel: 'total-waterpolo.com (27.06.2023)',
+      sourceLabel: 'https://total-waterpolo.com/u15-european-championships-germany-reaches-quarter-finals/',
     },
     {
       id: 'season-2022-2023',
