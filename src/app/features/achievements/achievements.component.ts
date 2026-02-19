@@ -215,6 +215,20 @@ export class AchievementsComponent {
       sourceLabel: 'https://www.instagram.com/p/DP9kv20jI4C/',
     },
     {
+      id: 'spandau-neuzugang-2025-05',
+      year: 2025,
+      dateLabel: '30.05.2025',
+      category: 'club',
+      title: 'Neuzugang bei Wasserfreunde Spandau 04',
+      subtitle: 'Vertrag bis 2028',
+      details: [
+        'Offizielle Vorstellung als Neuzugang bei den Wasserfreunden Spandau 04 (Women).',
+        'Im Beitrag wird eine Vertragslaufzeit bis 2028 genannt.',
+        'Leistungsbezug im Posting: Auftritte bei U18-Europameisterschaft und U16-Weltmeisterschaft.',
+      ],
+      sourceLabel: 'https://www.instagram.com/p/DKTeRoVomy6/?img_index=1',
+    },
+    {
       id: 'u16-em-2025-ger-cro',
       year: 2025,
       dateLabel: '07/2025',
