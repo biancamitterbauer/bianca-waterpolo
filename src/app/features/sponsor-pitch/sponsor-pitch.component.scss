@@ -1045,11 +1045,14 @@ p {
   }
 
   .pitch-mobile .pitch-slide {
+    width: 100% !important;
     height: auto !important;
     min-height: auto !important;
-    min-width: 0 !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
     flex: none !important;
     overflow: visible !important;
+    box-sizing: border-box;
   }
 
   .pitch-mobile .slide-content {
