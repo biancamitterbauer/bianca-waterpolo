@@ -45,7 +45,6 @@ export class AchievementsComponent {
     'Bundesliga (Frauen)',
     'Spandau 04 seit 08/2025',
     'U16/U18 Turniere',
-    'Linkshänderin (Role Impact)',
   ];
 
   readonly proofCards: ProofCard[] = [
@@ -63,21 +62,6 @@ export class AchievementsComponent {
       title: 'Deutsche Wettbewerbe',
       body: 'Einsatz im Umfeld von Meisterschaft und Pokal auf nationalem Top-Level.',
       badge: 'verifiziert / Quelle folgt',
-    },
-    {
-      title: 'Team Titles (Spandau)',
-      body: 'Titelumfeld bei Wasserfreunde Spandau 04 als Leistungskontext seit 08/2025.',
-      badge: 'Quelle folgt',
-    },
-    {
-      title: 'Rollenstabilität',
-      body: 'Stammspielerin im Vereinssystem mit kontinuierlicher Trainings- und Spielverantwortung.',
-      badge: 'verifiziert',
-    },
-    {
-      title: 'Sponsor-Relevanz',
-      body: 'Klare Proof-Story zwischen Leistung, Teamkultur und medialer Sichtbarkeit.',
-      badge: 'Quelle folgt',
     },
   ];
 
