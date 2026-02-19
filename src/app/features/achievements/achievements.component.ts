@@ -312,6 +312,19 @@ export class AchievementsComponent {
       sourceLabel: 'Quelle folgt',
     },
     {
+      id: 'u18-em-2026-women',
+      year: 2026,
+      dateLabel: '08/2026',
+      category: 'nationalteam',
+      title: 'Women’s U18 European Championships 2026',
+      subtitle: 'Termin und Austragungsort bestätigt',
+      details: [
+        'Women’s U18 Championships: 16.–23. August 2026.',
+        'Austragungsort: Tenerife Aquatic Sports Centre (CDAT), Puerto de la Cruz.',
+      ],
+      sourceLabel: 'European Aquatics (Terminankündigung 2026)',
+    },
+    {
       id: 'tournament-performance',
       year: 2026,
       category: 'tournament',
