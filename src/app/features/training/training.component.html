@@ -7,6 +7,10 @@
     </header>
 
     <article class="training-card" *ngFor="let update of updates">
+      <figure class="training-image-wrap">
+        <img class="training-image" [src]="update.imageSrc" [alt]="update.imageAlt" decoding="async" loading="lazy" />
+      </figure>
+
       <p class="training-meta">{{ update.period }} · {{ update.location }}</p>
       <h2>{{ update.title }}</h2>
       <p class="muted">{{ update.summary }}</p>

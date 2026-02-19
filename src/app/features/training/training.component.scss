@@ -51,6 +51,21 @@
   box-shadow: 0 20px 42px rgba(0, 0, 0, 0.42);
 }
 
+.training-image-wrap {
+  margin: 0 0 0.9rem;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.training-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
 .training-meta {
   margin: 0 0 0.5rem;
   font-weight: 700;
