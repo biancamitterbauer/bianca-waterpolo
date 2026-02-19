@@ -225,7 +225,7 @@ export class AchievementsComponent {
       details: [
         'Wechsel und offizielle Vorstellung bei den Wasserfreunden Spandau 04 (Women) am 30.05.2025.',
         'Im Beitrag wird eine Vertragslaufzeit bis 2028 genannt.',
-        'Leistungsbezug im Posting: Auftritte bei U18-Europameisterschaft und U16-Weltmeisterschaft.',
+        'Leistungsbezug im Posting: internationale Einsätze im U18- und U16-Nationalteam.',
         'Anschluss im Clubkontext: Einsätze als Stammspielerin im Bundesliga-Umfeld von Spandau 04.',
       ],
       highlight: true,
