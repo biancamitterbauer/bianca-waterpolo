@@ -72,7 +72,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of rankingRows; let index = index">
+          <tr *ngFor="let row of rankingRows; let index = index" [class.ranking-row--leader]="index === 0">
             <td>{{ index + 1 }}</td>
             <td>{{ row.team }}</td>
             <td>{{ row.played }}</td>

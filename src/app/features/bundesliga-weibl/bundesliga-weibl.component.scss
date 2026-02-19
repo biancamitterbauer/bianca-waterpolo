@@ -217,6 +217,18 @@
   font-size: 0.77rem;
 }
 
+.ranking-row--leader {
+  background: rgba(209, 31, 38, 0.14);
+}
+
+.ranking-row--leader td {
+  font-weight: 700;
+}
+
+.ranking-row--leader td:first-child {
+  color: #fff;
+}
+
 .ranking-legend {
   margin: 0.65rem 0 0;
   color: rgba(255, 255, 255, 0.74);
