@@ -41,6 +41,21 @@ type TeamAchievementCard = {
 })
 export class AchievementsComponent {
   private readonly seo = inject(SeoService);
+  private readonly monthMap: Record<string, number> = {
+    januar: 0,
+    februar: 1,
+    maerz: 2,
+    märz: 2,
+    april: 3,
+    mai: 4,
+    juni: 5,
+    juli: 6,
+    august: 7,
+    september: 8,
+    oktober: 9,
+    november: 10,
+    dezember: 11,
+  };
 
   readonly kpiChips: string[] = [
     'Nationalteam',
@@ -389,9 +404,13 @@ export class AchievementsComponent {
   });
 
   readonly timelineGroups = computed(() => {
+    const sortedItems = [...this.filteredAchievements()].sort(
+      (a, b) => this.getSortTimestamp(b) - this.getSortTimestamp(a),
+    );
+
     const grouped = new Map<number, Achievement[]>();
 
-    for (const item of this.filteredAchievements()) {
+    for (const item of sortedItems) {
       const list = grouped.get(item.year) ?? [];
       list.push(item);
       grouped.set(item.year, list);
@@ -428,6 +447,80 @@ export class AchievementsComponent {
   isSpandauReference(item: Achievement): boolean {
     const content = `${item.title} ${item.subtitle ?? ''} ${item.details.join(' ')}`.toLowerCase();
     return content.includes('spandau');
+  }
+
+  private getSortTimestamp(item: Achievement): number {
+    const dateLabel = item.dateLabel ?? '';
+    const byLabel = this.parseDateLabelToTimestamp(dateLabel);
+    if (byLabel !== null) return byLabel;
+
+    const byDetails = this.parseLatestDateFromText(item.details.join(' '));
+    if (byDetails !== null) return byDetails;
+
+    return new Date(item.year, 11, 31).getTime();
+  }
+
+  private parseDateLabelToTimestamp(label: string): number | null {
+    const normalized = label.toLowerCase().trim();
+
+    const monthRange = normalized.match(/(\d{1,2})\/(\d{4})\s*[–-]\s*(\d{1,2})\/(\d{4})/);
+    if (monthRange) {
+      const endMonth = Number(monthRange[3]) - 1;
+      const endYear = Number(monthRange[4]);
+      return new Date(endYear, endMonth, 28).getTime();
+    }
+
+    const dayRangeNumeric = normalized.match(/(\d{1,2})\.\s*[–-]\s*(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+    if (dayRangeNumeric) {
+      const endDay = Number(dayRangeNumeric[2]);
+      const month = Number(dayRangeNumeric[3]) - 1;
+      const year = Number(dayRangeNumeric[4]);
+      return new Date(year, month, endDay).getTime();
+    }
+
+    const dayRangeNamed = normalized.match(/(\d{1,2})\.\s*[–-]\s*(\d{1,2})\.\s*([a-zäöü]+)\s*(\d{4})/);
+    if (dayRangeNamed) {
+      const endDay = Number(dayRangeNamed[2]);
+      const month = this.monthMap[dayRangeNamed[3]];
+      const year = Number(dayRangeNamed[4]);
+      if (month !== undefined) return new Date(year, month, endDay).getTime();
+    }
+
+    const monthYear = normalized.match(/(\d{1,2})\/(\d{4})/);
+    if (monthYear) {
+      const month = Number(monthYear[1]) - 1;
+      const year = Number(monthYear[2]);
+      return new Date(year, month, 28).getTime();
+    }
+
+    const season = normalized.match(/saison\s*(\d{4})\/(\d{4})/);
+    if (season) {
+      const endYear = Number(season[2]);
+      return new Date(endYear, 5, 30).getTime();
+    }
+
+    const yearOnly = normalized.match(/\b(20\d{2})\b/);
+    if (yearOnly) {
+      return new Date(Number(yearOnly[1]), 11, 31).getTime();
+    }
+
+    return null;
+  }
+
+  private parseLatestDateFromText(text: string): number | null {
+    const matches = [...text.matchAll(/(\d{1,2})\.(\d{1,2})\.(\d{4})/g)];
+    if (matches.length === 0) return null;
+
+    let latest = 0;
+    for (const match of matches) {
+      const day = Number(match[1]);
+      const month = Number(match[2]) - 1;
+      const year = Number(match[3]);
+      const value = new Date(year, month, day).getTime();
+      if (value > latest) latest = value;
+    }
+
+    return latest || null;
   }
 
   setFilter(filter: FilterKey): void {
