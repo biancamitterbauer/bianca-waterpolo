@@ -214,14 +214,20 @@ export class AchievementsComponent {
     {
       id: 'u18-tournaments',
       year: 2025,
-      category: 'youth',
-      title: 'U16/U18 Turnierteilnahmen',
-      subtitle: 'Nachwuchsleistungssport auf Top-Niveau',
+      dateLabel: '09/2025',
+      category: 'nationalteam',
+      title: 'U18 Europameisterschaft 2025',
+      subtitle: 'Platz 10 in Gzira (Malta) mit sehr jungem Team',
       details: [
-        'Mehrere Turnierformate im Nachwuchsbereich (U16/U18) absolviert.',
-        'Konkrete Eventliste und Platzierungen werden strukturiert nachgetragen.',
+        'Abschlussplatzierung: Platz 10 bei der U18-EM (September 2025).',
+        'Kaderstruktur: Mit einer Ausnahme gehörten alle Spielerinnen den U17- oder U16-Jahrgängen an.',
+        'Vorrunde: Siege gegen Ukraine (14:5), Irland (20:7) und Malta (16:10), Niederlage gegen Serbien (9:12).',
+        'Überkreuzspiel: knappe 11:12-Niederlage gegen die Niederlande.',
+        'Platzierungsspiele: 11:10 gegen Großbritannien, danach 9:14 gegen die Türkei (Spiel um Platz 10).',
+        'Top-Scorerinnen Deutschland: Mara Dzaja (23), Lucy Schüssler (13) und Bianca Mitterbauer (13).',
       ],
-      sourceLabel: 'Quelle folgt',
+      sourceLabel:
+        'https://germanaquatics.de/dsv-wasserballerinnen-mit-sehr-jungem-team-auf-platz-zehn-bei-der-u18-em/',
     },
     {
       id: 'club-title-context',
