@@ -37,24 +37,21 @@
   margin: 0 0 0.75rem;
 }
 
-.training-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+.training-points {
   margin-top: 1rem;
 }
 
-.training-grid h3 {
+.training-points h3 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
 }
 
-.training-grid ul {
+.training-points ul {
   margin: 0;
   padding-left: 1.1rem;
 }
 
-.training-grid li + li {
+.training-points li + li {
   margin-top: 0.35rem;
 }
 
@@ -65,8 +62,3 @@
   color: var(--color-accent-red);
 }
 
-@media (max-width: 720px) {
-  .training-grid {
-    grid-template-columns: 1fr;
-  }
-}

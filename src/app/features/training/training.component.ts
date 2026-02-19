@@ -9,7 +9,6 @@ type TrainingUpdate = {
   location: string;
   summary: string;
   focus: string[];
-  nextSteps: string[];
   sourceUrl: string;
 };
 
@@ -35,10 +34,6 @@ export class TrainingComponent {
       focus: [
         'Intensive EM-Vorbereitung unter professionellen Bedingungen.',
         'Teamfokus auf Spielrhythmus und internationale Wettkampfhärte.',
-      ],
-      nextSteps: [
-        'Weiteres Trainingslager in Athen (Griechenland).',
-        'Anschließend EM-Phase in Funchal, Madeira (24.01.–06.02.).',
       ],
       sourceUrl: 'https://www.instagram.com/p/DTZglBBFEMi/?img_index=1',
     },
