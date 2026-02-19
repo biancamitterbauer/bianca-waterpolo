@@ -234,6 +234,22 @@ export class AchievementsComponent {
         'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A51/4/GER/UKR/U16W',
     },
     {
+      id: 'u16-em-2025-hun-ger',
+      year: 2025,
+      dateLabel: '07/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Viertelfinale Match 32: Ungarn 14:6 Deutschland',
+      details: [
+        'Quarter-finals Match 32, 01.07.2025, 20:30 Uhr: Ungarn gewinnt mit 14:6 gegen Deutschland.',
+        'Viertelergebnisse: 1:1, 6:2, 6:2, 1:1.',
+        'Bianca Mitterbauer: 0 Tore (0/1 Strafwurf), 2 Ausschlüsse verursacht.',
+        'Schiedsrichter: E. Kolar (SVK) und N. Mercieca (MLT).',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A61/2/HUN/GER/U16W',
+    },
+    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
