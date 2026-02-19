@@ -218,6 +218,22 @@ export class AchievementsComponent {
         'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/C71/1/TUR/GER/U16W',
     },
     {
+      id: 'u16-em-2025-ger-ukr',
+      year: 2025,
+      dateLabel: '06/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Crossovers Match 25: Deutschland 15:8 Ukraine',
+      details: [
+        'Crossovers Match 25, 30.06.2025, 19:30 Uhr: Deutschland gewinnt mit 15:8 gegen die Ukraine.',
+        'Viertelergebnisse: 1:1, 6:4, 3:1, 5:2.',
+        'Bianca Mitterbauer erzielt 3 Tore (inkl. 2/3 Strafwürfe) und 1 Ausschluss verursacht.',
+        'Schiedsrichter: S. Kontek (CRO) und B. Gunkut (TUR).',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A51/4/GER/UKR/U16W',
+    },
+    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
