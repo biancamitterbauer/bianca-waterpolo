@@ -71,8 +71,26 @@
   <div class="pitch-mobile">
     <article class="pitch-stack-card">
       <div class="stack-content">
-        <article class="pitch-slide is-hero is-hero-bg slide-1" aria-labelledby="slide1-mobile-title">
-          <ng-container [ngTemplateOutlet]="slide1" [ngTemplateOutletContext]="{ titleId: 'slide1-mobile-title' }"></ng-container>
+        <article class="pitch-slide is-hero is-hero-bg slide-1 mobile-hero-slide" aria-labelledby="slide1-mobile-title">
+          <div class="mobile-hero-copy hero-copy glass-panel">
+            <p class="slide-eyebrow">{{ 'pitch.slide1.eyebrow' | t }}</p>
+            <h2 id="slide1-mobile-title">{{ 'pitch.slide1.title' | t }}</h2>
+            <p class="slide-lead">{{ 'pitch.slide1.text' | t }}</p>
+            <p class="slide-body">{{ 'pitch.slide1.body' | t }}</p>
+          </div>
+
+          <div class="mobile-hero-media" aria-hidden="true">
+            <div class="slide-bg hero-bg"></div>
+            <div class="hero-badge slide-badge">
+              <img
+                class="hero-badge-logo"
+                src="assets/images/logos/EM_U18_Malta_25.png"
+                loading="lazy"
+                decoding="async"
+                [alt]="'pitch.slide1.eventLogoAlt' | t"
+              />
+            </div>
+          </div>
         </article>
       </div>
     </article>

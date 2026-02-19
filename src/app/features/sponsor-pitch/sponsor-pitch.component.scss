@@ -1075,45 +1075,42 @@ p {
     margin: 0;
   }
 
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg {
-    padding: 0;
-  }
-
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .hero-bg {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    min-height: 220px;
-    border-radius: 18px;
-    transform: none;
-    margin-bottom: 0.9rem;
-  }
-
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .slide-content {
+  .pitch-mobile .mobile-hero-slide {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 1rem;
   }
 
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .hero-badge,
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .hero-copy {
+  .pitch-mobile .mobile-hero-copy {
     position: static;
     inset: auto;
-    left: auto;
-    right: auto;
-    top: auto;
-    bottom: auto;
     transform: none;
     max-width: 100%;
     margin: 0;
-  }
-
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .hero-badge {
-    align-self: flex-end;
-  }
-
-  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .hero-copy {
     padding: 1.2rem;
+  }
+
+  .pitch-mobile .mobile-hero-media {
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .pitch-mobile .mobile-hero-media .hero-bg {
+    position: absolute;
+    inset: 0;
+    transform: none;
+    border-radius: 18px;
+  }
+
+  .pitch-mobile .mobile-hero-media .hero-badge {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    margin: 0;
+    z-index: 2;
   }
 
   .pitch-mobile [class*='grid'],
