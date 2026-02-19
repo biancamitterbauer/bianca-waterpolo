@@ -171,6 +171,22 @@ export class AchievementsComponent {
       sourceLabel: 'Quelle folgt',
     },
     {
+      id: 'wm-u16-2024-manisa',
+      year: 2024,
+      dateLabel: '07/2024',
+      category: 'nationalteam',
+      title: 'World Aquatics Women’s U16 Water Polo Championships 2024',
+      subtitle: 'WM-Teilnahme mit Deutschland in Manisa (Türkei)',
+      details: [
+        'Turnierort laut World Aquatics: Manisa, Türkiye.',
+        'Turnierzeitraum: 28.06.–04.07.2024.',
+        '24 Nationen waren qualifiziert; Deutschland war als europäisches Team im Teilnehmerfeld.',
+        'Bianca Mitterbauer nahm mit dem deutschen Team an dieser U16-Weltmeisterschaft teil.',
+      ],
+      goldOutline: true,
+      sourceLabel: 'https://www.worldaquatics.com/competitions/3490/world-aquatics-women-s-u16-water-polo-championships-2024',
+    },
+    {
       id: 'eu-nations-cup-2025',
       year: 2025,
       dateLabel: '10/2025 – 11/2025',
