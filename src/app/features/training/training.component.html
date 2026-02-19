@@ -1,26 +1,28 @@
-<section class="site-container training-page">
-  <header class="training-header">
-    <p class="kicker">Training</p>
-    <h1 class="site-title">Trainingsupdates</h1>
-    <p class="muted">
-      Erster verifizierter Eintrag aus dem Nationalteam-Umfeld. Weitere Inhalte folgen.
-    </p>
-  </header>
+<section class="training-shell">
+  <div class="site-container training-page">
+    <header class="training-header">
+      <p class="kicker">Training</p>
+      <h1 class="site-title">Trainingsupdates</h1>
+      <p class="muted">
+        Erster verifizierter Eintrag aus dem Nationalteam-Umfeld. Weitere Inhalte folgen.
+      </p>
+    </header>
 
-  <article class="training-card" *ngFor="let update of updates">
-    <p class="training-meta">{{ update.period }} · {{ update.location }}</p>
-    <h2>{{ update.title }}</h2>
-    <p class="muted">{{ update.summary }}</p>
+    <article class="training-card" *ngFor="let update of updates">
+      <p class="training-meta">{{ update.period }} · {{ update.location }}</p>
+      <h2>{{ update.title }}</h2>
+      <p class="muted">{{ update.summary }}</p>
 
-    <div class="training-points">
-      <h3>Schwerpunkte</h3>
-      <ul>
-        <li *ngFor="let item of update.focus">{{ item }}</li>
-      </ul>
-    </div>
+      <div class="training-points">
+        <h3>Schwerpunkte</h3>
+        <ul>
+          <li *ngFor="let item of update.focus">{{ item }}</li>
+        </ul>
+      </div>
 
-    <a class="source-link" [href]="update.sourceUrl" target="_blank" rel="noopener noreferrer">
-      Quelle: Instagram-Post
-    </a>
-  </article>
+      <a class="source-link" [href]="update.sourceUrl" target="_blank" rel="noopener noreferrer">
+        Quelle: Instagram-Post
+      </a>
+    </article>
+  </div>
 </section>

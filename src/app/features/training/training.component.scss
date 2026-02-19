@@ -1,40 +1,66 @@
 :host {
   display: block;
+  width: 100%;
+}
+
+.training-shell {
+  background: var(--color-header-bg, #05070c);
+  color: var(--color-text-on-dark, #f5f5f7);
+  padding: clamp(2rem, 4vh, 3rem) 0 clamp(4rem, 8vh, 6rem);
 }
 
 .training-page {
-  padding-top: clamp(1.5rem, 2.5vw, 2.5rem);
-  padding-bottom: clamp(2rem, 3vw, 3rem);
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-inline: clamp(1.5rem, 6vw, 5rem);
 }
 
 .training-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: clamp(1.25rem, 3vh, 2rem);
 }
 
 .kicker {
   margin: 0 0 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--color-accent-red);
+}
+
+.training-page .site-title {
+  margin: 0;
+  color: var(--color-text-on-dark, #f5f5f7);
+  font-size: clamp(2.2rem, 4vw, 3.3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.training-page .muted {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
 }
 
 .training-card {
   border: 1px solid var(--border-soft);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  padding: clamp(1rem, 2vw, 1.5rem);
-  box-shadow: var(--shadow-subtle);
+  border-radius: 1.25rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  padding: clamp(1.1rem, 2vw, 1.7rem);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.42);
 }
 
 .training-meta {
   margin: 0 0 0.5rem;
-  font-weight: 600;
-  color: var(--color-muted);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.76);
 }
 
 .training-card h2 {
   margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
 }
 
 .training-points {
@@ -44,11 +70,13 @@
 .training-points h3 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
+  color: #fff;
 }
 
 .training-points ul {
   margin: 0;
   padding-left: 1.1rem;
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .training-points li + li {
@@ -58,7 +86,18 @@
 .source-link {
   display: inline-block;
   margin-top: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-accent-red);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .training-card {
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+
+  .training-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
 }
 
