@@ -37,7 +37,6 @@
   overflow-x: clip;
 }
 
-// ----- Layout shell & toolbar -------------------------------------------------
 .pitch-shell {
   position: relative;
   width: 100vw;
@@ -278,7 +277,6 @@ p {
   grid-template-rows: minmax(0, 1fr) auto;
 }
 
-// Slide 2 has a 2-row grid (row 1: copy + image, row 2: cards). Ensure only row-1 items stretch.
 .pitch-slide.slide-two .slide-two-panel {
   align-self: stretch;
 }
@@ -520,7 +518,6 @@ p {
 }
 
 
-// ----- Reusable lists & cards -------------------------------------------------
 .value-list {
   list-style: none;
   margin: 1.5rem 0 0;
@@ -887,16 +884,13 @@ p {
 }
 
 .model-grid.premium-grid {
-  // Use full width of the left panel.
   width: 100%;
   max-width: none;
   margin-inline: 0;
   margin-top: clamp(0.9rem, 1.8vw, 1.2rem);
 
-  // Fixed layout: 2 columns x 3 rows (P1-4 in top rows, P5 spans bottom).
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  // Give Paket 5 a bit more room.
   grid-template-rows: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.2fr);
   gap: clamp(0.65rem, 1.2vw, 0.95rem);
   flex: 1 1 auto;
@@ -1195,7 +1189,6 @@ p {
 }
 
 
-// ----- Variant tweaks --------------------------------------------------------
 .pitch-slide.is-hero .slide-media::after,
 .pitch-slide.is-cta .slide-media::after {
   content: '';
@@ -1209,17 +1202,14 @@ p {
   box-shadow: 0 30px 60px rgba(225, 6, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
-// Match Slide 6 "red edge glow" on all primary slide content panels.
 .pitch-slide:not(.is-hero) .glass-panel.slide-copy {
   border-color: rgba(225, 6, 0, 0.35);
   box-shadow: 0 30px 60px rgba(225, 6, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
 
-  // Prevent sporadic compositor/backdrop-filter "hover" flicker by keeping the panel on a stable layer.
   transform: translateZ(0);
   will-change: transform;
 }
 
-// Red accent edge glow for images + smaller cards (keeps existing shadows intact).
 .slide-media,
 .pitch-slide.is-benefits .benefits-media,
 .slide-two-card,
@@ -1253,7 +1243,6 @@ p {
   border-color: rgba(255, 255, 255, 0.22);
 }
 
-// ----- Responsive adjustments -----------------------------------------------
 @media (max-width: 1024px) {
   :host {
     --pitch-slide-padding-y: 1.5rem;
@@ -1428,10 +1417,6 @@ p {
     background-position: 65% 25%;
   }
 }
-
-/* ============================================================================
-   Desktop slider vs mobile stacked layout
-   ============================================================================ */
 
 .pitch-desktop {
   display: block;
