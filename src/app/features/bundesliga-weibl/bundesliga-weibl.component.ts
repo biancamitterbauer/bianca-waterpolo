@@ -73,7 +73,7 @@ export class BundesligaWeiblComponent {
     home: 'Eimsbütteler Turnverband',
     away: 'Wfr. Spandau 04',
     venue: 'Hamburg',
-    score: '7:35',
+    score: '7 : 35',
     periods: '(2:5, 2:11, 3:10, 0:9)',
   };
 
