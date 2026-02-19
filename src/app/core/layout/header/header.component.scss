@@ -84,7 +84,7 @@
 }
 
 .actions {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 1rem;
 }
@@ -180,6 +180,10 @@
 @media (max-width: 1100px) {
   .primary-nav {
     display: none;
+  }
+
+  .actions {
+    display: flex;
   }
 
   .hamburger {
