@@ -360,6 +360,20 @@ export class AchievementsComponent {
         'https://germanaquatics.de/dsv-wasserballerinnen-mit-sehr-jungem-team-auf-platz-zehn-bei-der-u18-em/',
     },
     {
+      id: 'spandau-cl-hauptrunde-2025',
+      year: 2025,
+      dateLabel: '09/2025',
+      category: 'club',
+      title: 'Champions League Hauptrunde erreicht (Women)',
+      subtitle: 'Wasserfreunde Spandau 04 · historischer Meilenstein',
+      details: [
+        'Aussage im Beitrag: Spandau 04 Women qualifizieren sich als erster deutscher Verein für die Hauptrunde der Champions League der Damen.',
+        'Beitragskontext: „Geschichte geschrieben“ für den deutschen Frauenwasserball.',
+      ],
+      highlight: true,
+      sourceLabel: 'https://www.instagram.com/p/DPJeW9CiBnA/',
+    },
+    {
       id: 'spandau-instagram-top-scorer-2026-02',
       year: 2026,
       dateLabel: '18.02.2026',
