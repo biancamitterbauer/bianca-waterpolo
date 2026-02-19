@@ -1075,37 +1075,47 @@ p {
     margin: 0;
   }
 
-  .pitch-mobile .mobile-hero-slide {
+  .pitch-mobile .pitch-slide.is-hero.is-hero-bg.mobile-hero-slide {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
   }
 
-  .pitch-mobile .mobile-hero-copy {
+  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .mobile-hero-copy.hero-copy {
     position: static;
     inset: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
     transform: none;
     max-width: 100%;
     margin: 0;
     padding: 1.2rem;
+    order: 1;
+    z-index: 1;
   }
 
-  .pitch-mobile .mobile-hero-media {
+  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .mobile-hero-media {
     position: relative;
     width: 100%;
     min-height: 240px;
     border-radius: 18px;
     overflow: hidden;
+    order: 2;
   }
 
-  .pitch-mobile .mobile-hero-media .hero-bg {
+  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .mobile-hero-media .hero-bg {
     position: absolute;
     inset: 0;
     transform: none;
     border-radius: 18px;
   }
 
-  .pitch-mobile .mobile-hero-media .hero-badge {
+  .pitch-mobile .pitch-slide.is-hero.is-hero-bg .mobile-hero-media .hero-badge {
     position: absolute;
     top: 0.8rem;
     right: 0.8rem;
