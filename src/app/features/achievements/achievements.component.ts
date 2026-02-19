@@ -413,6 +413,23 @@ export class AchievementsComponent {
     });
   }
 
+  isEuroOrWorldChampionship(item: Achievement): boolean {
+    const content = `${item.title} ${item.subtitle ?? ''} ${item.details.join(' ')}`.toLowerCase();
+    return (
+      content.includes('europameisterschaft') ||
+      content.includes('european championship') ||
+      content.includes('weltmeisterschaft') ||
+      content.includes('world championship') ||
+      /\bu\d{2}\s*em\b/.test(content) ||
+      /\bu\d{2}\s*wm\b/.test(content)
+    );
+  }
+
+  isSpandauReference(item: Achievement): boolean {
+    const content = `${item.title} ${item.subtitle ?? ''} ${item.details.join(' ')}`.toLowerCase();
+    return content.includes('spandau');
+  }
+
   setFilter(filter: FilterKey): void {
     this.selectedFilter.set(filter);
   }

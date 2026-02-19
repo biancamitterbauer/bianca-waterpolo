@@ -249,6 +249,11 @@
   padding: 1rem;
 }
 
+.team-success .team-card {
+  border-color: rgba(209, 31, 38, 0.45);
+  box-shadow: inset 3px 0 0 #d11f26;
+}
+
 .team-card h3 {
   margin: 0;
   font-size: 1.05rem;
