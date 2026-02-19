@@ -1,0 +1,54 @@
+<section class="tournaments-shell">
+  <section class="tournaments-hero block">
+    <div class="tournament-hero__head">
+      <img src="assets/images/logos/logo_spandau_04_lang_hell.png" alt="Wasserfreunde Spandau 04" loading="lazy" />
+      <div>
+        <p class="hero-kicker">Bundesliga weibl.</p>
+        <h1>Wasserfreunde Spandau 04</h1>
+        <p class="hero-subtitle">Letztes Spiel & Livestream</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tournaments-dashboard block" aria-label="Letztes Spiel">
+    <div class="dash-grid">
+      <section class="dash-card match-center" aria-label="Letztes Spiel">
+        <p class="section-kicker">Letztes Spiel</p>
+        <h2>Spiel {{ lastMatch.matchNo }}</h2>
+
+        <div class="match-center__top">
+          <div>
+            <p class="match-center__date">{{ lastMatch.date }}</p>
+            <p class="match-center__time">{{ lastMatch.time }}</p>
+          </div>
+          <span class="status-badge status-badge--finished">Final</span>
+        </div>
+
+        <p class="match-center__teams">{{ lastMatch.home }} <span>vs.</span> {{ lastMatch.away }}</p>
+        <p class="match-center__location">{{ lastMatch.venue }}</p>
+        <p class="match-center__score">{{ lastMatch.score }}</p>
+        <p class="match-center__periods">{{ lastMatch.periods }}</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="livestream block" aria-labelledby="livestream-title">
+    <p class="section-kicker">Streaming</p>
+    <h2 id="livestream-title">Spielvideo</h2>
+    <p>Aufzeichnung / Livestream</p>
+
+    <div class="livestream__frame" *ngIf="isBrowser">
+      <iframe
+        [src]="livestreamEmbedUrl"
+        title="Bundesliga weiblich Spielvideo"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <a class="livestream__button" [href]="livestreamUrl" target="_blank" rel="noopener">
+      Video auf YouTube öffnen
+    </a>
+  </section>
+</section>
