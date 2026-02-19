@@ -340,7 +340,7 @@ export class AchievementsComponent {
         'Austragungsort: Hamburg.',
       ],
       goldOutline: true,
-      sourceLabel: 'https://biancamitterbauer.de/tournaments',
+      sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/wettkampf/ergebnisse/',
     },
     {
       id: 'tournament-performance',
