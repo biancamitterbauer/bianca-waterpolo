@@ -250,6 +250,38 @@ export class AchievementsComponent {
         'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A61/2/HUN/GER/U16W',
     },
     {
+      id: 'u16-em-2025-gre-ger',
+      year: 2025,
+      dateLabel: '06/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Gruppenphase Gruppe B: Griechenland 26:4 Deutschland',
+      details: [
+        'Group Stage Group B, 29.06.2025, 13:00 Uhr: Griechenland gewinnt mit 26:4 gegen Deutschland.',
+        'Viertelergebnisse: 6:0, 6:2, 8:2, 6:0.',
+        'Bianca Mitterbauer ohne Torerfolg in der Partie.',
+        'Schiedsrichter: R. Evers (NED) und P. Georgescu (ROU).',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A01/2/GRE/GER/U16W',
+    },
+    {
+      id: 'u16-em-2025-ita-ger',
+      year: 2025,
+      dateLabel: '06/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Gruppenphase Gruppe B: Italien 21:5 Deutschland',
+      details: [
+        'Group Stage Group B, 27.06.2025, 19:00 Uhr: Italien gewinnt mit 21:5 gegen Deutschland.',
+        'Viertelergebnisse: 4:0, 8:0, 3:5, 6:0.',
+        'Bianca Mitterbauer erzielt 3 Tore in der Partie.',
+        'Schiedsrichter: B. Beljin (SRB) und N. Mercieca (MLT).',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/A01/2/ITA/GER/U16W',
+    },
+    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
