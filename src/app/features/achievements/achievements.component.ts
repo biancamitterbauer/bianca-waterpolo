@@ -217,13 +217,17 @@ export class AchievementsComponent {
       id: 'tournament-performance',
       year: 2026,
       category: 'tournament',
-      title: 'Turnierperformance national und international',
-      subtitle: 'Konstanz im Wettkampfkalender',
+      title: 'European U20 Water Polo Championships 2026',
+      subtitle: 'Neue Terminierung durch European Aquatics',
       details: [
-        'Wettkampfformen mit hoher Intensität über mehrere Spieltage.',
-        'Ergebnisnachweise und Match-Summaries werden fortlaufend ergänzt.',
+        'Austragungsort beider Turniere: Coimbra (Portugal).',
+        'Women’s Championships: 03.–09. August 2026.',
+        'Men’s Championships: 10.–16. August 2026.',
+        'Die Termine wurden nach Kalenderanpassungen von World Aquatics neu festgelegt.',
+        'Die Auslosung wurde von November 2025 auf Ende Februar 2026 verschoben.',
       ],
-      sourceLabel: 'Quelle folgt',
+      sourceLabel:
+        'https://europeanaquatics.org/new-dates-for-2026-european-u20-water-polo-championships-announced/',
     },
   ];
 
