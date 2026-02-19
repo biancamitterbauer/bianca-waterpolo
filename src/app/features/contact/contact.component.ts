@@ -17,6 +17,7 @@ export class ContactComponent {
   private readonly fb = inject(FormBuilder);
   private readonly seo = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly recipientEmail = 'ralf.mitterbauer@t-online.de';
 
   readonly isBrowser = isPlatformBrowser(this.platformId);
   isSubmitting = false;
@@ -57,18 +58,34 @@ export class ContactComponent {
     this.isSubmitting = true;
     this.submitState = 'idle';
 
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.submitState = 'success';
-      this.contactForm.reset({
-        fullName: '',
-        organization: '',
-        phone: '',
-        topic: 'Sponsoring',
-        preferredContact: 'Telefon',
-        message: '',
-        consent: false,
-      });
-    }, 700);
+    const formValue = this.contactForm.getRawValue();
+    const subject = `Kontaktanfrage: ${formValue.topic} – ${formValue.fullName}`;
+    const bodyLines = [
+      `Name: ${formValue.fullName}`,
+      `Organisation: ${formValue.organization || '-'}`,
+      `Telefon: ${formValue.phone || '-'}`,
+      `Bevorzugter Kontaktweg: ${formValue.preferredContact}`,
+      '',
+      'Nachricht:',
+      formValue.message,
+    ];
+
+    const mailtoUrl = `mailto:${this.recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+    if (this.isBrowser) {
+      window.location.href = mailtoUrl;
+    }
+
+    this.isSubmitting = false;
+    this.submitState = 'success';
+    this.contactForm.reset({
+      fullName: '',
+      organization: '',
+      phone: '',
+      topic: 'Sponsoring',
+      preferredContact: 'Telefon',
+      message: '',
+      consent: false,
+    });
   }
 }

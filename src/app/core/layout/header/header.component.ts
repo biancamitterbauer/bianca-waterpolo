@@ -39,7 +39,6 @@ export class HeaderComponent {
     { labelKey: 'nav.bundesliga', path: '/bundesliga-weibl', exact: false },
     { labelKey: 'nav.media', path: '/media', exact: false },
     { labelKey: 'nav.sponsors', path: '/sponsors', exact: false },
-    { labelKey: 'nav.press', path: '/press', exact: false },
     { labelKey: 'nav.contact', path: '/contact', exact: false },
   ];
 
