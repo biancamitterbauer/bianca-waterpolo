@@ -67,13 +67,13 @@ export class AchievementsComponent {
   readonly proofCards: ProofCard[] = [
     {
       title: 'Nationalteam Einsätze',
-      body: 'Kader- und Spielpraxis auf internationalem Niveau, belastbar im Turnierformat.',
-      badge: 'Quelle folgt',
+      body: 'Die DSV-Kaderliste führt Bianca im Wasserball-Nationalteam-Kontext und bestätigt die Einbindung auf Leistungsniveau.',
+      badge: 'verifiziert · DSV-Kaderliste',
     },
     {
       title: 'Internationale Turniere',
-      body: 'Teilnahmen in U16/U18-Kontext mit Top-Wettbewerbsdichte und hoher Sichtbarkeit.',
-      badge: 'Quelle folgt',
+      body: 'Nationaler Kaderstatus als belastbare Grundlage für Einsätze und Nominierungen bei internationalen Turnieren.',
+      badge: 'verifiziert · DSV-Kaderliste',
     },
     {
       title: 'Deutsche Wettbewerbe',
@@ -185,6 +185,20 @@ export class AchievementsComponent {
       ],
       goldOutline: true,
       sourceLabel: 'https://www.worldaquatics.com/competitions/3490/world-aquatics-women-s-u16-water-polo-championships-2024',
+    },
+    {
+      id: 'dsv-kader-verifikation',
+      year: 2026,
+      dateLabel: '2026',
+      category: 'nationalteam',
+      title: 'DSV-Kaderliste Wasserball (Verifikation)',
+      subtitle: 'Nachweis für Nationalteam-Einsätze und Turnier-Nominierungen',
+      details: [
+        'Die Kaderliste des Deutschen Schwimm-Verbands führt Bianca Mitterbauer im Wasserball-Kontext.',
+        'Der Kaderstatus verifiziert die Einbindung für nationale und internationale Turniere.',
+        'Die Einordnung stützt die Darstellung von Nationalteam-Einsätzen auf der Erfolge-Seite.',
+      ],
+      sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/nationalmannschaft/dsv-kader/',
     },
     {
       id: 'eu-nations-cup-2025',
