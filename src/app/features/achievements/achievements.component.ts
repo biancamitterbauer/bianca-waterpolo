@@ -202,6 +202,22 @@ export class AchievementsComponent {
         'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/D81/1/GER/CRO/U16W',
     },
     {
+      id: 'u16-em-2025-tur-ger',
+      year: 2025,
+      dateLabel: '07/2025',
+      category: 'nationalteam',
+      title: 'U16 Europameisterschaft 2025',
+      subtitle: 'Klassifikationsspiel: Türkei 10:7 Deutschland',
+      details: [
+        'Match 36 (Classification 5-8), 02.07.2025, 16:00 Uhr: Türkei gewinnt mit 10:7 gegen Deutschland.',
+        'Viertelergebnisse: 2:0, 3:2, 4:3, 1:2.',
+        'Bianca Mitterbauer erzielt 2 Tore in der Partie.',
+        'Schiedsrichter: R. Grillo (ITA) und M. Fernandez (ESP).',
+      ],
+      sourceLabel:
+        'https://results.microplustimingservices.com/ewpcU16w25/#/match-details/results/ASF/1/C71/1/TUR/GER/U16W',
+    },
+    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
