@@ -329,6 +329,20 @@ export class AchievementsComponent {
       sourceLabel: 'European Aquatics (Terminankündigung 2026)',
     },
     {
+      id: 'u18-pokal-2026-hamburg',
+      year: 2026,
+      dateLabel: '21.–22.02.2026',
+      category: 'tournament',
+      title: 'Deutscher Wasserball Pokal weiblich U18 (geplant)',
+      subtitle: 'Hamburg · kommendes Turnier',
+      details: [
+        'Turniertermin: 21.–22. Februar 2026.',
+        'Austragungsort: Hamburg.',
+      ],
+      goldOutline: true,
+      sourceLabel: 'https://biancamitterbauer.de/tournaments',
+    },
+    {
       id: 'tournament-performance',
       year: 2026,
       dateLabel: '03.–16.08.2026',
