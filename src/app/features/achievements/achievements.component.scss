@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+:host,
+:host * {
+  box-sizing: border-box;
+}
+
 .achievements-shell {
   width: 100%;
   background: #000;
@@ -60,6 +65,9 @@
 }
 
 .proof-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
@@ -152,6 +160,9 @@
 }
 
 .timeline-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
@@ -191,6 +202,9 @@
 .timeline-card .source {
   margin-top: 0.75rem;
   display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.74);
 }
@@ -216,6 +230,9 @@
 }
 
 .team-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
@@ -318,6 +335,16 @@
     padding: 0 1rem 3rem;
   }
 
+  .block {
+    overflow-x: clip;
+  }
+
+  .proof-card,
+  .timeline-card,
+  .team-card {
+    overflow: hidden;
+  }
+
   .proof-grid,
   .team-grid {
     grid-template-columns: 1fr;
@@ -331,5 +358,12 @@
   .year-rail {
     font-size: 1.15rem;
     border-left-width: 2px;
+  }
+}
+
+@media (display-mode: standalone) and (max-width: 720px) {
+  .achievements-shell {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 }
