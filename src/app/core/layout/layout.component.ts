@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule, RouterLink, RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { BottomTabbarComponent } from './bottom-tabbar/bottom-tabbar.component';
@@ -10,7 +10,7 @@ import { I18nService, SupportedLang } from '../i18n/i18n.service';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, RouterLink, HeaderComponent, BottomTabbarComponent, I18nPipe],
+  imports: [CommonModule, RouterModule, RouterOutlet, HeaderComponent, BottomTabbarComponent, I18nPipe],
   template: `
     <app-header></app-header>
     <main class="app-main">

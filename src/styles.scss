@@ -1,8 +1,8 @@
-@import './styles/_variables.scss';
-@import './styles/_tokens.scss';
-@import './styles/_typography.scss';
-@import './styles/_layout.scss';
-@import './styles/_pitch-print.scss';
+@use './styles/_variables.scss' as *;
+@use './styles/_tokens.scss' as *;
+@use './styles/_typography.scss' as *;
+@use './styles/_layout.scss' as *;
+@use './styles/_pitch-print.scss' as *;
 
 /* Elite athlete app theme */
 :root {
