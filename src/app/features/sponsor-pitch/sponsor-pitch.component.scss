@@ -1458,15 +1458,21 @@ p {
 
   .pitch-mobile {
     display: grid;
+    gap: 1.5rem;
     padding: 1rem 0.9rem 2rem;
   }
 
   .pitch-stack-card {
-    padding: 1.1rem;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .pitch-stack-card .stack-content {
+    width: 100%;
   }
 
   .pitch-mobile .pitch-slide {
@@ -1485,6 +1491,25 @@ p {
   .pitch-mobile [class*='grid'],
   .pitch-mobile .reach-section {
     grid-template-columns: 1fr !important;
+  }
+
+  .pitch-mobile .slide-two-card-grid,
+  .pitch-mobile .icon-grid,
+  .pitch-mobile .reach-matrix,
+  .pitch-mobile .kpi-grid,
+  .pitch-mobile .package-grid,
+  .pitch-mobile .model-grid,
+  .pitch-mobile .model-grid.premium-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pitch-mobile .slide-two-card,
+  .pitch-mobile .icon-card,
+  .pitch-mobile .reach-card,
+  .pitch-mobile .kpi-chip,
+  .pitch-mobile .model-card {
+    width: 100%;
+    max-width: 100%;
   }
 
   .pitch-mobile .package-title {
