@@ -441,6 +441,11 @@ export class AchievementsComponent {
 
   readonly selectedFilter = signal<FilterKey>('all');
 
+  private readonly top2026Order: Record<string, number> = {
+    'u18-em-2026-women': 0,
+    'tournament-performance': 1,
+  };
+
   readonly filteredAchievements = computed(() => {
     const filter = this.selectedFilter();
     if (filter === 'all') return this.achievements;
@@ -449,7 +454,11 @@ export class AchievementsComponent {
 
   readonly timelineGroups = computed(() => {
     const sortedItems = [...this.filteredAchievements()].sort(
-      (a, b) => this.getSortTimestamp(b) - this.getSortTimestamp(a),
+      (a, b) => {
+        const pinnedOrder = this.comparePinned2026Order(a, b);
+        if (pinnedOrder !== 0) return pinnedOrder;
+        return this.getSortTimestamp(b) - this.getSortTimestamp(a);
+      },
     );
 
     const grouped = new Map<number, Achievement[]>();
@@ -469,6 +478,20 @@ export class AchievementsComponent {
       .sort((a, b) => b.maxTimestamp - a.maxTimestamp)
       .map(({ year, items }) => ({ year, items }));
   });
+
+  private comparePinned2026Order(a: Achievement, b: Achievement): number {
+    if (a.year !== 2026 || b.year !== 2026) return 0;
+
+    const aPinned = this.top2026Order[a.id];
+    const bPinned = this.top2026Order[b.id];
+    const aHasPin = aPinned !== undefined;
+    const bHasPin = bPinned !== undefined;
+
+    if (aHasPin && bHasPin) return aPinned - bPinned;
+    if (aHasPin) return -1;
+    if (bHasPin) return 1;
+    return 0;
+  }
 
   constructor() {
     this.seo.updateSeo({
