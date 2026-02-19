@@ -331,18 +331,6 @@ export class AchievementsComponent {
         'https://germanaquatics.de/dsv-wasserballerinnen-mit-sehr-jungem-team-auf-platz-zehn-bei-der-u18-em/',
     },
     {
-      id: 'club-title-context',
-      year: 2026,
-      category: 'club',
-      title: 'Team-Erfolge im Titelumfeld (Spandau 04)',
-      subtitle: 'Leistungsumfeld auf Meisterschafts-/Pokalniveau',
-      details: [
-        'Mitwirkung im Teamkontext eines mehrfach erfolgreichen Frauen-Bundesliga-Standorts.',
-        'Titelbezogene Teamdetails werden mit Quellen sukzessive ergänzt.',
-      ],
-      sourceLabel: 'Quelle folgt',
-    },
-    {
       id: 'spandau-instagram-top-scorer-2026-02',
       year: 2026,
       dateLabel: '18.02.2026',
@@ -444,8 +432,13 @@ export class AchievementsComponent {
     }
 
     return [...grouped.entries()]
-      .sort((a, b) => b[0] - a[0])
-      .map(([year, items]) => ({ year, items }));
+      .map(([year, items]) => ({
+        year,
+        items,
+        maxTimestamp: Math.max(...items.map((entry) => this.getSortTimestamp(entry))),
+      }))
+      .sort((a, b) => b.maxTimestamp - a.maxTimestamp)
+      .map(({ year, items }) => ({ year, items }));
   });
 
   constructor() {
