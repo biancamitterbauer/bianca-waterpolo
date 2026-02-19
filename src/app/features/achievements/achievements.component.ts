@@ -192,8 +192,10 @@ export class AchievementsComponent {
       subtitle: 'Klassifikationsspiel: Deutschland 13:9 Kroatien (Platz 7)',
       details: [
         'Match 41 (Classification 7-8), 03.07.2025: Deutschland gewinnt mit 13:9 gegen Kroatien.',
+        'Anpfiff: 03.07.2025, 15:30 Uhr (lokale Zeit).',
         'Durch den Sieg im Spiel 7/8 beendet Deutschland das Turnier auf Platz 7.',
         'Viertelergebnisse: 4:2, 2:1, 6:5, 1:1.',
+        'Schiedsrichter: R. Grillo (ITA) und N. Sajben (HUN).',
         'Bianca Mitterbauer erzielt 2 Tore in der Partie.',
       ],
       sourceLabel:
