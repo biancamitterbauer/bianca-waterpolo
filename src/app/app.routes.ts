@@ -6,7 +6,7 @@ export const routes: Routes = [
 	{ path: 'about', loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent) },
 	{ path: 'achievements', loadComponent: () => import('./features/achievements/achievements.component').then(m => m.AchievementsComponent) },
 	{ path: 'news', loadComponent: () => import('./features/news/news.component').then(m => m.NewsComponent) },
-	{ path: 'training', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'training', loadComponent: () => import('./features/training/training.component').then(m => m.TrainingComponent) },
 	{ path: 'tournaments', loadComponent: () => import('./features/tournaments/tournaments.component').then(m => m.TournamentsComponent) },
 	{ path: 'bundesliga-weibl', loadComponent: () => import('./features/bundesliga-weibl/bundesliga-weibl.component').then(m => m.BundesligaWeiblComponent) },
 	{ path: 'media', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
