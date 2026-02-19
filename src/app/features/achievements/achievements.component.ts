@@ -200,18 +200,6 @@ export class AchievementsComponent {
       sourceLabel: 'verifiziert',
     },
     {
-      id: 'nationalteam-core',
-      year: 2025,
-      category: 'nationalteam',
-      title: 'Nationalteam-Kader und Einsätze',
-      subtitle: 'Juniorinnen- und Frauenkontext',
-      details: [
-        'Einbindung in Nationalteam-Strukturen mit internationaler Wettbewerbserfahrung.',
-        'Details zu Einsätzen und Turnierstatistiken werden ergänzt.',
-      ],
-      sourceLabel: 'Quelle folgt',
-    },
-    {
       id: 'u18-tournaments',
       year: 2025,
       dateLabel: '09/2025',
