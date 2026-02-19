@@ -215,6 +215,21 @@ export class AchievementsComponent {
       sourceLabel: 'https://www.instagram.com/p/DP9kv20jI4C/',
     },
     {
+      id: 'spandau-deutsche-meisterinnen-2025',
+      year: 2025,
+      dateLabel: '2025',
+      category: 'club',
+      title: 'Deutsche Meisterinnen 2025',
+      subtitle: 'Titelverteidigung mit perfekter Saison (Spandau 04 Women)',
+      details: [
+        'Titelverteidigung: Spandau 04 Women sind Deutsche Meisterinnen 2025.',
+        'Finalspiel gegen Blau-Weiß Bochum: 15:5 für Spandau.',
+        'Finalserie im Modus Best of Three: 2:0 Siege.',
+      ],
+      germanAccent: true,
+      sourceLabel: 'https://www.instagram.com/p/DKVHVHoIQyU/',
+    },
+    {
       id: 'spandau-neuzugang-2025-05',
       year: 2025,
       dateLabel: '30.05.2025',
