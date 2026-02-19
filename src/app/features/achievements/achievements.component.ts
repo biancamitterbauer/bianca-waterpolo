@@ -77,8 +77,8 @@ export class AchievementsComponent {
     },
     {
       title: 'Deutsche Wettbewerbe',
-      body: 'Einsatz im Umfeld von Meisterschaft und Pokal auf nationalem Top-Level.',
-      badge: 'verifiziert / Quelle folgt',
+      body: 'Für deutsche Wettbewerbe ist Bianca über ihre DSV-ID sowie über die Zugehörigkeit zum Verein verifiziert.',
+      badge: 'verifiziert · DSV-ID + Vereinszugehörigkeit',
     },
   ];
 
@@ -196,6 +196,7 @@ export class AchievementsComponent {
       details: [
         'Die Kaderliste des Deutschen Schwimm-Verbands führt Bianca Mitterbauer im Wasserball-Kontext.',
         'Der Kaderstatus verifiziert die Einbindung für nationale und internationale Turniere.',
+        'Für deutsche Wettbewerbe erfolgt die Verifizierung über die DSV-ID sowie die Vereinszugehörigkeit.',
         'Die Einordnung stützt die Darstellung von Nationalteam-Einsätzen auf der Erfolge-Seite.',
       ],
       sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/nationalmannschaft/dsv-kader/',
