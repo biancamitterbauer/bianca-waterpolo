@@ -16,6 +16,7 @@ interface Achievement {
   details: string[];
   highlight?: boolean;
   goldOutline?: boolean;
+  germanAccent?: boolean;
   sourceLabel?: string;
 }
 
@@ -340,6 +341,7 @@ export class AchievementsComponent {
         'Austragungsort: Hamburg.',
       ],
       goldOutline: true,
+      germanAccent: true,
       sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/wettkampf/ergebnisse/',
     },
     {
