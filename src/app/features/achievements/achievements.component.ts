@@ -187,21 +187,6 @@ export class AchievementsComponent {
       sourceLabel: 'https://www.worldaquatics.com/competitions/3490/world-aquatics-women-s-u16-water-polo-championships-2024',
     },
     {
-      id: 'dsv-kader-verifikation',
-      year: 2026,
-      dateLabel: '2026',
-      category: 'nationalteam',
-      title: 'DSV-Kaderliste Wasserball (Verifikation)',
-      subtitle: 'Nachweis für Nationalteam-Einsätze und Turnier-Nominierungen',
-      details: [
-        'Die Kaderliste des Deutschen Schwimm-Verbands führt Bianca Mitterbauer im Wasserball-Kontext.',
-        'Der Kaderstatus verifiziert die Einbindung für nationale und internationale Turniere.',
-        'Für deutsche Wettbewerbe erfolgt die Verifizierung über die DSV-ID sowie die Vereinszugehörigkeit.',
-        'Die Einordnung stützt die Darstellung von Nationalteam-Einsätzen auf der Erfolge-Seite.',
-      ],
-      sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/nationalmannschaft/dsv-kader/',
-    },
-    {
       id: 'eu-nations-cup-2025',
       year: 2025,
       dateLabel: '10/2025 – 11/2025',
