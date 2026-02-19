@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
 	{ path: '', loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent) },
 	{ path: 'about', loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent) },
-	{ path: 'achievements', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'achievements', loadComponent: () => import('./features/achievements/achievements.component').then(m => m.AchievementsComponent) },
 	{ path: 'news', loadComponent: () => import('./features/news/news.component').then(m => m.NewsComponent) },
 	{ path: 'training', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'tournaments', loadComponent: () => import('./features/tournaments/tournaments.component').then(m => m.TournamentsComponent) },

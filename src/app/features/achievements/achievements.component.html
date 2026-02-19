@@ -1,0 +1,128 @@
+<section class="achievements-shell">
+  <section class="hero block">
+    <h1>Erfolge</h1>
+    <p class="hero-subline">Leistung. Konstanz. Titel.</p>
+    <p class="hero-intro">Internationale Turniere, nationale Titel und Team-Erfolge — strukturiert, belegbar, sponsor-ready.</p>
+
+    <ul class="kpi-chips" aria-label="Leistungskennzeichen">
+      <li *ngFor="let chip of kpiChips">{{ chip }}</li>
+    </ul>
+  </section>
+
+  <section class="proof-strip block" aria-label="Proof Points">
+    <div class="proof-grid">
+      <article class="proof-card" *ngFor="let card of proofCards">
+        <div class="proof-icon" aria-hidden="true">◉</div>
+        <h2>{{ card.title }}</h2>
+        <p>{{ card.body }}</p>
+        <span class="proof-badge">{{ card.badge }}</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="timeline block" aria-labelledby="timeline-title">
+    <div class="timeline-head">
+      <h2 id="timeline-title">Erfolge im Zeitverlauf</h2>
+      <div class="filter-bar" role="group" aria-label="Filter für Erfolge">
+        <button type="button" [class.active]="selectedFilter() === 'all'" [attr.aria-pressed]="selectedFilter() === 'all'" (click)="setFilter('all')">Alle</button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'nationalteam'"
+          [attr.aria-pressed]="selectedFilter() === 'nationalteam'"
+          (click)="setFilter('nationalteam')"
+        >
+          Nationalteam
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'club'"
+          [attr.aria-pressed]="selectedFilter() === 'club'"
+          (click)="setFilter('club')"
+        >
+          Verein (Spandau 04)
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'youth'"
+          [attr.aria-pressed]="selectedFilter() === 'youth'"
+          (click)="setFilter('youth')"
+        >
+          Nachwuchs (U16/U18)
+        </button>
+        <button
+          type="button"
+          [class.active]="selectedFilter() === 'tournament'"
+          [attr.aria-pressed]="selectedFilter() === 'tournament'"
+          (click)="setFilter('tournament')"
+        >
+          Turniere
+        </button>
+      </div>
+    </div>
+
+    <div class="timeline-list" *ngIf="timelineGroups().length > 0; else emptyState">
+      <article class="timeline-group" *ngFor="let group of timelineGroups()">
+        <aside class="year-rail">{{ group.year }}</aside>
+        <div class="year-content">
+          <section class="timeline-card" *ngFor="let item of group.items" [class.highlight]="item.highlight">
+            <header>
+              <p class="date" *ngIf="item.dateLabel">{{ item.dateLabel }}</p>
+              <h3>{{ item.title }}</h3>
+              <p class="subtitle" *ngIf="item.subtitle">{{ item.subtitle }}</p>
+            </header>
+
+            <ul>
+              <li *ngFor="let detail of item.details">{{ detail }}</li>
+            </ul>
+
+            <span class="source" *ngIf="item.sourceLabel">{{ item.sourceLabel }}</span>
+          </section>
+        </div>
+      </article>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="timeline-empty">
+        <p>Für den gewählten Filter sind aktuell keine Einträge verfügbar.</p>
+      </div>
+    </ng-template>
+  </section>
+
+  <section class="team-success block" aria-labelledby="team-success-title">
+    <h2 id="team-success-title">Team-Erfolge · Wasserfreunde Spandau 04</h2>
+    <p class="team-subline">Als Stammspielerin seit 08/2025 — Titel des Teams als Leistungsumfeld.</p>
+
+    <div class="team-grid">
+      <article class="team-card" *ngFor="let card of teamAchievementCards">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.body }}</p>
+      </article>
+    </div>
+
+    <p class="team-note">Details/Quellen werden ergänzt.</p>
+  </section>
+
+  <section class="performance block" aria-labelledby="relevance-title">
+    <h2 id="relevance-title">Warum diese Erfolge relevant sind</h2>
+
+    <ul class="relevance-list">
+      <li>
+        <strong>Sichtbarkeit</strong>
+        <span>Turniere, Medien und Livestreams schaffen planbare Präsenz für Partner.</span>
+      </li>
+      <li>
+        <strong>Verlässlichkeit</strong>
+        <span>Stammspielerin mit konstanter Trainings- und Spielbelastung im Hochleistungsumfeld.</span>
+      </li>
+      <li>
+        <strong>Markenfit</strong>
+        <span>Professionalität, Teamkultur und Vorbildrolle im Nachwuchsbereich.</span>
+      </li>
+    </ul>
+
+    <div class="cta-row">
+      <a routerLink="/sponsors" class="cta-btn cta-primary">Sponsor werden</a>
+      <a routerLink="/contact" class="cta-btn cta-secondary">Media Kit anfordern</a>
+    </div>
+  </section>
+</section>
