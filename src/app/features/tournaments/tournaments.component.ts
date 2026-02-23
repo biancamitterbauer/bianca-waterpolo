@@ -12,6 +12,7 @@ interface Fixture {
   location: string;
   isSpandau: boolean;
   score?: string;
+  scoreDetails?: string;
   status?: 'upcoming' | 'live' | 'finished';
 }
 
@@ -24,7 +25,6 @@ type FixtureView = Fixture & {
 
 type RankingRow = {
   team: string;
-  comparisonNote: string;
   played: number;
   wins: number;
   draws: number;
@@ -33,6 +33,14 @@ type RankingRow = {
   goalsFor: number;
   goalsAgainst: number;
   goalDiff: number;
+};
+
+type TopScorerRow = {
+  rank: string;
+  player: string;
+  team: string;
+  goals: number;
+  matches: number;
 };
 
 type CountdownParts = {
@@ -57,28 +65,61 @@ type FixtureSource = Fixture & {
 };
 
 const LIVE_MATCH_DURATION_MINUTES = 120;
-const TOURNAMENT_VENUE = 'Am Inselpark, 21109 Hamburg';
-const RANKING_TEAMS: Array<{ team: string; comparisonNote: string }> = [
-  {
-    team: 'Eimsbütteler Turnverband',
-    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
-  },
-  {
-    team: 'SC Chemnitz 1892',
-    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
-  },
-  {
-    team: 'SSV Esslingen',
-    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
-  },
-  {
-    team: 'Uerdinger Schwimmverein 08',
-    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
-  },
-  {
-    team: 'Wfr. Spandau 04',
-    comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
-  },
+const TOURNAMENT_VENUE = 'Hamburg';
+const RANKING_TEAMS: string[] = [
+  'Eimsbütteler Turnverband',
+  'SC Chemnitz 1892',
+  'SSV Esslingen',
+  'Uerdinger Schwimmverein 08',
+  'Wfr. Spandau 04',
+];
+
+const TOP_SCORERS: TopScorerRow[] = [
+  { rank: '1', player: 'Reutter, Mia (2008)', team: 'SSV Esslingen', goals: 24, matches: 4 },
+  { rank: '', player: 'Schafft, Maite (2009)', team: 'SSV Esslingen', goals: 24, matches: 4 },
+  { rank: '3', player: 'Mitterbauer, Bianca (2009)', team: 'Wfr. Spandau 04', goals: 20, matches: 3 },
+  { rank: '4', player: 'Tomica, Viktoria Maria (2008)', team: 'SSV Esslingen', goals: 17, matches: 4 },
+  { rank: '5', player: 'Bluhm, Amaia Milena (2009)', team: 'Eimsbütteler Turnverband', goals: 14, matches: 4 },
+  { rank: '6', player: 'Bruns, Lina Henriette (2011)', team: 'Wfr. Spandau 04', goals: 13, matches: 4 },
+  { rank: '7', player: 'Staffe, Merle Petra (2008)', team: 'SC Chemnitz 1892', goals: 12, matches: 4 },
+  { rank: '8', player: 'Fehmel, Emma (2009)', team: 'SC Chemnitz 1892', goals: 11, matches: 4 },
+  { rank: '', player: 'Kaya, Elizan Liya Mavi (2010)', team: 'Uerdinger Schwimmverein 08', goals: 11, matches: 4 },
+  { rank: '10', player: 'Politze, Nele (2008)', team: 'Wfr. Spandau 04', goals: 10, matches: 4 },
+  { rank: '', player: 'Stüven, Mila Marie (2012)', team: 'Eimsbütteler Turnverband', goals: 10, matches: 4 },
+  { rank: '12', player: 'Augustynowicz, Kaja (2008)', team: 'Eimsbütteler Turnverband', goals: 9, matches: 4 },
+  { rank: '', player: 'Dietze, Emma (2008)', team: 'Eimsbütteler Turnverband', goals: 9, matches: 4 },
+  { rank: '', player: 'Frisch, Mia (2009)', team: 'SC Chemnitz 1892', goals: 9, matches: 4 },
+  { rank: '', player: 'Lucas, Lina (2010)', team: 'SC Chemnitz 1892', goals: 9, matches: 4 },
+  { rank: '16', player: 'Celen, Cemile Cu (2010)', team: 'Uerdinger Schwimmverein 08', goals: 8, matches: 4 },
+  { rank: '', player: 'Straach, Clara Marie (2008)', team: 'SC Chemnitz 1892', goals: 8, matches: 4 },
+  { rank: '18', player: 'Dimanshteyn, Sofia (2009)', team: 'SSV Esslingen', goals: 7, matches: 3 },
+  { rank: '19', player: 'Nolte, Marta (2009)', team: 'Uerdinger Schwimmverein 08', goals: 7, matches: 4 },
+  { rank: '', player: 'Schüßler, Lucy (2008)', team: 'SC Chemnitz 1892', goals: 7, matches: 4 },
+  { rank: '21', player: 'Gronih, Iva (2009)', team: 'SSV Esslingen', goals: 6, matches: 4 },
+  { rank: '', player: 'Hüsselmann, Maya (2008)', team: 'SSV Esslingen', goals: 6, matches: 4 },
+  { rank: '', player: 'Mühlmann, Julika (2012)', team: 'Wfr. Spandau 04', goals: 6, matches: 4 },
+  { rank: '24', player: 'Dohle, Finja (2008)', team: 'Uerdinger Schwimmverein 08', goals: 5, matches: 4 },
+  { rank: '', player: 'Schweingel, Sophia Marie (2009)', team: 'Eimsbütteler Turnverband', goals: 5, matches: 4 },
+  { rank: '', player: 'Simic, Helena (2009)', team: 'Uerdinger Schwimmverein 08', goals: 5, matches: 4 },
+  { rank: '27', player: 'Kurmakaieva, Alika (2008)', team: 'SSV Esslingen', goals: 4, matches: 4 },
+  { rank: '', player: 'Radloff, Lilli Malia (2012)', team: 'Wfr. Spandau 04', goals: 4, matches: 4 },
+  { rank: '29', player: 'Arabatzis, Sophia (2010)', team: 'Uerdinger Schwimmverein 08', goals: 3, matches: 4 },
+  { rank: '', player: 'Günther, Zoe (2012)', team: 'Wfr. Spandau 04', goals: 3, matches: 4 },
+  { rank: '', player: 'Pauels, Ella (2011)', team: 'Uerdinger Schwimmverein 08', goals: 3, matches: 4 },
+  { rank: '', player: 'Seeck, Alma Elisa (2010)', team: 'SC Chemnitz 1892', goals: 3, matches: 4 },
+  { rank: '', player: 'von Waldenfels, Milla (2011)', team: 'Eimsbütteler Turnverband', goals: 3, matches: 4 },
+  { rank: '34', player: 'Augustynowicz, Paula (2011)', team: 'Eimsbütteler Turnverband', goals: 2, matches: 4 },
+  { rank: '', player: 'Hahn, Sibel (2009)', team: 'SC Chemnitz 1892', goals: 2, matches: 4 },
+  { rank: '', player: 'Häntsch, Jordan Isabella (2012)', team: 'Wfr. Spandau 04', goals: 2, matches: 4 },
+  { rank: '', player: 'Netseplyayeva, Eva (2011)', team: 'Wfr. Spandau 04', goals: 2, matches: 4 },
+  { rank: '', player: 'Politze, Anouk Eleni (2009)', team: 'Wfr. Spandau 04', goals: 2, matches: 4 },
+  { rank: '', player: 'Schlüse, Mara (2011)', team: 'Eimsbütteler Turnverband', goals: 2, matches: 4 },
+  { rank: '40', player: 'Lindow, Janne (2010)', team: 'Eimsbütteler Turnverband', goals: 1, matches: 4 },
+  { rank: '', player: 'Neufeld, Laura (2011)', team: 'Wfr. Spandau 04', goals: 1, matches: 4 },
+  { rank: '', player: 'Pajonk, Caro Lina (2012)', team: 'Uerdinger Schwimmverein 08', goals: 1, matches: 4 },
+  { rank: '', player: 'Reutter, Ella Marlene (2011)', team: 'SSV Esslingen', goals: 1, matches: 4 },
+  { rank: '', player: 'Skorykow, Lena (2008)', team: 'SSV Esslingen', goals: 1, matches: 4 },
+  { rank: '', player: 'Spedicato, Vittoria (2011)', team: 'SSV Esslingen', goals: 1, matches: 4 },
 ];
 
 const FIXTURE_SOURCE: FixtureSource[] = [
@@ -91,6 +132,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'SC Chemnitz 1892',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '10:17',
+    scoreDetails: '(1:2, 1:5, 4:5, 4:5)',
   },
   {
     id: 2,
@@ -101,6 +144,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'Wfr. Spandau 04',
     location: TOURNAMENT_VENUE,
     isSpandau: true,
+    score: '18:21',
+    scoreDetails: '(8:3, 4:7, 4:5, 2:6)',
   },
   {
     id: 3,
@@ -111,6 +156,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'SSV Esslingen',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '5:25',
+    scoreDetails: '(0:6, 0:6, 2:6, 3:7)',
   },
   {
     id: 4,
@@ -121,6 +168,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'SC Chemnitz 1892',
     location: TOURNAMENT_VENUE,
     isSpandau: true,
+    score: '9:19',
+    scoreDetails: '(1:7, 3:4, 1:4, 4:4)',
   },
   {
     id: 5,
@@ -131,6 +180,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'Eimsbütteler Turnverband',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '28:10',
+    scoreDetails: '(8:1, 4:1, 9:2, 7:6)',
   },
   {
     id: 6,
@@ -141,6 +192,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'Uerdinger Schwimmverein 08',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '16:15',
+    scoreDetails: '(5:5, 5:4, 5:3, 1:3)',
   },
   {
     id: 7,
@@ -151,6 +204,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'Wfr. Spandau 04',
     location: TOURNAMENT_VENUE,
     isSpandau: true,
+    score: '23:11',
+    scoreDetails: '(6:1, 7:2, 4:4, 6:4)',
   },
   {
     id: 8,
@@ -161,6 +216,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'SC Chemnitz 1892',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '11:19',
+    scoreDetails: '(2:8, 4:3, 2:5, 3:3)',
   },
   {
     id: 9,
@@ -171,6 +228,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'Uerdinger Schwimmverein 08',
     location: TOURNAMENT_VENUE,
     isSpandau: true,
+    score: '22:13',
+    scoreDetails: '(9:2, 5:7, 3:1, 5:3)',
   },
   {
     id: 10,
@@ -181,6 +240,8 @@ const FIXTURE_SOURCE: FixtureSource[] = [
     away: 'SSV Esslingen',
     location: TOURNAMENT_VENUE,
     isSpandau: false,
+    score: '6:15',
+    scoreDetails: '(0:5, 4:1, 0:6, 2:3)',
   },
 ];
 
@@ -223,6 +284,7 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   fixtures: FixtureView[] = [];
   nextMatch: FixtureView | null = null;
   rankingTable: RankingRow[] = [];
+  readonly topScorers: TopScorerRow[] = TOP_SCORERS;
   countdown: CountdownParts = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   countdownText = '00d : 00h : 00m : 00s';
   isLiveSoon = false;
@@ -237,7 +299,11 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   }
 
   get rankingTitle(): string {
-    return 'Deutscher Wasserball Pokal weiblich U18: 5 Mannschaften | 3 Punktsystem';
+    return 'Tabelle: 5 Mannschaften | 3 Punktsystem';
+  }
+
+  get topScorersTitle(): string {
+    return '45 Torjäger | alle Gruppen und Runden | ohne Entscheidungswerfen';
   }
 
   get isTournamentOver(): boolean {
@@ -300,6 +366,10 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
   formatGoals(row: RankingRow): string {
     return `${row.goalsFor}:${row.goalsAgainst}`;
+  }
+
+  formatGoalDiff(value: number): string {
+    return value > 0 ? `+${value}` : `${value}`;
   }
 
   formatPlayed(row: RankingRow): string {
@@ -438,10 +508,9 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
   private calculateRanking(fixtures: Fixture[]): RankingRow[] {
     const table = new Map<string, RankingRow>();
-    for (const entry of RANKING_TEAMS) {
-      table.set(entry.team, {
-        team: entry.team,
-        comparisonNote: entry.comparisonNote,
+    for (const team of RANKING_TEAMS) {
+      table.set(team, {
+        team,
         played: 0,
         wins: 0,
         draws: 0,
@@ -530,7 +599,6 @@ export class TournamentsComponent implements OnInit, OnDestroy {
 
     const row: RankingRow = {
       team,
-      comparisonNote: 'kein dir. Vergleich vorhanden: Gesamttabelle (Pkt: 0 | TD: 0 | Tore: 0)',
       played: 0,
       wins: 0,
       draws: 0,

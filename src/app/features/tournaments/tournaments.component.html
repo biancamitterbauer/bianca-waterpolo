@@ -47,6 +47,16 @@
         <p class="tournament-info__location">Ort: {{ tournament.location }}</p>
         <p>{{ tournament.objective }}</p>
         <ul>
+          <li>
+            <a
+              class="tournament-info__pdf-link"
+              href="assets/documents/spielplan-u18-pokal-weiblich-2026.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              Spielplan (PDF)
+            </a>
+          </li>
           <li>{{ tournament.meeting }}</li>
           <li>{{ tournament.ceremony }}</li>
         </ul>
@@ -79,7 +89,7 @@
         <div class="match-grid-desktop__head" role="row">
           <span role="columnheader">Zeit</span>
           <span role="columnheader">Heim</span>
-          <span role="columnheader">Score / Status</span>
+          <span role="columnheader">Info / Erg.</span>
           <span role="columnheader">Gast</span>
           <span role="columnheader">Ort</span>
         </div>
@@ -94,7 +104,10 @@
           <span>{{ fixture.time }} Uhr</span>
           <span>{{ fixture.home }}</span>
           <span>
-            <span *ngIf="fixture.score; else statusCell">{{ fixture.score }}</span>
+            <span *ngIf="fixture.score; else statusCell">
+              {{ fixture.score }}
+              <span *ngIf="fixture.scoreDetails"> {{ fixture.scoreDetails }}</span>
+            </span>
             <ng-template #statusCell>
               <span [class]="statusClass(fixture.status)">{{ statusLabel(fixture.status) }}</span>
             </ng-template>
@@ -115,6 +128,7 @@
             <p>{{ fixture.time }} Uhr</p>
             <span [class]="statusClass(fixture.status)">{{ scoreOrStatus(fixture) }}</span>
           </div>
+          <p class="match-card__score-details" *ngIf="fixture.scoreDetails">{{ fixture.scoreDetails }}</p>
           <p class="match-card__teams">{{ fixture.home }} <span>vs.</span> {{ fixture.away }}</p>
           <p class="match-card__location">{{ fixture.location }}</p>
         </article>
@@ -150,7 +164,7 @@
         <thead>
           <tr>
             <th scope="col">Platz</th>
-            <th scope="col">Team</th>
+            <th scope="col">Verein</th>
             <th scope="col">Spiele</th>
             <th scope="col">S*</th>
             <th scope="col">U*</th>
@@ -163,18 +177,13 @@
         <tbody>
           <tr *ngFor="let row of rankingTable; let index = index">
             <td>{{ rankingPlace(index) }}</td>
-            <td>
-              <div class="ranking-team-cell">
-                <span class="ranking-team-name">{{ row.team }}</span>
-                <span class="ranking-team-note">{{ row.comparisonNote }}</span>
-              </div>
-            </td>
+            <td>{{ row.team }}</td>
             <td>{{ formatPlayed(row) }}</td>
             <td>{{ row.wins }}</td>
             <td>{{ row.draws }}</td>
             <td>{{ row.losses }}</td>
             <td>{{ formatGoals(row) }}</td>
-            <td>{{ row.goalDiff }}</td>
+            <td>{{ formatGoalDiff(row.goalDiff) }}</td>
             <td>{{ row.points }}</td>
           </tr>
         </tbody>
@@ -184,5 +193,32 @@
     <p class="ranking-legend">S = Siege, U = Unentschieden, N = Niederlagen, TD = Tordifferenz</p>
     <p class="ranking-legend">Für die Tabelle, Tore und Tordifferenz ist das Ergebnis nach dem 4. Abschnitt maßgeblich.</p>
     <p class="ranking-legend">Für die Statistik Sieg/Niederlage wird das Ergebnis nach dem Entscheidungswerfen herangezogen.</p>
+  </section>
+
+  <section class="tournaments-ranking tournaments-scorers block" aria-labelledby="scorers-title">
+    <h2 id="scorers-title">{{ topScorersTitle }}</h2>
+
+    <div class="ranking-table-wrap">
+      <table class="ranking-table" aria-label="Torjägerliste U18 Deutschland-Pokal">
+        <thead>
+          <tr>
+            <th scope="col">Platz</th>
+            <th scope="col">Spieler*in</th>
+            <th scope="col">Verein</th>
+            <th scope="col">Tore</th>
+            <th scope="col">Spiele</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scorer of topScorers">
+            <td>{{ scorer.rank }}</td>
+            <td>{{ scorer.player }}</td>
+            <td>{{ scorer.team }}</td>
+            <td>{{ scorer.goals }}</td>
+            <td>{{ scorer.matches }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </section>

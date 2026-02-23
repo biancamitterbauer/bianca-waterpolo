@@ -188,6 +188,17 @@
   margin-top: 0.24rem;
 }
 
+.tournament-info__pdf-link {
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.tournament-info__pdf-link:hover {
+  color: #ffffff;
+}
+
 .span-2 {
   grid-column: 1 / -1;
 }
@@ -335,6 +346,12 @@
 .match-card__top p {
   font-size: 1rem;
   font-weight: 700;
+}
+
+.match-card__score-details {
+  margin: 0.42rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .match-card__teams {
