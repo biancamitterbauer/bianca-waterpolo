@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { SeoService } from '../../core/seo/seo.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 interface Fixture {
   id: number;
@@ -266,7 +265,6 @@ const TOURNAMENT_META: TournamentMeta = {
 export class TournamentsComponent implements OnInit, OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly sanitizer = inject(DomSanitizer);
   private readonly cdr = inject(ChangeDetectorRef);
   private intervalId?: ReturnType<typeof setInterval>;
   private readonly notifiedLiveIds = new Set<number>();
@@ -274,10 +272,6 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   readonly isBrowser = isPlatformBrowser(this.platformId);
   readonly tournament = TOURNAMENT_META;
   readonly matchDays: MatchDayLabel[] = ['1. Spieltag', '2. Spieltag'];
-  readonly livestreamChannelUrl = 'https://www.youtube.com/live/fRTCG2qFpL4?si=YK_zyuUY5wiOb8_Q';
-  readonly livestreamEmbedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    'https://www.youtube-nocookie.com/embed/fRTCG2qFpL4',
-  );
 
   selectedMatchDay: MatchDayLabel = '1. Spieltag';
   now = new Date();
