@@ -13,7 +13,8 @@ export const routes: Routes = [
 	{ path: 'sponsors', redirectTo: 'sponsor-pitch', pathMatch: 'full' },
 	{ path: 'press', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'contact', loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent) },
-	{ path: 'legal', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'impressum', loadComponent: () => import('./features/impressum/impressum.component').then(m => m.ImpressumComponent) },
+	{ path: 'legal', redirectTo: 'impressum', pathMatch: 'full' },
 	{ path: 'datenschutz', loadComponent: () => import('./features/datenschutz/datenschutz.component').then(m => m.DatenschutzComponent) },
 	{ path: 'sponsor-pitch', loadComponent: () => import('./features/sponsor-pitch/sponsor-pitch.component').then(m => m.SponsorPitchComponent) },
 	{ path: '**', redirectTo: '' }

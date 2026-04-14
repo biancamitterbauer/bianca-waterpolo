@@ -21,6 +21,7 @@ import { InstallService } from '../pwa/install.service';
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
           <div>© {{ currentYear }} Bianca Mitterbauer</div>
           <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+            <a routerLink="/impressum" class="nav-link">Impressum</a>
             <a routerLink="/datenschutz" class="nav-link">Datenschutz</a>
             <button
               *ngIf="!isStandalone && (canPrompt || isIosPlatform)"

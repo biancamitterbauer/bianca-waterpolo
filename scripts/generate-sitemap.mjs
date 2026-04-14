@@ -18,6 +18,7 @@ const routes = [
   { path: 'sponsor-pitch', changefreq: 'monthly', priority: '0.6' },
   { path: 'contact', changefreq: 'yearly', priority: '0.5' },
   { path: 'datenschutz', changefreq: 'yearly', priority: '0.3' },
+  { path: 'impressum', changefreq: 'yearly', priority: '0.3' },
 ];
 
 const today = new Date().toISOString().slice(0, 10);
