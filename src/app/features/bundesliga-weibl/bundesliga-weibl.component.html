@@ -31,6 +31,41 @@
     </div>
   </section>
 
+  <section class="playoffs block" aria-labelledby="playoffs-title">
+    <p class="section-kicker">Playoffs</p>
+    <h2 id="playoffs-title">Playoff-Übersicht</h2>
+
+    <div class="playoff-groups">
+      <article class="playoff-group" *ngFor="let group of playoffGroups">
+        <header class="playoff-group__head">
+          <p class="playoff-group__title">{{ group.title }}</p>
+          <p class="playoff-group__matchup">
+            {{ group.matchup }}
+            <span class="playoff-group__status" *ngIf="group.status"> – {{ group.status }}</span>
+          </p>
+        </header>
+
+        <ul class="playoff-games">
+          <li class="playoff-game" *ngFor="let game of group.games">
+            <span class="playoff-game__no">Spiel {{ game.no }}</span>
+            <span class="playoff-game__date">
+              {{ game.date }}<span *ngIf="game.time">, {{ game.time }}</span>
+            </span>
+            <span class="playoff-game__teams">{{ game.home }} <span>vs.</span> {{ game.away }}</span>
+            <span class="playoff-game__venue">{{ game.venue }}</span>
+            <span class="playoff-game__result" *ngIf="game.score; else pending">
+              <strong>{{ game.score }}</strong>
+              <span class="playoff-game__periods" *ngIf="game.periods">{{ game.periods }}</span>
+            </span>
+            <ng-template #pending>
+              <span class="playoff-game__result playoff-game__result--pending">offen</span>
+            </ng-template>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <section class="tournaments-ranking block" aria-labelledby="ranking-title">
     <p class="section-kicker">Aktuelle Tabelle</p>
     <h2 id="ranking-title">{{ rankingTitle }}</h2>

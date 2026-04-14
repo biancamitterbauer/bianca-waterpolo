@@ -35,6 +35,24 @@ type UpcomingMatch = {
   venue: string;
 };
 
+type PlayoffGame = {
+  no: number;
+  date: string;
+  time: string;
+  home: string;
+  away: string;
+  venue: string;
+  score?: string;
+  periods?: string;
+};
+
+type PlayoffGroup = {
+  title: string;
+  matchup: string;
+  status?: string;
+  games: PlayoffGame[];
+};
+
 @Component({
   selector: 'app-bundesliga-weibl',
   standalone: true,
@@ -76,6 +94,105 @@ export class BundesligaWeiblComponent {
     score: '9 : 25',
     periods: '(1:4, 3:4, 2:11, 3:6)',
   };
+
+  readonly playoffGroups: PlayoffGroup[] = [
+    {
+      title: 'Halbfinale (Best of 3)',
+      matchup: 'SC Chemnitz 1892 vs. Wfr. Spandau 04',
+      status: 'aktueller Stand: 0:1',
+      games: [
+        {
+          no: 201,
+          date: '11.04.26',
+          time: '12:00 Uhr',
+          home: 'SC Chemnitz 1892',
+          away: 'Wfr. Spandau 04',
+          venue: 'Chemnitz',
+          score: '9 : 25',
+          periods: '(1:4, 3:4, 2:11, 3:6)',
+        },
+        {
+          no: 203,
+          date: '10.05.26',
+          time: '14:00 Uhr',
+          home: 'Wfr. Spandau 04',
+          away: 'SC Chemnitz 1892',
+          venue: 'Berlin',
+        },
+        {
+          no: 205,
+          date: 'Termin offen',
+          time: '',
+          home: 'Wfr. Spandau 04',
+          away: 'SC Chemnitz 1892',
+          venue: 'Berlin',
+        },
+      ],
+    },
+    {
+      title: 'Halbfinale (Best of 3)',
+      matchup: 'SSV Esslingen vs. SV Blau-Weiß Bochum',
+      status: 'aktueller Stand: 0:1',
+      games: [
+        {
+          no: 202,
+          date: '11.04.26',
+          time: '16:00 Uhr',
+          home: 'SSV Esslingen',
+          away: 'SV Blau-Weiß Bochum',
+          venue: 'Stuttgart',
+          score: '9 : 21',
+          periods: '(1:5, 2:6, 3:5, 3:5)',
+        },
+        {
+          no: 204,
+          date: '09.05.26',
+          time: 'Uhrzeit offen',
+          home: 'SV Blau-Weiß Bochum',
+          away: 'SSV Esslingen',
+          venue: 'Bochum',
+        },
+        {
+          no: 206,
+          date: '10.05.26',
+          time: 'Uhrzeit offen',
+          home: 'SV Blau-Weiß Bochum',
+          away: 'SSV Esslingen',
+          venue: 'Bochum',
+        },
+      ],
+    },
+    {
+      title: 'Spiel um Platz 5 (Best of 3)',
+      matchup: 'Uerdinger Schwimmverein 08 vs. Eimsbütteler Turnverband',
+      games: [
+        {
+          no: 207,
+          date: '16.05.26',
+          time: '16:00 Uhr',
+          home: 'Uerdinger Schwimmverein 08',
+          away: 'Eimsbütteler Turnverband',
+          venue: 'Krefeld-Uerdingen',
+        },
+        {
+          no: 210,
+          date: '23.05.26',
+          time: 'Uhrzeit offen',
+          home: 'Eimsbütteler Turnverband',
+          away: 'Uerdinger Schwimmverein 08',
+          venue: 'Hamburg',
+        },
+        {
+          no: 213,
+          date: '24.05.26',
+          time: 'Uhrzeit offen',
+          home: 'Eimsbütteler Turnverband',
+          away: 'Uerdinger Schwimmverein 08',
+          venue: 'Hamburg',
+        },
+      ],
+    },
+  ];
 
   readonly rankingTitle = 'Endstand Hauptrunde | 6 Mannschaften | 3 Punktsystem';
   readonly rankingRows: RankingRow[] = [
