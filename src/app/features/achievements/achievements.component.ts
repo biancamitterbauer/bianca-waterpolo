@@ -338,25 +338,6 @@ export class AchievementsComponent {
       germanAccent: true,
       sourceLabel: 'https://www.dsv.de/de/leistungs--und-wettkampfsport/wasserball/wettkampf/ergebnisse/',
     },
-    {
-      id: 'tournament-performance',
-      year: 2026,
-      dateLabel: '03.–16.08.2026',
-      category: 'tournament',
-      title: 'European U20 Water Polo Championships 2026 (geplant)',
-      subtitle: 'Kommendes Turnier · aktualisierte Terminierung',
-      details: [
-        'Zukunftsplanung 2026: Terminfenster für die U20-Europameisterschaften.',
-        'Austragungsort beider Turniere: Coimbra (Portugal).',
-        'Women’s Championships: 03.–09. August 2026.',
-        'Men’s Championships: 10.–16. August 2026.',
-        'Die Termine wurden nach Kalenderanpassungen von World Aquatics neu festgelegt.',
-        'Die Auslosung wurde von November 2025 auf Ende Februar 2026 verschoben.',
-      ],
-      goldOutline: true,
-      sourceLabel:
-        'https://europeanaquatics.org/new-dates-for-2026-european-u20-water-polo-championships-announced/',
-    },
   ];
 
   readonly teamAchievementCards: TeamAchievementCard[] = [
@@ -378,7 +359,6 @@ export class AchievementsComponent {
 
   private readonly top2026Order: Record<string, number> = {
     'u18-em-2026-women': 0,
-    'tournament-performance': 1,
   };
 
   readonly filteredAchievements = computed(() => {
