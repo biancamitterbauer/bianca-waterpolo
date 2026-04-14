@@ -14,6 +14,7 @@ export const routes: Routes = [
 	{ path: 'press', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
 	{ path: 'contact', loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent) },
 	{ path: 'legal', loadComponent: () => import('./features/placeholder/placeholder.component').then(m => m.PlaceholderComponent) },
+	{ path: 'datenschutz', loadComponent: () => import('./features/datenschutz/datenschutz.component').then(m => m.DatenschutzComponent) },
 	{ path: 'sponsor-pitch', loadComponent: () => import('./features/sponsor-pitch/sponsor-pitch.component').then(m => m.SponsorPitchComponent) },
 	{ path: '**', redirectTo: '' }
 ];

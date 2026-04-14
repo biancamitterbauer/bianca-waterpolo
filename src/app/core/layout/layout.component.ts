@@ -20,7 +20,8 @@ import { InstallService } from '../pwa/install.service';
       <div class="site-container">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
           <div>© {{ currentYear }} Bianca Mitterbauer</div>
-          <div style="display:flex;gap:1rem;align-items:center">
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+            <a routerLink="/datenschutz" class="nav-link">Datenschutz</a>
             <button
               *ngIf="!isStandalone && (canPrompt || isIosPlatform)"
               class="nav-link footer-install"
