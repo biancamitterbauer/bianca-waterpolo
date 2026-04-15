@@ -81,6 +81,7 @@
   width: 100vw;
   min-height: 100vh;
   padding-top: var(--header-height, 120px);
+  overflow: hidden;
   background-image: url('/assets/images/logos/background3.webp');
   background-image: -webkit-image-set(
     url('/assets/images/logos/background3.avif') type('image/avif'),
@@ -97,22 +98,10 @@
   background-repeat: no-repeat;
 }
 
-.hero-overlay {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.hero-overlay::before {
+.hero::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: -10%;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     to bottom left,
     rgba(5, 7, 12, 0.8) 0%,
@@ -122,8 +111,13 @@
   z-index: 0;
 }
 
-.hero-overlay > * {
+.hero-overlay {
   position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   z-index: 1;
 }
 
