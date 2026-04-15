@@ -10,7 +10,7 @@
 [[edge_functions]]
   path = "/*"
   function = "server"
-  method = ["GET", "HEAD"]
+  method = ["GET"]
 
 # Security headers
 [[headers]]
