@@ -81,7 +81,7 @@ export class ContactComponent {
 
     try {
       await firstValueFrom(
-        this.http.post('/__forms.html', body.toString(), {
+        this.http.post('/', body.toString(), {
           headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }),
           responseType: 'text',
         }),

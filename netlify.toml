@@ -6,11 +6,11 @@
   NODE_VERSION = "20"
 
 # Route all requests through the Angular SSR edge function
-# Exclude Netlify Forms submission endpoint so the built-in form handler processes POSTs.
+# Restrict to GET/HEAD so POSTs (e.g. Netlify Forms submissions) are handled by Netlify directly.
 [[edge_functions]]
   path = "/*"
   function = "server"
-  excluded_path = ["/__forms.html", "/forms/*"]
+  method = ["GET", "HEAD"]
 
 # Security headers
 [[headers]]
