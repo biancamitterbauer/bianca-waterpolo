@@ -1,6 +1,6 @@
 .hero-bio {
   margin-top: 0;
-  max-width: clamp(19rem, 46vw, 37rem);
+  max-width: 100%;
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.65;
   font-size: clamp(0.95rem, 0.35vw + 0.85rem, 1.02rem);
@@ -168,22 +168,14 @@
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: center;
-}
-
-@media (min-width: 900px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 38.2%) minmax(0, 1fr);
-  }
+  display: block;
 }
 
 .hero-copy {
   position: relative;
   text-align: left;
   padding-left: clamp(1rem, 1.6vw, 1.8rem);
+  max-width: clamp(22rem, 48vw, 42rem);
 }
 
 .hero-copy::before {
@@ -230,7 +222,7 @@
   line-height: 1.35;
   letter-spacing: -0.005em;
   color: rgba(255, 255, 255, 0.94);
-  max-width: clamp(19rem, 46vw, 37rem);
+  max-width: 100%;
   font-family: var(--font-heading, inherit);
   font-weight: 400;
   text-align: justify;
