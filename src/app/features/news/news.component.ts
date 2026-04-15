@@ -1,28 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-type NewsStory = {
-  id: string;
-  kicker: string;
-  title: string;
-  summary: string;
-  date: string;
-  location?: string;
-  metrics: string[];
-  link?: string;
-};
-
-type HeroStat = {
-  label: string;
-  value: string;
-  detail: string;
-};
-
-type EditorialAngle = {
-  label: string;
-  description: string;
-};
-
 type InstagramPost = {
   id: string;
   imageUrl: string;
@@ -44,62 +22,6 @@ type InstagramPost = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsComponent {
-  readonly heroStats: HeroStat[] = [
-    { label: 'Aktuelle Saison', value: 'Bundesliga 24/25', detail: 'Spandau 04 · Tabellenführung' },
-    { label: 'Letztes Spiel', value: '02. Januar 2026', detail: 'LEN Qualification · 4 Tore' },
-    { label: 'Nächster Gegner', value: 'Waspo 98 Hannover', detail: 'Bundesliga · 06.01.' },
-  ];
-
-  readonly newsStories: NewsStory[] = [
-    {
-      id: 'len-qualifiers',
-      kicker: 'LEN Champions League',
-      title: 'Ticket für die Hauptrunde gesichert',
-      summary:
-        'Spandau 04 gewinnt das entscheidende Quali-Spiel gegen Terrassa mit 15:11. Bianca steuert vier Treffer bei und zwingt in der Crunch-Time zwei Ballgewinne im Center-Verteidigen.',
-      date: '02. Januar 2026',
-      location: 'Berlin · Schöneberg',
-      metrics: ['4 Tore · 1 Steal', '+6 Differenz im Plus/Minus', 'Powerplay Quote: 71 %'],
-      link: 'https://spandau04.de/news/len-ticket',
-    },
-    {
-      id: 'bundesliga-round',
-      kicker: 'Bundesliga',
-      title: 'Auswärtssieg in Hannover',
-      summary:
-        'Im Topspiel gegen Waspo 98 setzt Spandau sich 13:9 durch. Bianca eröffnet das Scoring, verlagert wiederholt das Spiel auf die rechte Seite und bleibt über 28 Minuten im Wasser.',
-      date: '28. Dezember 2025',
-      location: 'Hannover · Volksbad Limmer',
-      metrics: ['3 Tore · 3 Assists', '2 geblockte Würfe', 'Swim-Offs: 3/3 gewonnen'],
-      link: 'https://dwbl.de/gamecenter/waspo-vs-spandau',
-    },
-    {
-      id: 'nationalteam-camp',
-      kicker: 'Nationalteam',
-      title: 'DSV-Lehrgang mit Fokus Überzahl',
-      summary:
-        'Der DSV-Kader arbeitet in Berlin an Setplays für die Universiade. Bianca übernimmt den rechten Rückraum, trainiert Shot Variations aus Distanz und Schnellangriffe nach Steal.',
-      date: '22. Dezember 2025',
-      location: 'Berlin · Olympiapark',
-      metrics: ['4 Einheiten/Tag', 'Video-Sessions: 3', 'Scrimmages: 2'],
-    },
-  ];
-
-  readonly editorialAngles: EditorialAngle[] = [
-    {
-      label: 'Match Analytics',
-      description: 'Shot-Maps, Überzahl-Effizienz und Clutch-Sequenzen aus Bundesliga & LEN-Spielen.',
-    },
-    {
-      label: 'Training Load',
-      description: 'Sessions, Recovery-Blöcke und Monitoring-Werte aus dem Olympiapark.',
-    },
-    {
-      label: 'Nationalteam Radar',
-      description: 'Lehrgänge, Turniere und Scouting-Notizen mit Fokus auf die rechte Seite.',
-    },
-  ];
-
   private readonly instagramSource: InstagramPost[] = [
     {
       id: 'insta-1',
