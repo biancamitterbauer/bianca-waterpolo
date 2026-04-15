@@ -51,16 +51,30 @@
   }
 
   .intro-figure {
+    display: block;
     align-self: stretch;
-    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 0;
   }
 
-  .intro-figure picture,
+  .intro-figure picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
   .intro-figure img {
     width: 100%;
+    height: 100%;
     max-width: none;
-    max-height: 100%;
+    max-height: none;
     object-fit: cover;
+    border-radius: 1rem;
   }
 }
 
