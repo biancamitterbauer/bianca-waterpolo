@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './header/header.component';
 import { BottomTabbarComponent } from './bottom-tabbar/bottom-tabbar.component';
 import { InstallService } from '../pwa/install.service';
@@ -42,9 +43,23 @@ import { InstallService } from '../pwa/install.service';
 export class LayoutComponent {
   readonly currentYear = new Date().getFullYear();
   private installService = inject(InstallService);
+  private router = inject(Router);
+  private platformId = inject(PLATFORM_ID);
   isStandalone = false;
   canPrompt = false;
   isIosPlatform = false;
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events
+        .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+        .subscribe(() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        });
+    }
+  }
 
   ngOnInit(): void {
     this.isStandalone = this.installService.isInStandaloneMode();
