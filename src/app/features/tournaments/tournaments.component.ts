@@ -63,6 +63,21 @@ type FixtureSource = Fixture & {
   matchDay: MatchDayLabel;
 };
 
+type PokalStage = 'Viertelfinale' | 'Halbfinale' | 'Spiel um Platz 3' | 'Finale';
+
+type PokalGame = {
+  no: number;
+  stage: PokalStage;
+  date: string;
+  time: string;
+  startsAt?: Date;
+  home: string;
+  away: string;
+  venue: string;
+  score?: string;
+  periods?: string;
+};
+
 const LIVE_MATCH_DURATION_MINUTES = 120;
 const TOURNAMENT_VENUE = 'Hamburg';
 const RANKING_TEAMS: string[] = [
@@ -244,6 +259,77 @@ const FIXTURE_SOURCE: FixtureSource[] = [
   },
 ];
 
+const DSV_POKAL_GAMES: PokalGame[] = [
+  {
+    no: 2,
+    stage: 'Viertelfinale',
+    date: '28.02.2026',
+    time: '14:00 Uhr',
+    home: 'Eimsbütteler Turnverband',
+    away: 'SC Chemnitz 1892',
+    venue: 'Hamburg',
+    score: '6 : 7',
+    periods: '(2:2, 2:1, 1:4, 1:0)',
+  },
+  {
+    no: 1,
+    stage: 'Viertelfinale',
+    date: '01.03.2026',
+    time: '14:00 Uhr',
+    home: 'Uerdinger Schwimmverein 08',
+    away: 'SSV Esslingen',
+    venue: 'Krefeld-Uerdingen',
+    score: '8 : 5',
+    periods: '(2:2, 1:1, 1:1, 4:1)',
+  },
+  {
+    no: 3,
+    stage: 'Halbfinale',
+    date: '01.05.2026',
+    time: '13:00 Uhr',
+    startsAt: new Date('2026-05-01T13:00:00+02:00'),
+    home: 'Uerdinger Schwimmverein 08',
+    away: 'SC Chemnitz 1892',
+    venue: 'Berlin',
+  },
+  {
+    no: 4,
+    stage: 'Halbfinale',
+    date: '01.05.2026',
+    time: '19:00 Uhr',
+    startsAt: new Date('2026-05-01T19:00:00+02:00'),
+    home: 'SV Blau-Weiß Bochum',
+    away: 'Wfr. Spandau 04',
+    venue: 'Berlin',
+  },
+  {
+    no: 5,
+    stage: 'Spiel um Platz 3',
+    date: '02.05.2026',
+    time: '14:00 Uhr',
+    startsAt: new Date('2026-05-02T14:00:00+02:00'),
+    home: 'Verlierer Halbfinale 1',
+    away: 'Verlierer Halbfinale 2',
+    venue: 'Berlin',
+  },
+  {
+    no: 6,
+    stage: 'Finale',
+    date: '02.05.2026',
+    time: '16:00 Uhr',
+    startsAt: new Date('2026-05-02T16:00:00+02:00'),
+    home: 'Gewinner Halbfinale 1',
+    away: 'Gewinner Halbfinale 2',
+    venue: 'Berlin',
+  },
+];
+
+const DSV_POKAL_META = {
+  title: 'DSV-Pokal Frauen 2025/26',
+  subtitle: 'Nächstes Turnier mit Spandau 04 · Endrunde in Berlin',
+  spandauNext: DSV_POKAL_GAMES.find((g) => g.no === 4)!,
+};
+
 const TOURNAMENT_META: TournamentMeta = {
   title: 'Deutscher Wasserball Pokal weiblich U18',
   subtitle: 'Hamburg · 21–22 Februar 2026',
@@ -272,6 +358,9 @@ export class TournamentsComponent implements OnInit, OnDestroy {
   readonly isBrowser = isPlatformBrowser(this.platformId);
   readonly tournament = TOURNAMENT_META;
   readonly matchDays: MatchDayLabel[] = ['1. Spieltag', '2. Spieltag'];
+  readonly pokal = DSV_POKAL_META;
+  readonly pokalGames = DSV_POKAL_GAMES;
+  pokalCountdownText = '00d : 00h : 00m : 00s';
 
   selectedMatchDay: MatchDayLabel = '1. Spieltag';
   now = new Date();
@@ -442,7 +531,22 @@ export class TournamentsComponent implements OnInit, OnDestroy {
     }
 
     this.updateCountdown();
+    this.updatePokalCountdown();
     this.rankingTable = this.calculateRanking(this.fixtures);
+  }
+
+  private updatePokalCountdown(): void {
+    const target = this.pokal.spandauNext.startsAt;
+    if (!target) {
+      this.pokalCountdownText = '00d : 00h : 00m : 00s';
+      return;
+    }
+    const diff = Math.max(0, target.getTime() - this.now.getTime());
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    this.pokalCountdownText = `${String(days).padStart(2, '0')}d : ${String(hours).padStart(2, '0')}h : ${String(minutes).padStart(2, '0')}m : ${String(seconds).padStart(2, '0')}s`;
   }
 
   private updateCountdown(): void {

@@ -3,7 +3,66 @@
     <div class="tournament-hero__head">
       <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" loading="lazy" />
       <div>
-        <p class="hero-kicker">Turniere</p>
+        <p class="hero-kicker">Nächstes Turnier</p>
+        <h1>{{ pokal.title }}</h1>
+        <p class="hero-subtitle">{{ pokal.subtitle }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tournaments-dashboard block" aria-label="DSV-Pokal Halbfinale">
+    <div class="dash-grid single-card-grid">
+      <section class="dash-card match-center" aria-label="Nächstes Spandau-Spiel">
+        <p class="section-kicker">Nächstes Spiel · Spandau 04</p>
+        <h2>{{ pokal.spandauNext.stage }} · Spiel {{ pokal.spandauNext.no }}</h2>
+
+        <div class="match-center__top">
+          <div>
+            <p class="match-center__date">{{ pokal.spandauNext.date }}</p>
+            <p class="match-center__time">{{ pokal.spandauNext.time }}</p>
+          </div>
+        </div>
+
+        <p class="match-center__teams">
+          {{ pokal.spandauNext.home }} <span>vs.</span> {{ pokal.spandauNext.away }}
+        </p>
+        <p class="match-center__location">{{ pokal.spandauNext.venue }}</p>
+        <p class="match-center__countdown-label">Countdown</p>
+        <p class="match-center__countdown">{{ pokalCountdownText }}</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="playoffs block" aria-labelledby="pokal-title">
+    <p class="section-kicker">Turnierplan</p>
+    <h2 id="pokal-title">Spielansetzungen</h2>
+
+    <div class="playoff-groups">
+      <article class="playoff-group">
+        <ul class="playoff-games">
+          <li class="playoff-game" *ngFor="let game of pokalGames">
+            <span class="playoff-game__no">#{{ game.no }} · {{ game.stage }}</span>
+            <span class="playoff-game__date">{{ game.date }}, {{ game.time }}</span>
+            <span class="playoff-game__teams">{{ game.home }} <span>vs.</span> {{ game.away }}</span>
+            <span class="playoff-game__venue">{{ game.venue }}</span>
+            <span class="playoff-game__result" *ngIf="game.score; else pokalPending">
+              <strong>{{ game.score }}</strong>
+              <span class="playoff-game__periods" *ngIf="game.periods">{{ game.periods }}</span>
+            </span>
+            <ng-template #pokalPending>
+              <span class="playoff-game__result playoff-game__result--pending">offen</span>
+            </ng-template>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="tournaments-hero block" aria-label="Archiv Turnier">
+    <div class="tournament-hero__head">
+      <img src="assets/images/logos/logo_dsv.png" alt="Logo Deutscher Schwimmverband" loading="lazy" />
+      <div>
+        <p class="hero-kicker">Turnier-Archiv</p>
         <h1>{{ tournament.title }}</h1>
         <p class="hero-subtitle">{{ tournament.subtitle }}</p>
       </div>
