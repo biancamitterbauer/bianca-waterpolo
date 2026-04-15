@@ -104,9 +104,9 @@
   background:
     linear-gradient(
       180deg,
-      rgba(5, 7, 12, 0.9) 0%,
-      rgba(5, 7, 12, 0.55) 18%,
-      rgba(5, 7, 12, 0) 42%
+      rgba(5, 7, 12, 0.85) 0%,
+      rgba(5, 7, 12, 0.75) 55%,
+      rgba(5, 7, 12, 0.35) 100%
     ),
     linear-gradient(
       90deg,
@@ -175,7 +175,7 @@
   position: relative;
   text-align: left;
   padding-left: clamp(1rem, 1.6vw, 1.8rem);
-  max-width: clamp(22rem, 48vw, 42rem);
+  max-width: clamp(17rem, 38vw, 38rem);
 }
 
 .hero-copy::before {
