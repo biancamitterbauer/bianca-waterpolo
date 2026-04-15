@@ -17,6 +17,7 @@ const routes = [
   { path: 'media', changefreq: 'monthly', priority: '0.7' },
   { path: 'sponsor-pitch', changefreq: 'monthly', priority: '0.6' },
   { path: 'contact', changefreq: 'yearly', priority: '0.5' },
+  { path: 'presse', changefreq: 'monthly', priority: '0.7' },
   { path: 'datenschutz', changefreq: 'yearly', priority: '0.3' },
   { path: 'impressum', changefreq: 'yearly', priority: '0.3' },
 ];

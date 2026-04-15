@@ -1,0 +1,103 @@
+<section class="presse-shell">
+  <div class="presse-inner">
+    <p class="presse-kicker">Presse</p>
+    <h1>Medienanfragen & Factsheet</h1>
+    <p class="presse-lead">
+      Dieser Bereich richtet sich an Redaktionen, Verbände und Partner. Für Interviews, Foto-Anfragen oder
+      Hintergrundgespräche stehe ich gerne zur Verfügung – bei einer minderjährigen Sportlerin erfolgt die
+      Kommunikation über den gesetzlichen Vertreter.
+    </p>
+
+    <section class="presse-block" aria-labelledby="contact-title">
+      <h2 id="contact-title">Presse-Kontakt</h2>
+      <div class="contact-card">
+        <p class="contact-role">Gesetzlicher Vertreter &amp; presserechtlich Verantwortlicher (§ 18 Abs. 2 MStV)</p>
+        <p class="contact-name">Ralf Mitterbauer</p>
+        <p class="contact-address">
+          Uhlandstraße 11<br />
+          31162 Bad Salzdetfurth<br />
+          Deutschland
+        </p>
+        <p class="contact-line">
+          E-Mail:
+          <a href="mailto:ralf.mitterbauer@t-online.de?subject=Presse-Anfrage%20Bianca%20Mitterbauer">
+            ralf.mitterbauer@t-online.de
+          </a>
+        </p>
+        <p class="contact-hint">
+          Bitte in der Betreffzeile „Presse" vermerken. Reaktionszeit in der Regel innerhalb von 24–48 Stunden.
+          Für Interviews, Fototermine oder Zitat-Freigaben bitte Deadline nennen.
+        </p>
+      </div>
+    </section>
+
+    <section class="presse-block" aria-labelledby="facts-title">
+      <h2 id="facts-title">Factsheet</h2>
+      <dl class="facts">
+        <div class="fact-row" *ngFor="let fact of facts">
+          <dt>{{ fact.label }}</dt>
+          <dd>{{ fact.value }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="presse-block" aria-labelledby="bio-title">
+      <h2 id="bio-title">Kurzbiografie</h2>
+      <p>
+        Bianca Mitterbauer (Jahrgang 2009) ist deutsche Wasserball-Nationalspielerin der Frauen sowie der
+        U18- und U20-Juniorinnen. Seit der Saison 2025/26 spielt die Linkshänderin für die Wasserfreunde
+        Spandau 04 in der 1. Wasserball-Bundesliga der Frauen und zählt zum Stammkader des deutschen
+        Serienmeisters. Parallel zum Spitzensport besucht sie die Poelchau-Schule im Berliner Olympiapark,
+        eine Eliteschule des Sports.
+      </p>
+      <p>
+        Ihre Wasserball-Karriere begann in Hildesheim, führte über Waspo 98 Hannover – wo sie ihr
+        Bundesliga-Debüt gab – nach Berlin. International nahm sie bereits an Europameisterschaften der
+        Altersklassen U15, U16 und U18 teil.
+      </p>
+    </section>
+
+    <section class="presse-block" aria-labelledby="career-title">
+      <h2 id="career-title">Karriere-Highlights</h2>
+      <ul class="career-list">
+        <li *ngFor="let entry of careerHighlights">
+          <span class="career-period">{{ entry.period }}</span>
+          <span class="career-text">{{ entry.text }}</span>
+        </li>
+      </ul>
+      <p class="career-link">
+        Vollständige Erfolgsübersicht mit Quellenangaben:
+        <a routerLink="/achievements">zur Erfolge-Seite</a>
+      </p>
+    </section>
+
+    <section class="presse-block" aria-labelledby="media-title">
+      <h2 id="media-title">Fotomaterial &amp; Quellen</h2>
+      <p>
+        Für Pressebilder wendet Euch bitte direkt an den oben genannten Kontakt. Alle auf dieser Website
+        eingebundenen Bilder unterliegen den Rechten der jeweiligen Fotografen oder Verbände (u. a.
+        Wasserfreunde Spandau 04, European Aquatics, World Aquatics) und sind nicht zur freien redaktionellen
+        Nutzung freigegeben.
+      </p>
+      <p>
+        Öffentlich verfügbare Quellen zum Abgleich:
+      </p>
+      <ul class="source-list">
+        <li>
+          <a href="https://www.instagram.com/biancamitterbauer/" target="_blank" rel="noopener">
+            Instagram @biancamitterbauer
+          </a>
+        </li>
+        <li>
+          <a href="https://spandau04.de/" target="_blank" rel="noopener">Wasserfreunde Spandau 04</a>
+        </li>
+        <li>
+          <a href="https://www.dsv.de/" target="_blank" rel="noopener">Deutscher Schwimm-Verband (DSV)</a>
+        </li>
+        <li>
+          <a href="https://europeanaquatics.org/" target="_blank" rel="noopener">European Aquatics</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</section>
