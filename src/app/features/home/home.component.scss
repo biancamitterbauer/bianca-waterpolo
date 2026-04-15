@@ -6,9 +6,59 @@
 }
 
 .intro-container {
-  max-width: 880px;
+  max-width: 1180px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
   line-height: 1.7;
+}
+
+.intro-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.intro-figure picture,
+.intro-figure img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.intro-figure figcaption {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.intro-copy {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .intro-container {
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    align-items: start;
+  }
+
+  .intro-figure {
+    position: sticky;
+    top: calc(var(--app-header-height, 120px) + 1rem);
+  }
+
+  .intro-figure picture,
+  .intro-figure img {
+    max-width: 100%;
+  }
 }
 
 .intro h2 {
