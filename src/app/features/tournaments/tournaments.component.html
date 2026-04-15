@@ -10,31 +10,8 @@
     </div>
   </section>
 
-  <section class="tournaments-dashboard block" aria-label="DSV-Pokal Halbfinale">
-    <div class="dash-grid single-card-grid">
-      <section class="dash-card match-center" aria-label="Nächstes Spandau-Spiel">
-        <p class="section-kicker">Nächstes Spiel · Spandau 04</p>
-        <h2>{{ pokal.spandauNext.stage }} · Spiel {{ pokal.spandauNext.no }}</h2>
-
-        <div class="match-center__top">
-          <div>
-            <p class="match-center__date">{{ pokal.spandauNext.date }}</p>
-            <p class="match-center__time">{{ pokal.spandauNext.time }}</p>
-          </div>
-        </div>
-
-        <p class="match-center__teams">
-          {{ pokal.spandauNext.home }} <span>vs.</span> {{ pokal.spandauNext.away }}
-        </p>
-        <p class="match-center__location">{{ pokal.spandauNext.venue }}</p>
-        <p class="match-center__countdown-label">Countdown</p>
-        <p class="match-center__countdown">{{ pokalCountdownText }}</p>
-      </section>
-    </div>
-  </section>
-
-  <section class="tournaments-dashboard block" aria-label="DSV-Pokal Turnierinfo">
-    <div class="dash-grid single-card-grid">
+  <section class="tournaments-dashboard block" aria-label="DSV-Pokal Übersicht">
+    <div class="dash-grid">
       <section class="dash-card tournament-info" aria-label="Turnierinformationen">
         <p class="section-kicker">Turnierinfo</p>
         <h2>Endrunde 01.–02. Mai 2026</h2>
@@ -55,6 +32,25 @@
           <li><strong>Tickets:</strong> Tageskarte 15 € (erm. 10 €), Turnierkarte 25 € (erm. 15 €) – nur an der Tageskasse</li>
           <li><strong>Auszeichnungen:</strong> „Women of the Match", beste Torfrau, beste Spielerin</li>
         </ul>
+      </section>
+
+      <section class="dash-card match-center" aria-label="Nächstes Spandau-Spiel">
+        <p class="section-kicker">Nächstes Spiel · Spandau 04</p>
+        <h2>{{ pokal.spandauNext.stage }} · Spiel {{ pokal.spandauNext.no }}</h2>
+
+        <div class="match-center__top">
+          <div>
+            <p class="match-center__date">{{ pokal.spandauNext.date }}</p>
+            <p class="match-center__time">{{ pokal.spandauNext.time }}</p>
+          </div>
+        </div>
+
+        <p class="match-center__teams">
+          {{ pokal.spandauNext.home }} <span>vs.</span> {{ pokal.spandauNext.away }}
+        </p>
+        <p class="match-center__location">{{ pokal.spandauNext.venue }}</p>
+        <p class="match-center__countdown-label">Countdown</p>
+        <p class="match-center__countdown">{{ pokalCountdownText }}</p>
       </section>
     </div>
   </section>
