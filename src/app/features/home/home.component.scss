@@ -96,8 +96,9 @@
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
   background: linear-gradient(
     90deg,
     rgba(5, 7, 12, 0.82) 0%,
@@ -111,7 +112,12 @@
 }
 
 @media (max-width: 899px) {
+  .hero {
+    min-height: 0;
+  }
+
   .hero-overlay {
+    min-height: 0;
     background: linear-gradient(
       180deg,
       rgba(5, 7, 12, 0.65) 0%,
@@ -119,6 +125,7 @@
       rgba(5, 7, 12, 0.85) 100%
     );
     align-items: flex-start;
+    padding-block: clamp(1.5rem, 6vw, 3rem);
   }
 }
 
