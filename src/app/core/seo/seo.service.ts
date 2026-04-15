@@ -1,5 +1,5 @@
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 
 export interface SeoOptions {
@@ -29,7 +29,7 @@ export interface SeoOptions {
 export class SeoService {
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
-  private readonly platformId = inject(PLATFORM_ID);
+  private readonly doc = inject(DOCUMENT);
 
   /**
    * Update SEO metadata for the current page.
@@ -101,22 +101,19 @@ export class SeoService {
    * @param url The canonical URL
    */
   private setCanonical(url: string): void {
-    // Only set canonical link in browser environment
-    if (!isPlatformBrowser(this.platformId)) {
+    const head = this.doc.head;
+    if (!head) return;
+
+    const existing = head.querySelector('link[rel="canonical"]');
+    if (existing) {
+      existing.setAttribute('href', url);
       return;
     }
 
-    // Remove existing canonical tag if present
-    const existingCanonical = document.querySelector('link[rel="canonical"]');
-    if (existingCanonical) {
-      existingCanonical.remove();
-    }
-
-    // Create and add new canonical tag
-    const canonical = document.createElement('link');
-    canonical.rel = 'canonical';
-    canonical.href = url;
-    document.head.appendChild(canonical);
+    const canonical = this.doc.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    canonical.setAttribute('href', url);
+    head.appendChild(canonical);
   }
 
   /**

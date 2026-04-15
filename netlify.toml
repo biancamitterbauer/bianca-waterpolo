@@ -12,6 +12,13 @@
   function = "server"
   method = ["GET"]
 
+# Canonical host: redirect www subdomain to apex domain (fixes duplicate content).
+[[redirects]]
+  from = "https://www.biancamitterbauer.de/*"
+  to = "https://biancamitterbauer.de/:splat"
+  status = 301
+  force = true
+
 # Security headers
 [[headers]]
   for = "/*"

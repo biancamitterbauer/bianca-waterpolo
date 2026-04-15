@@ -1,3 +1,43 @@
+.intro {
+  background: #000;
+  color: #f5f5f7;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 4vw, 4vw);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.intro-container {
+  max-width: 880px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.intro h2 {
+  margin: 0.35rem 0 1.2rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.intro-text {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.intro-text strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.intro-text a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.intro-text a:hover {
+  color: #d11f26;
+}
+
 .hero {
   position: relative;
   width: 100vw;
