@@ -45,6 +45,7 @@ export class HeaderComponent {
   readonly languageOptions: LanguageOption[] = [
     { code: 'de', labelKey: 'lang.de' },
     { code: 'en', labelKey: 'lang.en' },
+    { code: 'es', labelKey: 'lang.es' },
   ];
 
   readonly menuOpen = signal(false);

@@ -4,12 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import deDictionary from '../../../assets/i18n/de.json';
 import enDictionary from '../../../assets/i18n/en.json';
+import esDictionary from '../../../assets/i18n/es.json';
 
-export type SupportedLang = 'de' | 'en';
+export type SupportedLang = 'de' | 'en' | 'es';
 
 const STATIC_DICTIONARIES: Record<SupportedLang, Record<string, string>> = {
   de: deDictionary as Record<string, string>,
   en: enDictionary as Record<string, string>,
+  es: esDictionary as Record<string, string>,
 };
 
 @Injectable({ providedIn: 'root' })
@@ -43,10 +45,23 @@ export class I18nService {
   }
 
   private resolveInitialLang(): SupportedLang {
-    if (this.isBrowser()) {
-      const stored = localStorage.getItem(this.storageKey);
-      if (stored === 'en') {
-        return 'en';
+    if (!this.isBrowser()) {
+      return 'de';
+    }
+
+    const stored = localStorage.getItem(this.storageKey);
+    if (stored === 'de' || stored === 'en' || stored === 'es') {
+      return stored;
+    }
+
+    const browserLangs = [
+      ...(navigator.languages ?? []),
+      navigator.language ?? '',
+    ];
+    for (const raw of browserLangs) {
+      const prefix = raw.toLowerCase().split('-')[0];
+      if (prefix === 'de' || prefix === 'en' || prefix === 'es') {
+        return prefix;
       }
     }
 
