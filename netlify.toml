@@ -10,7 +10,7 @@
 [[edge_functions]]
   path = "/*"
   function = "server"
-  excludedPath = ["/__forms.html", "/forms/*"]
+  excluded_path = ["/__forms.html", "/forms/*"]
 
 # Security headers
 [[headers]]
