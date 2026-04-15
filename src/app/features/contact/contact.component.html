@@ -23,13 +23,32 @@
     <article class="contact-card contact-card--form">
       <p class="kicker">Anfrage senden</p>
 
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+      <form
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+        novalidate
+        name="contact"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <p hidden>
+          <label>Bitte freilassen: <input formControlName="bot-field" /></label>
+        </p>
+
         <div class="field-grid field-grid--two">
           <label>
             <span>Name *</span>
             <input type="text" formControlName="fullName" autocomplete="name" />
             <small *ngIf="contactForm.controls.fullName.touched && contactForm.controls.fullName.invalid">
               Bitte einen gültigen Namen eingeben.
+            </small>
+          </label>
+
+          <label>
+            <span>E-Mail *</span>
+            <input type="email" formControlName="email" autocomplete="email" />
+            <small *ngIf="contactForm.controls.email.touched && contactForm.controls.email.invalid">
+              Bitte eine gültige E-Mail-Adresse eingeben.
             </small>
           </label>
         </div>
@@ -61,6 +80,7 @@
           <label>
             <span>Bevorzugter Kontaktweg *</span>
             <select formControlName="preferredContact">
+              <option>E-Mail</option>
               <option>Telefon</option>
             </select>
           </label>
@@ -88,7 +108,7 @@
             {{ isSubmitting ? 'Wird gesendet…' : 'Anfrage senden' }}
           </button>
           <p class="success" *ngIf="submitState === 'success'">Danke! Die Anfrage wurde erfolgreich übermittelt.</p>
-          <p class="error" *ngIf="submitState === 'error'">Bitte prüfe die markierten Pflichtfelder.</p>
+          <p class="error" *ngIf="submitState === 'error'">{{ errorMessage }}</p>
         </div>
       </form>
     </article>
