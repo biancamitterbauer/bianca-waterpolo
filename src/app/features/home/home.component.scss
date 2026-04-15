@@ -3,7 +3,17 @@
   width: 100vw;
   min-height: 100vh;
   padding-top: var(--header-height, 120px);
-  background-image: url('/assets/images/logos/background3.png');
+  background-image: url('/assets/images/logos/background3.webp');
+  background-image: -webkit-image-set(
+    url('/assets/images/logos/background3.avif') type('image/avif'),
+    url('/assets/images/logos/background3.webp') type('image/webp'),
+    url('/assets/images/logos/background3.png') type('image/png')
+  );
+  background-image: image-set(
+    url('/assets/images/logos/background3.avif') type('image/avif'),
+    url('/assets/images/logos/background3.webp') type('image/webp'),
+    url('/assets/images/logos/background3.png') type('image/png')
+  );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
