@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.seo.updateSeo({
       title: 'Bianca Mitterbauer – Wasserball Nationalspielerin Frauen, U18 & U20',
-      description: 'Offizielle Website von Bianca Mitterbauer, 16-jährige deutsche Wasserball-Nationalspielerin der Frauen sowie der U18- und U20-Juniorinnen. Linkshänderin und Stammspielerin der Wasserfreunde Spandau 04 in der 1. Bundesliga. Aktuelle Erfolge, Turniere, Bundesliga-Ergebnisse, Trainingseinblicke und Sponsoring-Kontakt.',
+      description: 'Bianca Mitterbauer (16) – deutsche Wasserball-Nationalspielerin bei Spandau 04. Frauen, U18 & U20. Erfolge, Turniere, Bundesliga und Sponsoring-Kontakt.',
       image: 'https://biancamitterbauer.de/assets/images/logos/background2.png',
       url: 'https://biancamitterbauer.de',
       canonical: 'https://biancamitterbauer.de'
