@@ -1,6 +1,6 @@
 .hero-bio {
   margin-top: 0;
-  max-width: clamp(20rem, 38vw, 38rem);
+  max-width: clamp(19rem, 46vw, 37rem);
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.65;
   font-size: clamp(0.95rem, 0.35vw + 0.85rem, 1.02rem);
@@ -101,13 +101,20 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(5, 7, 12, 0.82) 0%,
-    rgba(5, 7, 12, 0.62) 30%,
-    rgba(5, 7, 12, 0.28) 55%,
-    rgba(5, 7, 12, 0.1) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 12, 0.9) 0%,
+      rgba(5, 7, 12, 0.55) 18%,
+      rgba(5, 7, 12, 0) 42%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(5, 7, 12, 0.82) 0%,
+      rgba(5, 7, 12, 0.62) 30%,
+      rgba(5, 7, 12, 0.28) 55%,
+      rgba(5, 7, 12, 0.1) 100%
+    );
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -156,7 +163,7 @@
   z-index: 1;
   width: 100%;
   margin: 0;
-  padding: clamp(0.75rem, 1.5vw, 1.5rem) clamp(1.25rem, 5vw, 6rem) clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 7vw, 7rem);
+  padding: clamp(0.75rem, 1.5vw, 1.5rem) clamp(1.25rem, 5vw, 6rem) clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 11vw, 11rem);
   color: #fff;
 }
 
@@ -223,7 +230,7 @@
   line-height: 1.35;
   letter-spacing: -0.005em;
   color: rgba(255, 255, 255, 0.94);
-  max-width: clamp(20rem, 38vw, 38rem);
+  max-width: clamp(19rem, 46vw, 37rem);
   font-family: var(--font-heading, inherit);
   font-weight: 400;
   text-align: justify;
