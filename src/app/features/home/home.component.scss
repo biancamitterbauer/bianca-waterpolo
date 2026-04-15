@@ -155,7 +155,13 @@
   position: relative;
   text-align: left;
   padding-left: clamp(1rem, 1.6vw, 1.8rem);
-  max-width: clamp(17rem, 38vw, 38rem);
+  width: clamp(20rem, 40vw, 40rem);
+  container-type: inline-size;
+}
+
+.hero-copy > * {
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero-copy::before {
@@ -187,7 +193,7 @@
 
 .hero-title-line {
   display: block;
-  font-size: clamp(3.2rem, 7.2vw, 7.2rem);
+  font-size: 19cqw;
   font-weight: 800;
 }
 
