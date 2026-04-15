@@ -1,10 +1,10 @@
-<section class="hero">
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-overlay">
     <div class="hero-content hero-grid">
       <div class="hero-copy">
         <p class="hero-kicker">16 Jahre · Linkshänderin · Wasserfreunde Spandau 04</p>
 
-        <h1 class="hero-title">
+        <h1 id="hero-title" class="hero-title">
           <span class="hero-title-line">Bianca</span>
           <span class="hero-title-line hero-title-accent">Mitterbauer</span>
         </h1>
@@ -13,17 +13,32 @@
           Nationalspielerin der Frauen, U18 und U20 – auf dem Weg von der Jugend-EM zum Spitzensport.
         </p>
 
-        <div class="hero-cta">
-          <a class="btn primary" routerLink="/achievements">Erfolge ansehen</a>
-          <a class="btn secondary" routerLink="/sponsor-pitch" [queryParams]="{ slide: 0 }">Sponsor werden</a>
-          <button
-            *ngIf="showInstallCta"
-            class="btn install"
-            (click)="install()"
-            aria-label="App installieren"
-          >
-            App installieren
-          </button>
+        <div class="hero-bio">
+          <p>
+            <strong>Bianca Mitterbauer</strong> ist eine 16-jährige Wasserballspielerin aus
+            Deutschland. Sie spielt für die <strong>Wasserfreunde Spandau 04</strong> in der
+            1. Wasserball-Bundesliga der Frauen und gehört zum Kader der deutschen
+            Nationalmannschaft – sowohl bei den <strong>Frauen</strong> als auch bei den
+            Juniorinnen <strong>U18</strong> und <strong>U20</strong>. Als Linkshänderin übernimmt
+            sie im Spiel meist die rechte Rückraumposition und bringt dort Torgefahr,
+            Spielübersicht und Abschlussstärke auf das Spielfeld.
+          </p>
+          <p>
+            Ihre Karriere begann in Hildesheim, führte sie über Waspo 98 Hannover – wo sie bereits
+            als Jugendliche ihr Bundesliga-Debüt gab – nach Berlin. Parallel zum Spitzensport
+            besucht Bianca die <strong>Poelchau-Schule im Olympiapark</strong>, eine Eliteschule
+            des Sports. Früh im Wasser und auf dem Sprungtuch der Nachwuchsförderung, verbindet
+            sie täglichen Trainingsalltag mit Schule, Leistung mit Haltung.
+          </p>
+          <p>
+            Auf dieser Seite findest Du alles, was Biancas sportlichen Weg ausmacht: aktuelle
+            <a routerLink="/bundesliga-weibl">Bundesliga-Ergebnisse</a>, anstehende
+            <a routerLink="/tournaments">Turniere</a> mit Spandau 04 und dem Nationalteam, die
+            komplette <a routerLink="/achievements">Erfolgs-Historie</a>, Einblicke in
+            <a routerLink="/training">Training</a> und Medien sowie einen direkten
+            <a routerLink="/sponsor-pitch">Zugang für Sponsoren und Partner</a>, die Spitzensport
+            und junge Athletinnen sichtbar machen wollen.
+          </p>
         </div>
       </div>
 
@@ -39,49 +54,6 @@
 
 <!-- install modal (iOS) -->
 <app-install-modal *ngIf="showInstallEntry && (installService.showModal$ | async)"></app-install-modal>
-
-<section class="intro" aria-labelledby="intro-title">
-  <div class="intro-container">
-    <figure class="intro-figure">
-      <picture>
-        <source srcset="assets/images/logos/intro-brand.avif" type="image/avif" />
-        <source srcset="assets/images/logos/intro-brand.webp" type="image/webp" />
-        <img src="assets/images/logos/intro-brand.png"
-             alt="Bianca Mitterbauer – Wasserball-Brandvisual mit Spielball und Spritzwasser"
-             loading="lazy" decoding="async" />
-      </picture>
-    </figure>
-    <div class="intro-copy">
-    <p class="section-kicker">Willkommen</p>
-    <h2 id="intro-title">Wasserball mit Herz, Talent und klarem Ziel</h2>
-    <p class="intro-text">
-      <strong>Bianca Mitterbauer</strong> ist eine 16-jährige Wasserballspielerin aus Deutschland.
-      Sie spielt für die <strong>Wasserfreunde Spandau 04</strong> in der 1. Wasserball-Bundesliga
-      der Frauen und gehört zum Kader der deutschen Nationalmannschaft – sowohl bei den
-      <strong>Frauen</strong> als auch bei den Juniorinnen <strong>U18</strong> und
-      <strong>U20</strong>. Als Linkshänderin übernimmt sie im Spiel meist die rechte
-      Rückraumposition und bringt dort Torgefahr, Spielübersicht und Abschlussstärke auf das
-      Spielfeld.
-    </p>
-    <p class="intro-text">
-      Ihre Karriere begann in Hildesheim, führte sie über Waspo 98 Hannover – wo sie bereits als
-      Jugendliche ihr Bundesliga-Debüt gab – nach Berlin. Parallel zum Spitzensport besucht Bianca
-      die <strong>Poelchau-Schule im Olympiapark</strong>, eine Eliteschule des Sports. Früh im
-      Wasser und auf dem Sprungtuch der Nachwuchsförderung, verbindet sie täglichen Trainingsalltag
-      mit Schule, Leistung mit Haltung.
-    </p>
-    <p class="intro-text">
-      Auf dieser Seite findest Du alles, was Biancas sportlichen Weg ausmacht: aktuelle
-      <a routerLink="/bundesliga-weibl">Bundesliga-Ergebnisse</a>, anstehende
-      <a routerLink="/tournaments">Turniere</a> mit Spandau 04 und dem Nationalteam, die komplette
-      <a routerLink="/achievements">Erfolgs-Historie</a>, Einblicke in
-      <a routerLink="/training">Training</a> und Medien sowie einen direkten
-      <a routerLink="/sponsor-pitch">Zugang für Sponsoren und Partner</a>, die Spitzensport und
-      junge Athletinnen sichtbar machen wollen.
-    </p>
-    </div>
-  </div>
-</section>
 
 <section class="trust" aria-labelledby="trust-title">
   <div class="trust-container">
